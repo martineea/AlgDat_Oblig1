@@ -11,8 +11,15 @@ public class Oblig1 {
         int[] a = {5,4,3,2,1,10};
         // 1, 2, 3, 4, 5
 
-        System.out.println(maks(a)); // skriver ut tabellens største verdi
-        System.out.println((Arrays.toString(a))); // skriver ut hele tabellen
+        System.out.println("Oppgave 1");
+        System.out.println("Største verdi: "+maks(a));
+         // skriver ut tabellens største verdi
+        System.out.println("Array: "+(Arrays.toString(a))); // skriver ut hele tabellen
+
+        System.out.println("Oppgave 2");
+        //System.out.println(antallUlikeSortert(a));
+        System.out.println("Oppgave 3");
+        System.out.println("Antall ulike: "+antallUlikseUsortert(a));
     }
 
 
@@ -53,12 +60,36 @@ public class Oblig1 {
 
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
-        throw new UnsupportedOperationException();
+
+        if (a.length == 0) {
+            return 0;
+        }
+        int tellerUlike = 2;
+        for (int i = 1; i < a.length-1; i++) {
+            if(a[i]>a[i+1]){
+                throw new UnsupportedOperationException("Listen er ikke sortert");
+            }
+            if (a[i - 1] != a[i]) {
+                tellerUlike++;
+            }
+        }
+        return tellerUlike;
     }
 
     ///// Oppgave 3 //////////////////////////////////////
-    public static int antallUlikeUsortert(int[] a) {
-        throw new UnsupportedOperationException();
+    public static int antallUlikseUsortert(int[]a){
+        if (a.length == 0) {
+            return 0;
+        }
+        int i = a[0];
+        int tellerUlike = 1;
+        for (i = 0; i < a.length; i++) {
+            for(int j=1; j<a.length; i++)
+                if (!(a[i] == a[j])) {
+                    return tellerUlike++;
+                }
+        }
+        return tellerUlike;
     }
 
     ///// Oppgave 4 //////////////////////////////////////
