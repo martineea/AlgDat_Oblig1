@@ -13,6 +13,8 @@ public class Oblig1 {
 
         System.out.println(maks(a)); // skriver ut tabellens største verdi
         System.out.println((Arrays.toString(a))); // skriver ut hele tabellen
+        int[] tabell6 = {4, 3, 3, 1, 2, 1};
+        System.out.println(antallUlikeUsortert(tabell6));
     }
 
 
@@ -53,12 +55,43 @@ public class Oblig1 {
 
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
+
+
         throw new UnsupportedOperationException();
     }
 
     ///// Oppgave 3 //////////////////////////////////////
     public static int antallUlikeUsortert(int[] a) {
-        throw new UnsupportedOperationException();
+        //foreløpig oppgave 3:
+        if (a.length == 0) {
+            return 0;
+        }
+        int tellerUlike = 0;
+        int hjvaribel = 0;
+        for (int i = 0; i < a.length; i++) {
+            int k = a[0];
+
+            int j=0;
+            while (a[i] != k) {
+                //hjvaribel=a[j];
+                if (a[i] == k) {
+                }
+                else{
+                    tellerUlike++;
+                    break;
+                }
+                j++;
+            }
+
+
+        }
+        return tellerUlike;
+
+
+            //throw new UnsupportedOperationException();
+
+
+
     }
 
     ///// Oppgave 4 //////////////////////////////////////
