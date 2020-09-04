@@ -47,7 +47,7 @@ public class Oblig1 {
 
         /// Tester oppgave 6
 
-        /// Tester oppgave 7
+        /// Tester oppgave 7a
         System.out.println("oppgave 7");
         String s="hei";
         String t="hei";
@@ -57,6 +57,11 @@ public class Oblig1 {
         String s1="du";
         String t1="ere";
         System.out.println(flett(s1,t1));
+
+        /// Tester oppgave 7b
+        String flettet=flett("am","l","geds","oratkrr","","r trte","io","tgauu");
+        System.out.println(flettet);
+
 
 
         /// Tester oppgave 8
@@ -299,7 +304,25 @@ public class Oblig1 {
 
     /// 7b)
     public static String flett(String... s) {
-        throw new UnsupportedOperationException();
+        String ut= "";
+
+        int lengde = 0;
+
+        for(int i = 0; i < s.length; i++) {
+            if(s[i].length() > lengde) {
+                lengde = s[i].length();
+            }
+        }
+        for(int i=1; i<=lengde; i++){
+
+            for(int j=0; j<=s.length-1; j++){
+                if(i <= s[j].length()){
+                    ut+=s[j].charAt(i-1);
+                }
+            }
+        }
+        return ut;
+
     }
 
     ///// Oppgave 8 //////////////////////////////////////
