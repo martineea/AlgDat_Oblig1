@@ -27,7 +27,18 @@ public class Oblig1 {
         System.out.println("");
 
         /// Tester oppgave 4
-        //int[] d = {};
+        int[] d = {6,10,9,4,1,3,8,5,2,7};
+        System.out.println("gamle arrayet "+Arrays.toString(d));
+        delsortering(d);
+        System.out.println("Her er oppgave 4: ");
+        System.out.println(Arrays.toString(d));
+
+        int[] ny = {1,2,3,4,5,6,7,53,9};
+        System.out.println("gamle arrayet "+Arrays.toString(ny));
+        delsortering(ny);
+        System.out.println("Her er oppgave 4: ");
+        System.out.println(Arrays.toString(ny));
+
 
         /// Tester oppgave 5
         char[] e = {'A','B','C','D'}; // 5,1,2,3,4
@@ -131,7 +142,6 @@ public class Oblig1 {
         if (a.length == 0) { // Returnerer 0 hvis array er tomt, fordi da er det 0 ulike og ikke feilsituasjon
             return 0;
         }
-
         int tellerUlike = 1; // sier at første tallet er unikt
         for (int i = 1; i < a.length; i++) { // går igjennom tabellen, starter på tallet etter det som er telt
             boolean uniktTall = true; // sier at tallet er unikt med en boolean true
@@ -147,10 +157,85 @@ public class Oblig1 {
         return tellerUlike;
     }
 
+    //hjelpefunksjoner for oppgave 4
+    //fra kompendiet
+    public static void bytt(int[] a, int i, int j) { //sender tilbake en ny byttet tabell hver gang den kalles
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+    //fra ukesoppgaver
+    public static int min(int[] a, int fra, int til) {
+        int m = fra;              // indeks til minste verdi i a[fra:til>
+        int minsteverdi = a[fra];   // minste verdi i a[fra:til>
+        for (int i = fra + 1; i < til; i++) {
+            if (a[i] < minsteverdi) {
+                m = i;                // indeks til minste verdi oppdateres
+                minsteverdi = a[m];     // minste verdi oppdateres
+            }
+        }
+        return m;  // posisjonen til minste verdi verdi i a[fra:til>
+    }
 
+    public static void utvalgssortering(int[] a, int fra, int til) {
+        for (int i = fra; i < til - 1; i++) { //går igjennom listen.
+            bytt(a, i, min(a,i, til));  // to hjelpemetoder bytter to verdier i arrayet: i og minste verdi.
+        }
+    }
+    public static void sortering(int[] a) {
+        for (int i = a.length; i > 1; i--) { //går igjennom baklengs
+            int m = maks1(a,0,1); //finner den høyeste verdien.
+            bytt( a, i - 1, m ); //setter den høyeste verdien bakerst
+        }
+    }
+    //fra kompendiet
+    public static int maks1(int[] a, int fra, int til) {
+        int m = fra;              // indeks til minste verdi i a[fra:til>
+        int største = a[fra];   // minste verdi i a[fra:til>
+        for (int i = fra + 1; i < til; i++) {
+            if (a[i] > største) {
+                m = i;                // indeks til minste verdi oppdateres
+                største = a[m];     // minste verdi oppdateres
+            }
+        }
+        return m;  // posisjonen til minste verdi verdi i a[fra:til>
+    }
     ///// Oppgave 4 //////////////////////////////////////
     public static void delsortering(int[] a) {
-        throw new UnsupportedOperationException();
+
+        int oddetallTeller = 0; //Angir oddetall-teller
+        int partallTeller = 0; //Angir partall-teller
+        int teller = 0; //initaliserer teller.
+        int temp = 0; //initalisererer en midlertidig variabel til ombytting
+
+        for (int i = 0; i < a.length; i++) { //går igjennom tabellen og sjekker hvor mange partall og hvor mange oddetall.
+
+            if (a[i] % 2 == 1) {
+                oddetallTeller++; //teller opp antall oddetall
+            }
+            if (a[i] % 2 == 0) {
+                partallTeller++; //teller opp antall partall
+            }
+        }
+        //Sorterer alle oddetallene og partallene
+        if (a.length == oddetallTeller || a.length == partallTeller) {
+            sortering(a);
+        }
+        else{
+            for (int i = 0; i < a.length; i++) {  //gå igjennom listen igjen
+                if (a[i] % 2 == 1) {       //sjekke om verdien i listen er et oddetall
+                    temp = a[teller];       //sette temp lik a på plass teller, er 0 første gang.
+                    a[teller] = a[i];       //1 runde: a[0]= a[0]; 2.
+                    a[i] = temp;            //
+                    teller++;
+                }
+            }
+            //gjør en utvalgssortering, hvor man bytter hvert tall med det minste foran.
+            utvalgssortering(a, 0, oddetallTeller);//sorterer først halve listen fra posisjon 0- antall oddetall
+            utvalgssortering(a, oddetallTeller, a.length); //sorterer så fra posisjon (siste oddetall)  til siste verdi.
+
+        }
+
     }
 
     ///// Oppgave 5 //////////////////////////////////////
