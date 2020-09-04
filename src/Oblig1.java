@@ -48,6 +48,16 @@ public class Oblig1 {
         /// Tester oppgave 6
 
         /// Tester oppgave 7
+        System.out.println("oppgave 7");
+        String s="hei";
+        String t="hei";
+        System.out.println(flett(s,t));
+
+        System.out.println("oppgave 7");
+        String s1="du";
+        String t1="ere";
+        System.out.println(flett(s1,t1));
+
 
         /// Tester oppgave 8
     }
@@ -270,7 +280,21 @@ public class Oblig1 {
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
     public static String flett(String s, String t) {
-        throw new UnsupportedOperationException();
+        //lager hjelpe tabeller:
+        String [] s1= s.split("(?<=.)");
+        String [] t1= t.split("(?<=.)");
+        int lengde=s1.length-1+t1.length-1;
+        String [] nyString= new String[lengde];
+        String ut="";
+        for(int i=0; i<s1.length || i<t1.length; i++){
+            if(i<s1.length){
+                ut+=s1[i];
+            }
+            if(i<t1.length){
+                ut+=t1[i];
+            }
+        }
+        return ut;
     }
 
     /// 7b)
