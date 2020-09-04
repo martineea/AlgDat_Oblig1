@@ -14,16 +14,19 @@ public class Oblig1 {
         System.out.println("Største verdi er: "+ maks(a)); // skriver ut tabellens største verdi
         System.out.println("Antall ombyttinger: "+ ombyttinger(a)); // skriver ut antall ombyttinger
         System.out.println((Arrays.toString(a))); // skriver ut hele tabellen for å se at størst ligger bakerst
+
         System.out.println("");
 
         /// Tester oppgave 2
         int[] b = {1,1,1,1,1,1,1,2};
         System.out.println("Antall ulike i et sortert array: "+antallUlikeSortert(b));
+
         System.out.println("");
 
         /// Tester oppgave 3
         int[] c = {3,3,2,1};
         System.out.println("Antall ulike i et u-sortert array: "+antallUlikeUsortert(c));
+
         System.out.println("");
 
         /// Tester oppgave 4
@@ -39,13 +42,29 @@ public class Oblig1 {
         System.out.println("Her er oppgave 4: ");
         System.out.println(Arrays.toString(ny));
 
+        System.out.println("");
 
         /// Tester oppgave 5
-        char[] e = {'A','B','C','D'}; // 5,1,2,3,4
-        System.out.println("Skriver ut array rotert: ");
+        char[] e = {'A','B','C','D'}; // D, A, B, C
+        System.out.println("Skriver ut array rotert, én plass: ");
         rotasjon(e);
+        System.out.println(Arrays.toString(e)); // skriver ut Array
+
+
+        System.out.println("");
+
 
         /// Tester oppgave 6
+        char[] f = {'A','B','C','D','E','F','G','H','I','J'};
+        System.out.println("Skriver ut array rotert, x-antall plasser mot høyre: ");
+        rotasjon(f,3); // en rotasjon 3 enheter mot høyre
+        System.out.println(Arrays.toString(f)); // skriver ut Array
+        System.out.println("Skriver ut array rotert, flere x-antall plasser mot venstre: ");
+        rotasjon(f,-4); // en rotasjon to enheter mot venstre
+        System.out.println(Arrays.toString(f)); // skriver ut Array
+
+        System.out.println("");
+
 
         /// Tester oppgave 7a
         System.out.println("oppgave 7");
@@ -267,20 +286,66 @@ public class Oblig1 {
             return;
         }
 
-        char temp;
-        for (int i=1; i < a.length; i++) {
-            if (a[i] > a[0]) {
-                temp = a[i];
-                a[i] = a[0];
-                a[0] = temp;
-            }
+        int tempL = a.length; // hjelpevariabel som er lengden til tabellen a
+        char tempBok = a[a.length-1]; // // hjelpevariabel som er siste bokstaven i tabellen a
+
+        // Kjøre en loop, som skal kjøre alle bokstavene ett steg til høyre i tabellen a
+        for (int i=tempL-1; i>= 1; i-- ) {
+            a[i] = a[i-1];
         }
+        a[0] = tempBok;
     }
 
     ///// Oppgave 6 //////////////////////////////////////
+    /*
+    Her skal vi gå videre fra ​Oppgave​ 5. Hvis vi tenker oss at tabellen er «bøyd til en sirkel»,
+    er det mer naturlig å se på dette som en rotasjon. Dermed kan vi «rotere» et valgfritt antall enheter.
+    Lag metoden ​public​ ​static​ ​void​ ​rotasjon​(​char​[] a, ​int​ k)​ der ​k​ er et vilkårlig heltall. Hvis ​k​ = 1,
+    skal metoden ha samme effekt som metoden i ​Oppgave​ 5. Hvis ​k​ er negativ, skal rotasjonen gå motsatt vei.
+    En rotasjon i en tom tabell eller i en tabell med nøyaktig ett element er ingen feilsituasjon.
+    Men rotasjonen vil da ikke endre noe. Det er ingen grense på størrelsen til ​k​. Målet er å gjøre metoden
+    så effektiv som mulig. Følgende programbit viser hvordan metoden skal virke:
+
+    ​char​[] a = {​'A'​,​'B'​,​'C'​,​'D'​,​'E'​,​'F'​,​'G'​,​'H'​,​'I'​,​'J'​};
+
+    System.​out.​ println(Arrays.​toString​(a));
+​    rotasjon(​ a,3); System.​out​.println(Arrays.​toString(​ a)); ​
+    rotasjon(​ a,-2); System.​out​.println(Arrays.​toString(​ a));
+
+    ​// Utskrift:
+    [A, B, C, D, E, F, G, H, I, J]​ ​// originaltabellen
+    [H, I, J, A, B, C, D, E, F, G]​ ​// en rotasjon på tre enheter mot høyre
+    [J, A, B, C, D, E, F, G, H, I]​ ​// en rotasjon to enheter mot venstre
+     */
     public static void rotasjon(char[] a, int k) {
-        throw new UnsupportedOperationException();
+        if (a.length < 2) { // hvis tabellen er tom eller kun har 1 tall skal den ikke gjøre noe, for da kan den ikke rotere noe tall
+            return;
+        }
+
+        k = k % a.length; // vi ønsker modulusen, til negative nummer
+        if (k < 0) {
+            k += a.length;
+        }
+
+        // Kopierer tabellen a, og setter indexen lik som a
+        char[] nyA = new char[a.length];
+        for (int i = 0; i < a.length; i++) {
+            nyA[i] = a[i];
+        }
+
+        int tempIndex; // en midlertidig lagringsvariabel
+        for (int i = 0; i < a.length; i++) { // kjører gjennom array a
+            tempIndex = i+k; // setter midlertidlig index til i + k
+            if (tempIndex < a.length) { // hvis indexen er positiv?
+                a[tempIndex] = nyA[i];
+            }
+            else {
+                a[tempIndex - a.length] = nyA[i]; // hvis indexen er negativ?
+            }
+        }
+
     }
+
 
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
