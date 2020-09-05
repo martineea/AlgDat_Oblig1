@@ -6,60 +6,21 @@ import java.util.NoSuchElementException;
 
 public class Oblig1 {
 
-    public static void main (String[] args) {
-
-        /// Tester oppgave 1
-        int[] a = {5,4,3,2,1};
-
-        System.out.println("Største verdi er: "+ maks(a)); // skriver ut tabellens største verdi
-        System.out.println("Antall ombyttinger: "+ ombyttinger(a)); // skriver ut antall ombyttinger
-        System.out.println((Arrays.toString(a))); // skriver ut hele tabellen for å se at størst ligger bakerst
-        System.out.println("");
-
-        /// Tester oppgave 2
-        int[] b = {1,1,1,1,1,1,1,2};
-        System.out.println("Antall ulike i et sortert array: "+antallUlikeSortert(b));
-        System.out.println("");
-
-        /// Tester oppgave 3
-        int[] c = {3,3,2,1};
-        System.out.println("Antall ulike i et u-sortert array: "+antallUlikeUsortert(c));
-        System.out.println("");
-
-        /// Tester oppgave 4
-        int[] d = {6,10,9,4,1,3,8,5,2,7};
-        System.out.println("gamle arrayet "+Arrays.toString(d));
-        delsortering(d);
-        System.out.println("Her er oppgave 4: ");
-        System.out.println(Arrays.toString(d));
-
-        int[] ny = {1,2,3,4,5,6,7,53,9};
-        System.out.println("gamle arrayet "+Arrays.toString(ny));
-        delsortering(ny);
-        System.out.println("Her er oppgave 4: ");
-        System.out.println(Arrays.toString(ny));
-
-
-        /// Tester oppgave 5
-        char[] e = {'A','B','C','D'}; // 5,1,2,3,4
-        System.out.println("Skriver ut array rotert: ");
-        rotasjon(e);
-
-        /// Tester oppgave 6
-
-        /// Tester oppgave 7
-
-        /// Tester oppgave 8
-    }
-
-
     private Oblig1() {}
 
     ///// Oppgave 1 //////////////////////////////////////
-    /* Svar på:
+    /*
+    Svar på spørsmålene på oppgave 1:
+
     - Når blir det flest ombyttinger?
+        Det blir flest ombyttinger når største verdi kommer først i tabellen.
+
     - Når blir det færrest?
+        Det blir færrest ombytteringer når minste verdi kommer først i tabellen (da blir det 0 ombyttinger).
+
     - Hvor mange blir det i gjennomsnitt? --> det finnes en formel for gjennomsnittet
+
+
     - Kan du på grunnlag av dette si om metoden ​maks​ er bedre (eller dårligere) enn de maks-metodene
       vi har sett på tidligere?
      */
@@ -252,36 +213,150 @@ public class Oblig1 {
             return;
         }
 
-        char temp;
-        for (int i=1; i < a.length; i++) {
-            if (a[i] > a[0]) {
-                temp = a[i];
-                a[i] = a[0];
-                a[0] = temp;
-            }
+        int tempL = a.length; // hjelpevariabel som er lengden til tabellen a
+        char tempBok = a[a.length-1]; // // hjelpevariabel som er siste bokstaven i tabellen a
+
+        // Kjøre en loop, som skal kjøre alle bokstavene ett steg til høyre i tabellen a
+        for (int i=tempL-1; i>= 1; i-- ) {
+            a[i] = a[i-1];
         }
+        a[0] = tempBok;
     }
 
     ///// Oppgave 6 //////////////////////////////////////
+    /*
+    Her skal vi gå videre fra ​Oppgave​ 5. Hvis vi tenker oss at tabellen er «bøyd til en sirkel»,
+    er det mer naturlig å se på dette som en rotasjon. Dermed kan vi «rotere» et valgfritt antall enheter.
+    Lag metoden ​public​ ​static​ ​void​ ​rotasjon​(​char​[] a, ​int​ k)​ der ​k​ er et vilkårlig heltall. Hvis ​k​ = 1,
+    skal metoden ha samme effekt som metoden i ​Oppgave​ 5. Hvis ​k​ er negativ, skal rotasjonen gå motsatt vei.
+    En rotasjon i en tom tabell eller i en tabell med nøyaktig ett element er ingen feilsituasjon.
+    Men rotasjonen vil da ikke endre noe. Det er ingen grense på størrelsen til ​k​. Målet er å gjøre metoden
+    så effektiv som mulig. Følgende programbit viser hvordan metoden skal virke:
+
+    ​char​[] a = {​'A'​,​'B'​,​'C'​,​'D'​,​'E'​,​'F'​,​'G'​,​'H'​,​'I'​,​'J'​};
+
+    System.​out.​ println(Arrays.​toString​(a));
+​    rotasjon(​ a,3); System.​out​.println(Arrays.​toString(​ a)); ​
+    rotasjon(​ a,-2); System.​out​.println(Arrays.​toString(​ a));
+
+    ​// Utskrift:
+    [A, B, C, D, E, F, G, H, I, J]​ ​// originaltabellen
+    [H, I, J, A, B, C, D, E, F, G]​ ​// en rotasjon på tre enheter mot høyre
+    [J, A, B, C, D, E, F, G, H, I]​ ​// en rotasjon to enheter mot venstre
+     */
     public static void rotasjon(char[] a, int k) {
-        throw new UnsupportedOperationException();
+        if (a.length < 2) { // hvis tabellen er tom eller kun har 1 tall skal den ikke gjøre noe, for da kan den ikke rotere noe tall
+            return;
+        }
+
+        k = k % a.length; // vi ønsker modulusen, til negative nummer
+        if (k < 0) {
+            k += a.length;
+        }
+
+        // Kopierer tabellen a, og setter indexen lik som a
+        char[] nyA = new char[a.length];
+        for (int i = 0; i < a.length; i++) {
+            nyA[i] = a[i];
+        }
+
+        int tempIndex; // en midlertidig lagringsvariabel
+        for (int i = 0; i < a.length; i++) { // kjører gjennom array a
+            tempIndex = i+k; // setter midlertidlig index til i + k
+            if (tempIndex < a.length) { // hvis indexen er positiv?
+                a[tempIndex] = nyA[i];
+            }
+            else {
+                a[tempIndex - a.length] = nyA[i]; // hvis indexen er negativ?
+            }
+        }
+
     }
+
 
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
     public static String flett(String s, String t) {
-        throw new UnsupportedOperationException();
+        //lager hjelpe tabeller:
+        String [] s1= s.split("(?<=.)");
+        String [] t1= t.split("(?<=.)");
+        int lengde=s1.length-1+t1.length-1;
+        String [] nyString= new String[lengde];
+        String ut="";
+        for(int i=0; i<s1.length || i<t1.length; i++){
+            if(i<s1.length){
+                ut+=s1[i];
+            }
+            if(i<t1.length){
+                ut+=t1[i];
+            }
+        }
+        return ut;
     }
 
     /// 7b)
     public static String flett(String... s) {
-        throw new UnsupportedOperationException();
+        String ut= "";
+
+        int lengde = 0;
+
+        for(int i = 0; i < s.length; i++) {
+            if(s[i].length() > lengde) {
+                lengde = s[i].length();
+            }
+        }
+        for(int i=1; i<=lengde; i++){
+
+            for(int j=0; j<=s.length-1; j++){
+                if(i <= s[j].length()){
+                    ut+=s[j].charAt(i-1);
+                }
+            }
+        }
+        return ut;
+
     }
 
     ///// Oppgave 8 //////////////////////////////////////
+    /*
+    Oppgaven lager først en tom tabell som heter indexTabell. Denne har lik lengde som tabell a, men har ingen verdier.
+    Så sjekker den om a er tom, hvis den er det skal den bare returnere den tomme arrayen
+    Så lages en hjelpetabell som er en kopi av tabell a - både verdier og lengde/ indexer
+    Og sorterer den vha den innebygde metoden sort
+    Nå er tabellen sortert i stigende rekkefølge (minste verdi til størst)
+    Så kjører den gjennom med forløkker
+
+    Så, det som skjer:
+    Den kjører gjennom tabellen tempA og ser på VERDIEN som ligger på 1.indexplass
+    Så kjører den gjennom tabell a, for å finne SAMME VERDIEN som i tempA --> kjører igjennom for-løkken helt til den finner samme VERDI
+    Når den endelig finner samme VERDI --> så utføres det inn i if-en:
+    Da tar den 1.indexplass i den tomme tabellen indexTabell, og setter den lik som indexplassen i tabell a som hadde samme verdien som verdien i tempA sin 1.index
+    - Hva er verdien på index 0 i tempA? --> 3
+    - Hvor i tabell a ligger verdien 3? --> på index 6
+    - Setter dermed index 0 i den tomme tabellen "indexTabell" LIK indexen i tabell "a".
+    - Dette gjør den helt til den har sammenlignet alle verdiene i "tempA" og "a", og satt alle indexene inn i den tomme tabellen "indexTabell"
+    Savvy?
+     */
     public static int[] indekssortering(int[] a) {
-        throw new UnsupportedOperationException();
+        int[] indexTabell = new int[a.length]; // lager en tom tabell med like mange index-plasser som a har
+
+        if (a.length == 0) {
+            return indexTabell; // skal returnere en tom tabell om tabellen er tom
+        }
+
+        int[] tempA = Arrays.copyOf(a, a.length); // kopi av a som midlertidig hjelpetabell
+        Arrays.sort(tempA); // sorterer denne
+
+        for (int i = 0; i < tempA.length; i++) { // kjører gjennom tabellene med forløkker
+            for (int j = 0; j < a.length; j++) {
+                if (tempA[i] == a[j]) { // og hvis tempA sin index er lik a sin index
+                    indexTabell[i] = j; // så setter den inn indexene fra tabell a inn i indexTabellen
+                }
+            }
+        }
+        return indexTabell; // og skriver ut tabellen indexTabell
     }
+
 
     ///// Oppgave 9 //////////////////////////////////////
     public static int[] tredjeMin(int[] a) {
