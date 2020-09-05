@@ -9,10 +9,18 @@ public class Oblig1 {
     private Oblig1() {}
 
     ///// Oppgave 1 //////////////////////////////////////
-    /* Svar på:
+    /*
+    Svar på spørsmålene på oppgave 1:
+
     - Når blir det flest ombyttinger?
+        Det blir flest ombyttinger når største verdi kommer først i tabellen.
+
     - Når blir det færrest?
+        Det blir færrest ombytteringer når minste verdi kommer først i tabellen (da blir det 0 ombyttinger).
+
     - Hvor mange blir det i gjennomsnitt? --> det finnes en formel for gjennomsnittet
+
+
     - Kan du på grunnlag av dette si om metoden ​maks​ er bedre (eller dårligere) enn de maks-metodene
       vi har sett på tidligere?
      */
@@ -310,9 +318,45 @@ public class Oblig1 {
     }
 
     ///// Oppgave 8 //////////////////////////////////////
+    /*
+    Oppgaven lager først en tom tabell som heter indexTabell. Denne har lik lengde som tabell a, men har ingen verdier.
+    Så sjekker den om a er tom, hvis den er det skal den bare returnere den tomme arrayen
+    Så lages en hjelpetabell som er en kopi av tabell a - både verdier og lengde/ indexer
+    Og sorterer den vha den innebygde metoden sort
+    Nå er tabellen sortert i stigende rekkefølge (minste verdi til størst)
+    Så kjører den gjennom med forløkker
+
+    Så, det som skjer:
+    Den kjører gjennom tabellen tempA og ser på VERDIEN som ligger på 1.indexplass
+    Så kjører den gjennom tabell a, for å finne SAMME VERDIEN som i tempA --> kjører igjennom for-løkken helt til den finner samme VERDI
+    Når den endelig finner samme VERDI --> så utføres det inn i if-en:
+    Da tar den 1.indexplass i den tomme tabellen indexTabell, og setter den lik som indexplassen i tabell a som hadde samme verdien som verdien i tempA sin 1.index
+    - Hva er verdien på index 0 i tempA? --> 3
+    - Hvor i tabell a ligger verdien 3? --> på index 6
+    - Setter dermed index 0 i den tomme tabellen "indexTabell" LIK indexen i tabell "a".
+    - Dette gjør den helt til den har sammenlignet alle verdiene i "tempA" og "a", og satt alle indexene inn i den tomme tabellen "indexTabell"
+    Savvy?
+     */
     public static int[] indekssortering(int[] a) {
-        throw new UnsupportedOperationException();
+        int[] indexTabell = new int[a.length]; // lager en tom tabell med like mange index-plasser som a har
+
+        if (a.length == 0) {
+            return indexTabell; // skal returnere en tom tabell om tabellen er tom
+        }
+
+        int[] tempA = Arrays.copyOf(a, a.length); // kopi av a som midlertidig hjelpetabell
+        Arrays.sort(tempA); // sorterer denne
+
+        for (int i = 0; i < tempA.length; i++) { // kjører gjennom tabellene med forløkker
+            for (int j = 0; j < a.length; j++) {
+                if (tempA[i] == a[j]) { // og hvis tempA sin index er lik a sin index
+                    indexTabell[i] = j; // så setter den inn indexene fra tabell a inn i indexTabellen
+                }
+            }
+        }
+        return indexTabell; // og skriver ut tabellen indexTabell
     }
+
 
     ///// Oppgave 9 //////////////////////////////////////
     public static int[] tredjeMin(int[] a) {

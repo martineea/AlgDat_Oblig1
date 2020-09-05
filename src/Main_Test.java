@@ -2,13 +2,15 @@ import java.util.Arrays;
 
 public class Main_Test {
     public static void main (String[] args) {
-        System.out.print("Hello World");
 
         /// Tester oppgave 1
         int[] a = {5,4,3,2,1};
+        int[] a2 = {1,2,3,4,5};
 
         System.out.println("Største verdi er: "+ Oblig1.maks(a)); // skriver ut tabellens største verdi
-        System.out.println("Antall ombyttinger: "+ Oblig1.ombyttinger(a)); // skriver ut antall ombyttinger
+        System.out.println("Antall ombyttinger (største verdi først): "+ Oblig1.ombyttinger(a)); // skriver ut antall ombyttinger
+        System.out.println((Arrays.toString(a))); // skriver ut hele tabellen for å se at størst ligger bakerst
+        System.out.println("Antall ombyttinger (minste verdi først): "+ Oblig1.ombyttinger(a2)); // skriver ut antall ombyttinger
         System.out.println((Arrays.toString(a))); // skriver ut hele tabellen for å se at størst ligger bakerst
 
         System.out.println("");
@@ -79,7 +81,12 @@ public class Main_Test {
 
         System.out.println("");
 
-
         /// Tester oppgave 8
+        int[] g = {6,10,16,11,7,12,3,9,8,5}; // Utskrift: [6, 10, 16, 11, 7, 12, 3, 9, 8, 5]
+        int[] index = Oblig1.indekssortering(g); // Utskrift: [6, 9, 0, 4, 8, 7, 1, 3, 5, 2]
+        System.out.println("Skriver ut verdiene i tabellen g: " +Arrays.toString(g));
+        System.out.println("Indexene til tabellen (med minste verdi først): "+Arrays.toString(index));
+
+
     }
 }
