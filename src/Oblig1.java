@@ -77,8 +77,10 @@ public class Oblig1 {
         String t1="ere";
         System.out.println(flett(s1,t1));
 
+        System.out.println("");
 
         /// Tester oppgave 8
+
     }
 
 
