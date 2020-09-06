@@ -66,7 +66,7 @@ public class Oblig1 {
       så er den bedre, for da trenger den bare å gå inn i if-setningen hvis tallet foran er større enn neste.
       Mens hvis største tall kom først, så vil den alltid måtte gå inn i if-setningen - og det trenger den
       ikke på de tidligere maks-metodene? Der gikk den kun inn i if-setningen hvis a[i] var større enn forrige
-      største verdi den har funnet. Er det riktig?
+      største verdi den har funnet. MEN det er ikke stor forskjell/ små marginer? Er det riktig?
      */
 
 
