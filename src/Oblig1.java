@@ -9,21 +9,7 @@ public class Oblig1 {
     private Oblig1() {}
 
     ///// Oppgave 1 //////////////////////////////////////
-    /*
-    Svar på spørsmålene på oppgave 1:
 
-    - Når blir det flest ombyttinger?
-        Det blir flest ombyttinger når største verdi kommer først i tabellen.
-
-    - Når blir det færrest?
-        Det blir færrest ombytteringer når minste verdi kommer først i tabellen (da blir det 0 ombyttinger).
-
-    - Hvor mange blir det i gjennomsnitt? --> det finnes en formel for gjennomsnittet
-
-
-    - Kan du på grunnlag av dette si om metoden ​maks​ er bedre (eller dårligere) enn de maks-metodene
-      vi har sett på tidligere?
-     */
     public static int maks(int[] a)
     {
         if (a.length == 0) {
@@ -59,6 +45,24 @@ public class Oblig1 {
         }
         return tellerOmbyttinger;
     }
+
+    /*
+    Svar på spørsmålene på oppgave 1:
+
+    - Når blir det flest ombyttinger?
+      Det blir flest ombyttinger når største verdi kommer først i tabellen.
+      Det er verste tilfelle (n-1 ganger).
+
+    - Når blir det færrest?
+      Det blir færrest ombytteringer når minste verdi kommer først i tabellen (da blir det 0 ombyttinger).
+      Dette er beste tilfelle (da går den 0 ganger inn i if-setningen).
+
+    - Hvor mange blir det i gjennomsnitt? --> det finnes en formel for gjennomsnittet
+      log(n) - 0,423
+
+    - Kan du på grunnlag av dette si om metoden ​maks​ er bedre (eller dårligere) enn de maks-metodene
+      vi har sett på tidligere?
+     */
 
 
     ///// Oppgave 2 //////////////////////////////////////
