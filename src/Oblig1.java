@@ -118,50 +118,7 @@ public class Oblig1 {
         return tellerUlike;
     }
 
-    //hjelpefunksjoner for oppgave 4
-    //fra kompendiet
-    public static void bytt(int[] a, int i, int j) { //sender tilbake en ny byttet tabell hver gang den kalles
-        int temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
-    }
-    //fra ukesoppgaver
-    public static int min(int[] a, int fra, int til) {
-        int m = fra;              // indeks til minste verdi i a[fra:til>
-        int minsteverdi = a[fra];   // minste verdi i a[fra:til>
-        for (int i = fra + 1; i < til; i++) {
-            if (a[i] < minsteverdi) {
-                m = i;                // indeks til minste verdi oppdateres
-                minsteverdi = a[m];     // minste verdi oppdateres
-            }
-        }
-        return m;  // posisjonen til minste verdi verdi i a[fra:til>
-    }
-
-    public static void utvalgssortering(int[] a, int fra, int til) {
-        for (int i = fra; i < til - 1; i++) { //går igjennom listen.
-            bytt(a, i, min(a,i, til));  // to hjelpemetoder bytter to verdier i arrayet: i og minste verdi.
-        }
-    }
-    public static void sortering(int[] a) {
-        for (int i = a.length; i > 1; i--) { //går igjennom baklengs
-            int m = maks1(a,0,1); //finner den høyeste verdien.
-            bytt( a, i - 1, m ); //setter den høyeste verdien bakerst
-        }
-    }
-    //fra kompendiet
-    public static int maks1(int[] a, int fra, int til) {
-        int m = fra;              // indeks til minste verdi i a[fra:til>
-        int største = a[fra];   // minste verdi i a[fra:til>
-        for (int i = fra + 1; i < til; i++) {
-            if (a[i] > største) {
-                m = i;                // indeks til minste verdi oppdateres
-                største = a[m];     // minste verdi oppdateres
-            }
-        }
-        return m;  // posisjonen til minste verdi verdi i a[fra:til>
-    }
-    ///// Oppgave 4 //////////////////////////////////////
+    /*///// Oppgave 4 //////////////////////////////////////
     public static void delsortering(int[] a) {
 
         int oddetallTeller = 0; //Angir oddetall-teller
@@ -191,13 +148,91 @@ public class Oblig1 {
                     teller++;
                 }
             }
-            //gjør en utvalgssortering, hvor man bytter hvert tall med det minste foran.
-            utvalgssortering(a, 0, oddetallTeller);//sorterer først halve listen fra posisjon 0- antall oddetall
-            utvalgssortering(a, oddetallTeller, a.length); //sorterer så fra posisjon (siste oddetall)  til siste verdi.
+            if(oddetallTeller >0 && partallTeller>0 ){
+                //gjør en utvalgssortering, hvor man bytter hvert tall med det minste foran.
+                utvalgssortering(a, 0, oddetallTeller);//sorterer først halve listen fra posisjon 0- antall oddetall
+                utvalgssortering(a, oddetallTeller, a.length); //sorterer så fra posisjon (siste oddetall)  til siste verdi.
+            }
+            else if(oddetallTeller>0){
+                utvalgssortering(a, 0, oddetallTeller);//sorterer først halve listen fra posisjon 0- antall oddetall
+                utvalgssortering(a, oddetallTeller, a.length);
+            }
+            else{
+                utvalgssortering(a, 0, partallTeller);//sorterer først halve listen fra posisjon 0- antall oddetall
+                utvalgssortering(a, partallTeller, a.length);
+            }
+
+
 
         }
 
     }
+
+     */
+
+    //oppgave 4
+    public static void delsortering(int[] a) {
+        if (a.length == 0) {
+            return;
+        }
+        int partallPlass = a.length-1; //partallPlass begynner bakerst
+        int oddetallPlass = 0; //oddetallindexen begynner forerst.
+        int temp; //midlertidig variabel.
+
+
+        boolean fortsettByttePlass = true;
+        for ( int i=0; fortsettByttePlass; i++)                                  // stopper nar venstre(oddetalsindex) > hoyre(partallsindex)
+        {
+            while ((oddetallPlass <= partallPlass) && ((a[oddetallPlass] % 2 == 1)||(a[oddetallPlass] % 2 == -1))) { //oddetall kan både være -1 og 1
+                oddetallPlass++;   // partallPlass er stoppverdi for oddetalsindex
+            }
+            while ((oddetallPlass <= partallPlass) && (a[partallPlass] % 2 == 0)) {
+                partallPlass--;  // oddetallPlass er stoppverdi for partallPlass
+            }
+            if (oddetallPlass < partallPlass) { //bytter plasser hvis oddetallplass er mindre enn partallplass.
+                temp = a[partallPlass];
+                a[partallPlass] = a[oddetallPlass];
+                a[oddetallPlass] = temp;
+            } else {
+                fortsettByttePlass = false;
+            }
+        }
+        partallPlass++;
+        oddetallPlass--;
+        quickSort(a,0,oddetallPlass);
+        quickSort(a,partallPlass,a.length-1);
+    }
+
+    private static void quickSort(int[] a, int fra, int til) {
+        if (fra < til) {
+            int nyByttetVerdiIndex = byttPlass(a,fra,til);
+
+            quickSort(a, fra, nyByttetVerdiIndex-1);
+            quickSort(a,nyByttetVerdiIndex+1, til);
+        }
+
+    }
+
+    private static int byttPlass(int[] a, int fra, int til) { //Hjelpefunksjon for quicksort i oppgave 4
+        int vippeVerdi = a[til]; //Velger bakerste
+        int i = fra-1;
+
+        for (int j = fra; j < til; j++) {
+            if (a[j] <= vippeVerdi) {
+                i++;
+                int temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+        // Flytter vippeVerdi etter de som er mindre
+        int temp = a[i+1];
+        a[i+1] = a[til];
+        a[til] = temp;
+
+        return i+1;
+    }
+
 
     ///// Oppgave 5 //////////////////////////////////////
     /*

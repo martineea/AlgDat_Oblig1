@@ -33,6 +33,10 @@ public class Main_Test {
         Oblig1.delsortering(d);
         System.out.println("Her er oppgave 4: ");
         System.out.println(Arrays.toString(d));
+        int[] siste = {10,8,6,2};
+        Oblig1.delsortering(siste);
+        System.out.println(Arrays.toString(siste));
+
 
         int[] ny = {1,2,3,4,5,6,7,53,9};
         System.out.println("gamle arrayet "+Arrays.toString(ny));
