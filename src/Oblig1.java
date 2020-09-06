@@ -181,7 +181,7 @@ public class Oblig1 {
 
 
         boolean fortsettByttePlass = true;
-        while (fortsettByttePlass)                                  // stopper nar venstre(oddetalsindex) > hoyre(partallsindex)
+        for ( int i=0; fortsettByttePlass; i++)                                  // stopper nar venstre(oddetalsindex) > hoyre(partallsindex)
         {
             while ((oddetallPlass <= partallPlass) && ((a[oddetallPlass] % 2 == 1)||(a[oddetallPlass] % 2 == -1))) { //oddetall kan både være -1 og 1
                 oddetallPlass++;   // partallPlass er stoppverdi for oddetalsindex
@@ -189,7 +189,6 @@ public class Oblig1 {
             while ((oddetallPlass <= partallPlass) && (a[partallPlass] % 2 == 0)) {
                 partallPlass--;  // oddetallPlass er stoppverdi for partallPlass
             }
-
             if (oddetallPlass < partallPlass) { //bytter plasser hvis oddetallplass er mindre enn partallplass.
                 temp = a[partallPlass];
                 a[partallPlass] = a[oddetallPlass];
