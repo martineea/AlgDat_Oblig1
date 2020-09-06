@@ -175,59 +175,58 @@ public class Oblig1 {
         if (a.length == 0) {
             return;
         }
-        int partallindex = a.length-1; //partallindex begynner bakerst
-        int oddetallindex = 0; //oddetallindexen begynner forerst.
+        int partallPlass = a.length-1; //partallPlass begynner bakerst
+        int oddetallPlass = 0; //oddetallindexen begynner forerst.
         int temp; //midlertidig variabel.
 
 
-        boolean ikkePartisjonert = true;
-        while (ikkePartisjonert)                                  // stopper nar venstre(oddetalsindex) > hoyre(partallsindex)
+        boolean fortsettByttePlass = true;
+        while (fortsettByttePlass)                                  // stopper nar venstre(oddetalsindex) > hoyre(partallsindex)
         {
-            while ((oddetallindex <= partallindex) && ((a[oddetallindex] % 2 == 1)||(a[oddetallindex] % 2 == -1))) {
-                oddetallindex++;   // partallindex er stoppverdi for oddetalsindex
+            while ((oddetallPlass <= partallPlass) && ((a[oddetallPlass] % 2 == 1)||(a[oddetallPlass] % 2 == -1))) { //oddetall kan både være -1 og 1
+                oddetallPlass++;   // partallPlass er stoppverdi for oddetalsindex
             }
-            while ((oddetallindex <= partallindex) && (a[partallindex] % 2 == 0)) {
-                partallindex--;  // oddetallindex er stoppverdi for partallindex
+            while ((oddetallPlass <= partallPlass) && (a[partallPlass] % 2 == 0)) {
+                partallPlass--;  // oddetallPlass er stoppverdi for partallPlass
             }
 
-            if (oddetallindex < partallindex) {
-                temp = a[partallindex];
-                a[partallindex] = a[oddetallindex];
-                a[oddetallindex] = temp;
+            if (oddetallPlass < partallPlass) { //bytter plasser hvis oddetallplass er mindre enn partallplass.
+                temp = a[partallPlass];
+                a[partallPlass] = a[oddetallPlass];
+                a[oddetallPlass] = temp;
             } else {
-                ikkePartisjonert = false;
+                fortsettByttePlass = false;
             }
         }
-        partallindex++;
-        oddetallindex--;
-        quickSort(a,0,oddetallindex);
-        quickSort(a,partallindex,a.length-1);
+        partallPlass++;
+        oddetallPlass--;
+        quickSort(a,0,oddetallPlass);
+        quickSort(a,partallPlass,a.length-1);
     }
 
-    private static void quickSort(int[] a, int fra, int til) { //Hjelpefunksjon for delsortering i oppgave 4 og 8
+    private static void quickSort(int[] a, int fra, int til) {
         if (fra < til) {
-            int partitionIndex = parter(a,fra,til);
+            int nyByttetVerdiIndex = byttPlass(a,fra,til);
 
-            quickSort(a, fra, partitionIndex-1);
-            quickSort(a,partitionIndex+1, til);
+            quickSort(a, fra, nyByttetVerdiIndex-1);
+            quickSort(a,nyByttetVerdiIndex+1, til);
         }
 
     }
 
-    private static int parter(int[] a, int fra, int til) { //Hjelpefunksjon for quicksort i oppgave 4
-        int pivot = a[til]; //Velger bakerste
-        int i = (fra-1);
+    private static int byttPlass(int[] a, int fra, int til) { //Hjelpefunksjon for quicksort i oppgave 4
+        int vippeVerdi = a[til]; //Velger bakerste
+        int i = fra-1;
 
         for (int j = fra; j < til; j++) {
-            if (a[j] <= pivot) {
+            if (a[j] <= vippeVerdi) {
                 i++;
-
                 int temp = a[i];
                 a[i] = a[j];
                 a[j] = temp;
             }
         }
-        // Flytter pivot etter de som er mindre
+        // Flytter vippeVerdi etter de som er mindre
         int temp = a[i+1];
         a[i+1] = a[til];
         a[til] = temp;
