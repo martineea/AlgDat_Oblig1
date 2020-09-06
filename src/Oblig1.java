@@ -62,6 +62,11 @@ public class Oblig1 {
 
     - Kan du på grunnlag av dette si om metoden ​maks​ er bedre (eller dårligere) enn de maks-metodene
       vi har sett på tidligere?
+      Hvis tabellen starter med høyeste verdi først så er den dårligere, mens hvis tabellen starter med minste tall først,
+      så er den bedre, for da trenger den bare å gå inn i if-setningen hvis tallet foran er større enn neste.
+      Mens hvis største tall kom først, så vil den alltid måtte gå inn i if-setningen - og det trenger den
+      ikke på de tidligere maks-metodene? Der gikk den kun inn i if-setningen hvis a[i] var større enn forrige
+      største verdi den har funnet. Er det riktig?
      */
 
 
