@@ -9,6 +9,27 @@ public class Oblig1 {
     private Oblig1() {}
 
     ///// Oppgave 1 //////////////////////////////////////
+    /*
+    Svar på spørsmålene på oppgave 1:
+
+    - Når blir det flest ombyttinger?
+      Det blir flest ombyttinger når største verdi kommer først i tabellen.
+      Det er verste tilfelle (n-1 ganger).
+
+    - Når blir det færrest?
+      Det blir færrest ombytteringer når minste verdi kommer først i tabellen (da blir det 0 ombyttinger).
+      Dette er beste tilfelle (da går den 0 ganger inn i if-setningen).
+
+    - Hvor mange blir det i gjennomsnitt? --> det finnes en formel for gjennomsnittet
+      Formelen for å regne ut gjennomsnittet er: log(n) - 0,423
+      Hvis vi har en tabell med 5 tall så blir det: log(5) - 0,423 = 0,699 - 0,423 = 0,276
+      Hvis vi hadde hatt 100 tall i tabbellen vår så ville den i gjennomsnitt gått in i if 2 ganger.
+
+    - Kan du på grunnlag av dette si om metoden ​maks​ er bedre (eller dårligere) enn de maks-metodene
+      vi har sett på tidligere?
+      De er ca like effektive eller ineffektive fordi begge har formelen log(n). Hadde formelen n2 så ville det vært
+      større forskjell.
+     */
 
     public static int maks(int[] a)
     {
@@ -45,29 +66,6 @@ public class Oblig1 {
         }
         return tellerOmbyttinger;
     }
-
-    /*
-    Svar på spørsmålene på oppgave 1:
-
-    - Når blir det flest ombyttinger?
-      Det blir flest ombyttinger når største verdi kommer først i tabellen.
-      Det er verste tilfelle (n-1 ganger).
-
-    - Når blir det færrest?
-      Det blir færrest ombytteringer når minste verdi kommer først i tabellen (da blir det 0 ombyttinger).
-      Dette er beste tilfelle (da går den 0 ganger inn i if-setningen).
-
-    - Hvor mange blir det i gjennomsnitt? --> det finnes en formel for gjennomsnittet
-      Formelen for å regne ut gjennomsnittet er: log(n) - 0,423
-      Hvis vi har en tabell med 5 tall så blir det: log(5) - 0,423 = 0,699 - 0,423 = 0,276
-      Hvis vi hadde hatt 100 tall i tabbellen vår så ville den i gjennomsnitt gått in i if 2 ganger.
-
-    - Kan du på grunnlag av dette si om metoden ​maks​ er bedre (eller dårligere) enn de maks-metodene
-      vi har sett på tidligere?
-      De er ca like effektive eller ineffektive fordi begge har formelen log(n). Hadde formelen n2 så ville det vært
-      større forskjell.
-     */
-
 
     ///// Oppgave 2 //////////////////////////////////////
 
