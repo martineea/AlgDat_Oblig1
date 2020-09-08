@@ -8,6 +8,6 @@ Oppgaven er levert av følgende studenter:
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-* Martine har hatt ansvaret for oppgave 1,2,3 og 5
-* Camilla har hatt ansvaret for oppgave 4,6,7,8
+* Martine har hatt ansvaret for oppgave 1,3,5,8
+* Camilla har hatt ansvaret for oppgave 2,4,6,7
 
