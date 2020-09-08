@@ -5,13 +5,16 @@ public class Main_Test {
 
         /// Tester oppgave 1
         int[] a = {5,4,3,2,1};
-        int[] a2 = {1,2,3,4,5};
+        int[] a2 = {1,2,6,3,4,5};
 
-        System.out.println("Største verdi er: "+ Oblig1.maks(a)); // skriver ut tabellens største verdi
         System.out.println("Antall ombyttinger (største verdi først): "+ Oblig1.ombyttinger(a)); // skriver ut antall ombyttinger
         System.out.println((Arrays.toString(a))); // skriver ut hele tabellen for å se at størst ligger bakerst
+        System.out.println("Største verdi er: "+ Oblig1.maks(a)); // skriver ut tabellens største verdi
+
         System.out.println("Antall ombyttinger (minste verdi først): "+ Oblig1.ombyttinger(a2)); // skriver ut antall ombyttinger
-        System.out.println((Arrays.toString(a))); // skriver ut hele tabellen for å se at størst ligger bakerst
+        System.out.println((Arrays.toString(a2))); // skriver ut hele tabellen for å se at størst ligger bakerst
+        System.out.println("Største verdi er: "+ Oblig1.maks(a2)); // skriver ut tabellens største verdi
+
 
         System.out.println("");
 
@@ -58,9 +61,9 @@ public class Main_Test {
 
         /// Tester oppgave 6
         char[] f = {'A','B','C','D','E','F','G','H','I','J'};
-        System.out.println("Skriver ut array rotert, x-antall plasser mot høyre: ");
-        Oblig1.rotasjon(f,3); // en rotasjon 3 enheter mot høyre
-        System.out.println(Arrays.toString(f)); // skriver ut Array
+        //System.out.println("Skriver ut array rotert, x-antall plasser mot høyre: ");
+        //Oblig1.rotasjon(f,3); // en rotasjon 3 enheter mot høyre
+        //System.out.println(Arrays.toString(f)); // skriver ut Array
         System.out.println("Skriver ut array rotert, flere x-antall plasser mot venstre: ");
         Oblig1.rotasjon(f,-4); // en rotasjon to enheter mot venstre
         System.out.println(Arrays.toString(f)); // skriver ut Array
@@ -69,18 +72,25 @@ public class Main_Test {
 
 
         /// Tester oppgave 7a
-        System.out.println("oppgave 7");
+        /*System.out.println("oppgave 7");
         String s="hei";
         String t="hei";
-        System.out.println(Oblig1.flett(s,t));
+        System.out.println(Oblig1.flett(s,t));*/
 
-        System.out.println("oppgave 7");
+        System.out.println("Oppgave 7a");
+        String s = Oblig1.flett("ABC", "DEFGH");
+        String t = Oblig1.flett("IJKLMN", "OPQ");
+        String q = Oblig1.flett("", "AB");
+        System.out.println(s+" "+t+" "+q);
+
+        System.out.println("Oppgave 7a");
         String s1="du";
         String t1="ere";
         System.out.println(Oblig1.flett(s1,t1));
 
         /// Tester oppgave 7b
-        String flettet=Oblig1.flett("am","l","geds","oratkrr","","r trte","io","tgauu");
+        System.out.println("Oppgave 7b");
+        String flettet=Oblig1.flett("am ","l","geds","oratkrr","","r trte","io","tgauu");
         System.out.println(flettet);
 
         System.out.println("");
