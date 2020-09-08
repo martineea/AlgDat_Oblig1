@@ -57,16 +57,18 @@ public class Oblig1 {
       Det blir færrest ombytteringer når minste verdi kommer først i tabellen (da blir det 0 ombyttinger).
       Dette er beste tilfelle (da går den 0 ganger inn i if-setningen).
 
+
     - Hvor mange blir det i gjennomsnitt? --> det finnes en formel for gjennomsnittet
-      log(n) - 0,423
+      Formelen for å regne ut gjennomsnittet er: log(n) - 0,423
+      Hvis vi har en tabell med 5 tall så blir det: log(5) - 0,423 = 0,699 - 0,423 = 0,276
+      Hvis vi hadde hatt 100 tall i tabbellen vår så ville den i gjennomsnitt gått in i if 2 ganger.
+
 
     - Kan du på grunnlag av dette si om metoden ​maks​ er bedre (eller dårligere) enn de maks-metodene
       vi har sett på tidligere?
-      Hvis tabellen starter med høyeste verdi først så er den dårligere, mens hvis tabellen starter med minste tall først,
-      så er den bedre, for da trenger den bare å gå inn i if-setningen hvis tallet foran er større enn neste.
-      Mens hvis største tall kom først, så vil den alltid måtte gå inn i if-setningen - og det trenger den
-      ikke på de tidligere maks-metodene? Der gikk den kun inn i if-setningen hvis a[i] var større enn forrige
-      største verdi den har funnet. MEN det er ikke stor forskjell/ små marginer? Er det riktig?
+
+      De er ca like effektive eller ineffektive fordi begge har formelen log(n). Hadde formelen n2 så ville det vært
+      større forskjell.
      */
 
 
