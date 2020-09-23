@@ -1,3 +1,5 @@
+package Oblig1;
+
 import java.lang.UnsupportedOperationException;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
@@ -295,6 +297,6 @@ public class Oblig1 {
         throw new UnsupportedOperationException();
     }
 
-}  // Oblig1
+}  // Oblig1.Oblig1
 
 

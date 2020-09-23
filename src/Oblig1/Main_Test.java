@@ -1,3 +1,5 @@
+package Oblig1;
+
 import java.util.Arrays;
 
 public class Main_Test {
@@ -26,7 +28,7 @@ public class Main_Test {
 
         /// Tester oppgave 3
         int[] c = {3,3,2,1};
-        System.out.println("Antall ulike i et u-sortert array: "+Oblig1.antallUlikeUsortert(c));
+        System.out.println("Antall ulike i et u-sortert array: "+ Oblig1.antallUlikeUsortert(c));
 
         System.out.println("");
 
@@ -62,7 +64,7 @@ public class Main_Test {
         /// Tester oppgave 6
         char[] f = {'A','B','C','D','E','F','G','H','I','J'};
         //System.out.println("Skriver ut array rotert, x-antall plasser mot høyre: ");
-        //Oblig1.rotasjon(f,3); // en rotasjon 3 enheter mot høyre
+        //Oblig1.Oblig1.rotasjon(f,3); // en rotasjon 3 enheter mot høyre
         //System.out.println(Arrays.toString(f)); // skriver ut Array
         System.out.println("Skriver ut array rotert, flere x-antall plasser mot venstre: ");
         Oblig1.rotasjon(f,-4); // en rotasjon to enheter mot venstre
@@ -75,7 +77,7 @@ public class Main_Test {
         /*System.out.println("oppgave 7");
         String s="hei";
         String t="hei";
-        System.out.println(Oblig1.flett(s,t));*/
+        System.out.println(Oblig1.Oblig1.flett(s,t));*/
 
         System.out.println("Oppgave 7a");
         String s = Oblig1.flett("ABC", "DEFGH");
@@ -90,7 +92,7 @@ public class Main_Test {
 
         /// Tester oppgave 7b
         System.out.println("Oppgave 7b");
-        String flettet=Oblig1.flett("am ","l","geds","oratkrr","","r trte","io","tgauu");
+        String flettet= Oblig1.flett("am ","l","geds","oratkrr","","r trte","io","tgauu");
         System.out.println(flettet);
 
         System.out.println("");
