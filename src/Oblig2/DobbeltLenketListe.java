@@ -1,4 +1,4 @@
-package no.oslomet.cs.algdat;
+package Oblig2;
 
 
 ////////////////// class DobbeltLenketListe //////////////////////////////
@@ -42,12 +42,42 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int antall;            // antall noder i listen
     private int endringer;         // antall endringer i listen
 
-    public DobbeltLenketListe() {
-        throw new UnsupportedOperationException();
+    public DobbeltLenketListe() { // konstruktør for tom liste
+        hode = null;
+        hale = null;
+        antall = 0;
+        endringer = 0;
     }
 
-    public DobbeltLenketListe(T[] a) {
-        throw new UnsupportedOperationException();
+    public DobbeltLenketListe(T[] a) { // konstruktør
+        Objects.requireNonNull(a, "Tabellen a er null!"); // kaster nullPointerException om a == null
+
+        if (a.length > 0) {
+            int i = 0;
+            for (i=0; i < a.length; i++) {
+                if (a[i] != null) {
+                    hode = new Node<>(a[i]);
+                    antall++;
+                    break;
+                }
+            }
+
+            hale = hode;
+            if (hode != null) {
+                i++;
+                for (; i < a.length; i++) {
+                    if (a[i] != null) {
+                        hale.neste = new Node<>(a[i], hale, null);
+                        hale = hale.neste;
+                        antall++;
+                    }
+
+                }
+            }
+        }
+
+
+        Node p = new Node (null, null, null); //lager en ny
     }
 
     public Liste<T> subliste(int fra, int til){
@@ -56,12 +86,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int antall() {
-        throw new UnsupportedOperationException();
+        return antall;
     }
 
     @Override
     public boolean tom() {
-        throw new UnsupportedOperationException();
+        if (antall == 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
