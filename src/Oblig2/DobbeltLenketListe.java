@@ -215,17 +215,40 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     //Oppgave 3.
     private Node<T> finnNode(int indeks){
 
-        //puttet inn funksjonsnavn.
-
         //Den skal returnere noden med den gitte indeksen/posisjonen.
-
+        this.antall=0;
         //Hvis indeks er mindre enn ​antall​/2,
-        // så ​skal letingen etter noden starte fra hode og gå mot høyre ved hjelp av neste-pekere.
+        DobbeltLenketListe<T> verdi= new DobbeltLenketListe<>();
+        Node current= verdi.hode;
+        Node bakerste=verdi.hale;
+        if(indeks<antall/2){
+            int i=0;
+            int j=0;
+            //while(verdi.hode < verdi.hale){
+                //må ha en måte å gjøre dette på
+
+                current= current.neste;
+                return current;
+               //i++;
+                // så ​skal letingen etter noden starte fra hode og gå mot høyre ved hjelp av neste-pekere.
+            //}
 
 
-        // Hvis ikke, ​skal​ letingen starte fra halen og gå mot venstre ved hjelp av forrige-pekere.
+            //while(verdi.hale>hode){
+            // bakerste= bakerste.forrige;
+            // // Hvis ikke, ​skal​ letingen starte fra halen og gå mot venstre ved hjelp av forrige-pekere.
+            //j--;
+            // }
 
-        //
+
+
+        }
+
+
+
+
+
+
 
         //legger til returnstatement.
         return null;
