@@ -21,7 +21,7 @@ Vi har brukt git til å dokumentere arbeidet vårt. Vi har 16 commits totalt, og
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
 * Martine har gjort oppgave: 1, 2
-* Camilla har gjort oppgave: 3, 4
+* Camilla har gjort oppgave: 3, 4, 5
 
 
 # Beskrivelse av oppgaveløsning (maks 5 linjer per oppgave)
