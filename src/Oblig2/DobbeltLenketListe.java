@@ -45,35 +45,61 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         endringer = 0;
     }
 
+    /*
+    Sjekkliste for konstrultøren DobbeltLenketListe(T[]):
+    ● Stoppes en null-tabell? Kastes i så fall en ​NullPointerException​?
+    ● Blir det korrekt hvis parametertabellen inneholder en eller flere null-verdier?
+    ● Blir det korrekt hvis parametertabellen er tom (har lengde 0)?
+    ● Blir det korrekt hvis parametertabellen kun har null-verdier?
+    ● Blir det korrekt hvis parametertabellen har kun én verdi som ikke er null?
+    ● Blir antallet satt korrekt?
+    ● Får verdiene i listen samme rekkefølge som i tabellen?
+     */
+
+    // Oppgave 1
     public DobbeltLenketListe(T[] a) { // konstruktør
+        // Skal lage en dobbeltlenket liste med verdiene fra tabellen a
+        // Verdiene skal ligge i samme rekkefølge i listen som i tabellen
+
+        // Hvis a er null skal det kastes en NullPointerException
+        // Hvis a inneholder en eller flere null-verdier skal de ikke tas med
+        // Dvs den skal returnere liste med verdiene fra a som ikke er null
         Objects.requireNonNull(a, "Tabellen a er null!"); // kaster nullPointerException om a == null
+
+        // Passe på at hode peker til den første i listen og hale til den siste
+        // Pass på at neste og forrige er satt riktig i alle noder.
+        // hode.forrige og hale.neste skal være null
+        // Hvis tabellen a kun har en verdi skal både hode og hale peke på samme node
+        // Hvis a er tom skal det ikke opprettes noen noder og hode og hale er fortsatt null
+
+        Node p = new Node(null, null, null); // oppretter en ny node
 
         if (a.length > 0) {
             int i = 0;
-            for (i = 0; i < a.length; i++) {
-                if (a[i] != null) {
-                    hode = new Node<>(a[i]);
-                    antall++;
+            for (; i < a.length; i++) {
+                if (a[i] != null) { // hvis a sin verdi ikke er null/ hvis a ikke er tom
+                    p.verdi = a[i]; // så setter den noden p sin verdi til å være lik a sin verdi
+                    hode = p; // og peker hode på noden
+                    antall++; // og legger på 1 i antall noder
                     break;
                 }
             }
 
+            //Så skal man sette hode, kjører igjennom tabellen a
+            // og lage resten av listen
             hale = hode;
-            if (hode != null) {
-                i++;
-                for (; i < a.length; i++) {
-                    if (a[i] != null) {
-                        hale.neste = new Node<>(a[i], hale, null);
+            if (hode != null) { // hvis det er flere noder etter hode i listen (ikke består kun av 1 eller tom)
+                i++; // plusser den på i
+                for (; i < a.length; i++) { // og kjører igjennom a
+                    if (a[i] != null) { // og hvis a sin ikke er null (ikke flere noder)
+                        Node q = new Node(a[i]); // lages ny node q
+                        hale.neste = q; // og setter q til hale.neste
                         hale = hale.neste;
-                        antall++;
+                        antall++; // og plusser på antall i listen
                     }
-
                 }
             }
         }
-
-
-        Node p = new Node(null, null, null); //lager en ny
     }
 
     //oppgave 3b
@@ -134,20 +160,69 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int antall() {
+        // Returnere antallet verdier i listen
         return antall;
     }
 
     @Override
     public boolean tom() {
+        // Returnere true eller false avhengig av om listen er tom eller ikke
         if (antall == 0) {
             return true;
         }
         return false;
     }
 
+    /*
+    Sjekkliste for metoden ​leggInn(T verdi)​:
+    ●  Stoppes null-verdier? Kastes i så fall en ​NullPointerException​?
+    ● Blir det korrekt hvis listen fra før er tom?
+    ● Blir det korrekt hvis listen fra før ikke er tom?
+    ● Blir antallet økt?
+    ● Blir endringer økt?
+    ● Er det rett returverdi?
+     */
+    // Oppgave 2b
     @Override
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException();
+
+        // Null-verdier ikke tillatt - bruk en requireNonNull.metode fra klassen Objects
+        Objects.requireNonNull(verdi,"Null-verdier ikke tillatt");
+
+        // innleggingsmetoden: legge en ny node med oppgitt verdi bakerst i listen og returnere true
+        /*
+        Skille mellom to tilfeller:
+        1. at listen på forhånd er tom
+        2. at den ikke er tom
+        - I en tom liste skal både hode og hale være null (og antall lik 0)
+        - I tilfelle 1 skal både hode og hale etter innleggingen peke på den nye noden
+            (både forrige-peker og neste-peker i noden skal da være null
+        - I tilfelle 2 er det kun hale-pekeren som skal endres etter innleggingen.
+            Pass da på at forrige-peker og neste-peker i den nye noden og i den noden
+            som opprinnelig lå bakerst, får korrekte verdier.
+        -  Husk at antallet må økes etter en innlegging.
+        - Det samme med variabelen endringer.
+        - Metoden skal returnere true
+         */
+
+        Node<T> p = new Node(verdi); // lager en ny node, kalt p
+
+        // 1. Hvis listen på forhånd er tom
+        if (antall == 0 && hode == null && hale == null) { // ssjekke om antall er lik 0 og hode og hale er null
+            hode = p; // både hode og hale skal peke på den nye noden p
+            hale = p;
+            antall++;
+            endringer++;
+        }
+        // 2. Hvis listen ikke er tom
+        else {
+            hale.neste = p; // setter inn p bakerst: p lik hale sin neste node - dvs den bakerste noden
+            p.forrige = hale; // setter så hale lik p sin forrige - dvs neste bakerste noden
+            hale = p; // setter så p lik hale, så den nye hale-pekeren peker på den nye noden å
+            antall++;
+            endringer++;
+        }
+        return true;
     }
 
 
@@ -303,13 +378,71 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    // Oppgave 2a
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        /*
+        - Skal bruke StringBuilder (eller StringJoiner) til å bygge opp tegnstrengen
+            og verdiene i listen finner du ved å travesere fra hode til hale vha
+            neste-pekere
+        - Skal returnere en tegnstreng med listens verdier
+        - Hvis listen feks inneholder tallene 1,2 og 3, skal metoden returenre strengen:
+            [1,2,3] og kun [] hvis liten er tom
+        */
+
+        // Lager en peker, som først peker på første:
+        Node<T> peker = hode;
+
+        StringBuilder tegnStreng = new StringBuilder(); // Begynner å bygge tegnstrengen
+        tegnStreng.append("["); // lager første del av strengen med [
+
+        if (antall == 0) {
+            tegnStreng.append("]"); // hvis den er tom returnerer den bare []
+            return tegnStreng.toString(); // og returnerer toString som er []
+        }
+        else { // hvis den ikke er 0
+            tegnStreng.append(peker.verdi); // legger den til peker sin verdi
+            peker = hode.neste; // og peker på neste node
+            while (peker != null) { // og hvis peker ikke er null - altså hvis det er flere noder
+                tegnStreng.append(", "); // setter den inn et komma for å skille flere verdier
+                tegnStreng.append(peker.verdi); // og setter inn neste node sin verdi, der pekeren peker nå
+                peker = peker.neste; // også peker den på neste og sjekker om denne er null eller om der er flere noder i listen
+            }
+        }
+        tegnStreng.append("]"); // avslutter tegnstrengen med ]
+        return tegnStreng.toString();
     }
 
+    // Oppgave 2a
     public String omvendtString() {
-        throw new UnsupportedOperationException();
+        /*
+        - Skal returnere en tegnstreng på samme form som den toString() gir,
+            men verdiene skal komme i omvendt rekkefølge
+        - Skal finne verdiene i omvendt rekkefølge ved å travesere fra hale til hode vha
+            forrige-pekere
+        - hensikten ved omvendtString er å sjekke at forrige-pekerne er satt riktig
+         */
+
+        Node<T> peker = hale;
+
+        StringBuilder tegnStreng = new StringBuilder();
+        tegnStreng.append("[");
+
+        if (antall == 0) {
+            tegnStreng.append("]");
+            return tegnStreng.toString();
+        }
+        else {
+            tegnStreng.append(peker.verdi);
+            peker = peker.forrige;
+            while (peker != null) {
+                tegnStreng.append(", ");
+                tegnStreng.append(peker.verdi);
+                peker = peker.forrige;
+            }
+        }
+        tegnStreng.append("]");
+        return tegnStreng.toString();
     }
 
     @Override
