@@ -77,6 +77,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Liste<T> subliste(int fra, int til) {
+        //Den skal returnere en liste (en instans av klassen ​DobbeltLenketListe​)
+        // som inneholder verdiene fra intervallet [fra:til> i «vår» liste.
+        //Her må det først sjekkes om indeksene ​fra​ og ​til​ er lovlige.
+        //Hvis ikke, skal det kastes unntak slik som i metoden ​fratilKontroll​()​.
+        //legg derfor den inn som en privat metode i klassen ​DobbeltLenketListe​
+        // og bytt ut ArrayIndexOutOfBoundsException​ med ​IndexOutOfBoundsException siden vi ikke har noen tabell (array) her.
+        //Bytt også ut ordet ​tablengde​ med ordet ​antall.​
+        //Denne kontrollmetoden kandakallesmed​antall​,f​ra​og​til​somargumenter.
+        //husk at et tomt intervall er lovlig. Det betyr at vi får en tom liste.
+        //Pass på at variablen ​antall ​ i den listen som metoden​ subliste(​)​returnerer,få rkorrekt verdi.
+        // Variabelen ​endringer​ skal være 0. Her kan alle metoder brukes - også ​leggInn​()​.
+
+
         throw new UnsupportedOperationException();
     }
 

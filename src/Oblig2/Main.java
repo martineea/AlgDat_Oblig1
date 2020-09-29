@@ -14,15 +14,30 @@ public class Main {
         System.out.println(liste.antall() + " " + liste.tom());
         // Utskrift: 0 true
 
-        //oppgave 3
+        //oppgave 3a
         DobbeltLenketListe list= null;
         list.leggInn(2);
         list.leggInn(3);
         list.leggInn(4);
         list.leggInn(6);
-
-
         //System.out.println(list.finnNode(2));
         System.out.println(list.hent(2));
+
+        //oppgave 3b:
+        //Sjekk så at følgende programbit gir rett utskrift:
+        Character [] c= {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
+        DobbeltLenketListe<Character> liste1 = new DobbeltLenketListe<>(c);
+
+        System.out.println(liste1.subliste(3,8));// [D, E, F, G, H]
+        System.out.println(liste1.subliste(5,5));
+        System.out.println(liste1.subliste(8, liste1.antall()));//[I, J]
+        System.out.println(liste1.subliste(8,liste1.antall()));
+        
+        //System.out.println(liste.subliste(0,11)); // skal kaste unntak
+
     }
+
+
+
+
 }
