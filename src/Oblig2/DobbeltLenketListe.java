@@ -79,29 +79,29 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         Node p = new Node(null, null, null); // oppretter en ny node
 
-        int i = 0;
-        //Så skal man sette hode, kjører igjennom tabellen a
-        for (; i<a.length; i++) {
-            if (a[i] != null) { // hvis a sin verdi ikke er null/ hvis a ikke er tom
-                p.verdi = a[i]; // så setter den noden p sin verdi til å være lik a sin verdi
-                hode = p; // og peker hode på noden
-                antall++; // og legger på 1 i antall noder
-                break;
+        if (a.length > 0) {
+            int i = 0;
+            for (; i < a.length; i++) {
+                if (a[i] != null) { // hvis a sin verdi ikke er null/ hvis a ikke er tom
+                    p.verdi = a[i]; // så setter den noden p sin verdi til å være lik a sin verdi
+                    hode = p; // og peker hode på noden
+                    antall++; // og legger på 1 i antall noder
+                    break;
+                }
             }
-        }
 
-        if (a.length == 1) { // hvis det kun er 1 verdi i listen
-            hale = hode; // så setter man at hale og hode peker på samme node
-        }
-
-        if (hode != null) {
-            i++;
-            for (; i<a.length; i++) {
-                if (a[i] != null) {
-                    Node q = new Node(a[i]); // lager ny node
-                    hale.neste = q;
-                    hale = hale.neste;
-                    antall++;
+            //Så skal man sette hode, kjører igjennom tabellen a
+            // og lage resten av listen
+            hale = hode;
+            if (hode != null) { // hvis det er flere noder etter hode i listen (ikke består kun av 1 eller tom)
+                i++; // plusser den på i
+                for (; i < a.length; i++) { // og kjører igjennom a
+                    if (a[i] != null) { // og hvis a sin ikke er null (ikke flere noder)
+                        Node q = new Node(a[i]); // lages ny node q
+                        hale.neste = q; // og setter q til hale.neste
+                        hale = hale.neste;
+                        antall++; // og plusser på antall i listen
+                    }
                 }
             }
         }
