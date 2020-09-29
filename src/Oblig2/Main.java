@@ -22,6 +22,6 @@ public class Main {
         list.leggInn(6);
 
 
-        System.out.println(list.finnNode(2));
+        //System.out.println(list.finnNode(2));
     }
 }

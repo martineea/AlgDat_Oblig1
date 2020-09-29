@@ -222,7 +222,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     //Oppgave 3.
-    Node<T> finnNode(int indeks) {
+    private Node<T> finnNode(int indeks) {
 
         Node forerstCurrent=hode;
         Node bakerstCurrrent=hale;
