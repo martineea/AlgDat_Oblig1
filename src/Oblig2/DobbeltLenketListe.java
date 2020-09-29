@@ -195,25 +195,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return -1;
         }
         Node<T> node=hode;
-        for(int indeks=0; indeks<antall; indeks++){
-            node=node.neste;
-            if(verdi.equals(node)){
-                //Den skal returnere indeksen/posisjonen til ​verdi​ hvis den finnes i listen
+        if(inneholder(verdi)){
+            for(int indeks=0; indeks<antall; indeks++){
+                node=node.neste;
+                if(verdi.equals(node)){
+                    //Den skal returnere indeksen/posisjonen til ​verdi​ hvis den finnes i listen
 
-                //Hvis ​verdi​ forekommer flere ganger, skal indeksen til den første av dem (fra venstre) returneres.
+                    //Hvis ​verdi​ forekommer flere ganger, skal indeksen til den første av dem (fra venstre) returneres.
                 /*if(verdi.equals(node)){
                     node=node.forrige;
                     return indeks-1;
                 }*/
-                return indeks;
-            }
+                    return indeks;
+                }
 
-            else{
-                return -1;
-            }
+                else{
+                    return -1;
+                }
 
+            }
         }
-
 
         return -1;
 
