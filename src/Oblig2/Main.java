@@ -1,5 +1,8 @@
 package Oblig2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main (String[] args) {
 
@@ -11,6 +14,14 @@ public class Main {
         System.out.println(liste.antall() + " " + liste.tom());
         // Utskrift: 0 true
 
+        //oppgave 3
+        DobbeltLenketListe list= null;
+        list.leggInn(2);
+        list.leggInn(3);
+        list.leggInn(4);
+        list.leggInn(6);
 
+
+        System.out.println(list.finnNode(2));
     }
 }

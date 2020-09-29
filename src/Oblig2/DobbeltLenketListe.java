@@ -4,13 +4,8 @@ package Oblig2;
 ////////////////// class DobbeltLenketListe //////////////////////////////
 
 
-import java.util.Comparator;
-import java.util.ConcurrentModificationException;
-import java.util.NoSuchElementException;
-import java.util.StringJoiner;
+import java.util.*;
 
-import java.util.Iterator;
-import java.util.Objects;
 import java.util.function.Predicate;
 
 
@@ -213,42 +208,41 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     //Oppgave 3.
-    private Node<T> finnNode(int indeks){
+   Node<T> finnNode(int indeks){
 
         //Den skal returnere noden med den gitte indeksen/posisjonen.
-        this.antall=0;
+
+
+
+        Node current= hode;
+        Node bakerste=hale;
+
+        //for-løkke:
+        int i=0;
         //Hvis indeks er mindre enn ​antall​/2,
-        DobbeltLenketListe<T> verdi= new DobbeltLenketListe<>();
-        Node current= verdi.hode;
-        Node bakerste=verdi.hale;
-        if(indeks<antall/2){
-            int i=0;
-            int j=0;
-            //while(verdi.hode < verdi.hale){
-                //må ha en måte å gjøre dette på
+        if(indeks<antall/2) {
 
-                current= current.neste;
+            //for(Node i=current; i=verdi.hale; )
+            for(; i<indeks; i++){
+                current = current.neste;
+
                 return current;
-               //i++;
-                // så ​skal letingen etter noden starte fra hode og gå mot høyre ved hjelp av neste-pekere.
+
+            }
+
+            // så ​skal letingen etter noden starte fra hode og gå mot høyre ved hjelp av neste-pekere.
             //}
+        }
+        else{
 
-
-            //while(verdi.hale>hode){
-            // bakerste= bakerste.forrige;
-            // // Hvis ikke, ​skal​ letingen starte fra halen og gå mot venstre ved hjelp av forrige-pekere.
-            //j--;
-            // }
-
-
+            int større=0;
+            for(; i>indeks; i--)
+                bakerste=bakerste.forrige;
+                større++;
+                return bakerste;
+                // Hvis ikke, ​skal​ letingen starte fra halen og gå mot venstre ved hjelp av forrige-pekere.
 
         }
-
-
-
-
-
-
 
         //legger til returnstatement.
         return null;
