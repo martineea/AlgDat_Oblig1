@@ -119,7 +119,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //Pass på at ​indeks ​sjekkes.
 
         //Bruk metoden ​indeksKontroll(​)​ som arves fra​ Liste​(bruk ​false​ som parameter).
-        
+
     }
 
     @Override
@@ -130,16 +130,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     //oppgave 3a
     public T oppdater(int indeks, T nyverdi) {
-        indeksKontroll(indeks, false);
-        //skal erstatte verdien på plass ​indeks med ​nyverdi​ og returnere det som lå der fra før.
-
-
         //Husk at indeks må sjekkes,
+        indeksKontroll(indeks, false);
 
         // at null-verdier ikke skal kunne legges inn og at variabelen ​endringer​ skal økes.
 
+        if(nyverdi==null){
+            throw new NullPointerException("Null-verdier er ikke lov.");
+        }
 
-        throw new UnsupportedOperationException();
+        //skal erstatte verdien på plass ​indeks med ​nyverdi​ og returnere det som lå der fra før.
+        //lager en ny Node og finner noden til den gitte indeksen.
+        Node<T> nodeEksempel= finnNode(indeks);
+        //lagrer den gamle verdien
+        T gammelVerdi = nodeEksempel.verdi;
+        //lager ny verdi
+        nodeEksempel.verdi=nyverdi;
+
+        //skal returnere verdien til verdien som var der før.
+        return gammelVerdi;
+
     }
 
     @Override
