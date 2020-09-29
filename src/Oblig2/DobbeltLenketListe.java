@@ -159,13 +159,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean inneholder(T verdi) {
 
-        boolean boolsk=false;
+
         //Den skal returnere true hvis listen inneholder ​verdi​ og returnere false ellers.
         // Her lønner det seg å bruke et kall på metoden ​indeksTil​ som en del av koden.
          if(indeksTil(verdi) != -1){
-            boolsk=true;
+            return true;
          }
-          return boolsk;
+         else{
+             return false;
+         }
+         
 
     }
 
