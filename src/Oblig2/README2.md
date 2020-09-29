@@ -20,7 +20,7 @@ Oppgaven er levert av følgende studenter:
 Vi har brukt git til å dokumentere arbeidet vårt. Vi har 16 commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-* Martine har gjort oppgave: 1, 2
+* Martine har gjort oppgave: 1, 2, 6, 7
 * Camilla har gjort oppgave: 3, 4, 5
 
 

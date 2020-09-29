@@ -15,6 +15,8 @@ public class Main {
 
         // Tester dette i oppg 1, etter oppgave 2 er ferdig:
         String[] s = {"Ole", null, "Per", "Kari", null};
+        Liste<String> liste4 = new DobbeltLenketListe<>(s);
+        System.out.println(liste4.antall() + " " + liste4.tom());
         // Utskrift: 3 false
 
         // Oppgave 2a: sjekk at følgende programbit gir rett utksirft:
@@ -55,12 +57,12 @@ public class Main {
         //oppgave 3b:
         //Sjekk så at følgende programbit gir rett utskrift:
         Character [] c= {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
-        DobbeltLenketListe<Character> liste1 = new DobbeltLenketListe<>(c);
+        DobbeltLenketListe<Character> liste2 = new DobbeltLenketListe<>(c);
 
-        System.out.println(liste1.subliste(3,8));// [D, E, F, G, H]
-        System.out.println(liste1.subliste(5,5));
-        System.out.println(liste1.subliste(8, liste1.antall()));//[I, J]
-        System.out.println(liste1.subliste(8,liste1.antall()));
+        System.out.println(liste2.subliste(3,8));// [D, E, F, G, H]
+        System.out.println(liste2.subliste(5,5));
+        System.out.println(liste2.subliste(8, liste2.antall()));//[I, J]
+        System.out.println(liste2.subliste(8,liste2.antall()));
 
         //System.out.println(liste.subliste(0,11)); // skal kaste unntak
 
