@@ -23,5 +23,6 @@ public class Main {
 
 
         //System.out.println(list.finnNode(2));
+        System.out.println(list.hent(2));
     }
 }
