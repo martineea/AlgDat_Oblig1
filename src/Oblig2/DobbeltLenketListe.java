@@ -126,9 +126,56 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return false;
     }
 
+    /*
+    Sjekkliste for metoden ​leggInn(T verdi)​:
+    ●  Stoppes null-verdier? Kastes i så fall en ​NullPointerException​?
+    ● Blir det korrekt hvis listen fra før er tom?
+    ● Blir det korrekt hvis listen fra før ikke er tom?
+    ● Blir antallet økt?
+    ● Blir endringer økt?
+    ● Er det rett returverdi?
+     */
+    // Oppgave 2b
     @Override
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException();
+
+        // Null-verdier ikke tillatt - bruk en requireNonNull.metode fra klassen Objects
+        Objects.requireNonNull(verdi,"Null-verdier ikke tillatt");
+
+        // innleggingsmetoden: legge en ny node med oppgitt verdi bakerst i listen og returnere true
+        /*
+        Skille mellom to tilfeller:
+        1. at listen på forhånd er tom
+        2. at den ikke er tom
+        - I en tom liste skal både hode og hale være null (og antall lik 0)
+        - I tilfelle 1 skal både hode og hale etter innleggingen peke på den nye noden
+            (både forrige-peker og neste-peker i noden skal da være null
+        - I tilfelle 2 er det kun hale-pekeren som skal endres etter innleggingen.
+            Pass da på at forrige-peker og neste-peker i den nye noden og i den noden
+            som opprinnelig lå bakerst, får korrekte verdier.
+        -  Husk at antallet må økes etter en innlegging.
+        - Det samme med variabelen endringer.
+        - Metoden skal returnere true
+         */
+
+        Node<T> p = new Node(verdi); // lager en ny node, kalt p
+
+        // 1. Hvis listen på forhånd er tom
+        if (antall == 0 && hode == null && hale == null) { // ssjekke om antall er lik 0 og hode og hale er null
+            hode = p; // både hode og hale skal peke på den nye noden p
+            hale = p;
+            antall++;
+            endringer++;
+        }
+        // 2. Hvis listen ikke er tom
+        else {
+            hale.neste = p; // setter inn p bakerst: p lik hale sin neste node - dvs den bakerste noden
+            p.forrige = hale; // setter så hale lik p sin forrige - dvs neste bakerste noden
+            hale = p; // setter så p lik hale, så den nye hale-pekeren peker på den nye noden å
+            antall++;
+            endringer++;
+        }
+        return true;
     }
 
     @Override
@@ -221,6 +268,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return tegnStreng.toString();
     }
 
+    // Oppgave 2a
     public String omvendtString() {
         /*
         - Skal returnere en tegnstreng på samme form som den toString() gir,
