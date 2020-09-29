@@ -38,6 +38,20 @@ public class Main {
         //oppgave 4:
        System.out.println(list.indeksTil(3));
 
+        //oppgave 5:
+        
+        /*Sjekkliste for ​leggInn(int indeks, T verdi)​:
+            ● Stoppes null-verdier? Kastes i så fall en ​NullPointerException​?
+            ● Sjekkes indeksen?
+            ● Blir det korrekt hvis listen fra før er tom?
+            ● Blir pekerne (forrige og neste) korrekte i alle noder hvis ny verdi legges først?
+            ● Blir pekerne (forrige og neste) korrekte i alle noder hvis ny verdi legges bakerst?
+            ● Blir pekerne (forrige og neste) korrekte i alle noder hvis ny verdi legges mellom to
+                    verdier?
+            ● Blir ​antall​ økt?
+            ● Blir ​endringer​ økt?
+
+         */
 
 
     }

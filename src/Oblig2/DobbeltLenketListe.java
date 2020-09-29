@@ -150,8 +150,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+
+    //oppgave5
     @Override
     public void leggInn(int indeks, T verdi) {
+        // Den skal legge ​verdi​ inn i listen slik at den får indeks/posisjon ​indeks​.
+        //Husk at negative indekser og indekser større enn antall
+        // er ulovlige (indekser fra og med 0 til og med antall er lovlige).
+        // Her må du passe på de fire tilfellene
+        // 1) listen er tom,
+        // 2) verdien skal legges først,
+        // 3) verdien skal legges bakerst og
+        // 4) verdien skal legges mellom to andre verdier.
+        //Sørg for at neste- og forrige-pekere får
+        // korrekte verdier i alle noder
+        //Spesielt skal forrige-peker i den første noden være null og neste-peker i den siste noden være null.
+
+
         throw new UnsupportedOperationException();
     }
 
