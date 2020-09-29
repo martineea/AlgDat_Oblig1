@@ -78,19 +78,44 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public Liste<T> subliste(int fra, int til) {
         //Den skal returnere en liste (en instans av klassen ​DobbeltLenketListe​)
+
         // som inneholder verdiene fra intervallet [fra:til> i «vår» liste.
+
+        fraTilKontroll(antall,fra, til);
+        //Denne kontrollmetoden kan da kalles med​ antall​,f​ra​ og​ til​ som argumenter.
+
+
+        //husk at et tomt intervall er lovlig. Det betyr at vi får en tom liste.
+
+        //Pass på at variablen ​antall ​ i den listen som metoden​ subliste(​)​returnerer,får korrekt verdi.
+        // Variabelen ​endringer​ skal være 0. Her kan alle metoder brukes - også ​leggInn​()​.
+
+        endringer=0;
+
+        return null;
+
+    }
+
+    private static void fraTilKontroll(int antall, int fra, int til){
+
         //Her må det først sjekkes om indeksene ​fra​ og ​til​ er lovlige.
         //Hvis ikke, skal det kastes unntak slik som i metoden ​fratilKontroll​()​.
         //legg derfor den inn som en privat metode i klassen ​DobbeltLenketListe​
         // og bytt ut ArrayIndexOutOfBoundsException​ med ​IndexOutOfBoundsException siden vi ikke har noen tabell (array) her.
         //Bytt også ut ordet ​tablengde​ med ordet ​antall.​
-        //Denne kontrollmetoden kandakallesmed​antall​,f​ra​og​til​somargumenter.
-        //husk at et tomt intervall er lovlig. Det betyr at vi får en tom liste.
-        //Pass på at variablen ​antall ​ i den listen som metoden​ subliste(​)​returnerer,få rkorrekt verdi.
-        // Variabelen ​endringer​ skal være 0. Her kan alle metoder brukes - også ​leggInn​()​.
 
+        if (fra < 0)                                  // fra er negativ
+        throw new IndexOutOfBoundsException
+                ("fra(" + fra + ") er negativ!");
 
-        throw new UnsupportedOperationException();
+        if (til > antall)                          // til er utenfor tabellen
+            throw new IndexOutOfBoundsException
+                    ("til(" + til + ") > tablengde(" + antall + ")");
+
+        if (fra > til)                                // fra er større enn til
+            throw new IllegalArgumentException
+                    ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
+
     }
 
     @Override
