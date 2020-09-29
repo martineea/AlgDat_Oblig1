@@ -39,7 +39,7 @@ public class Main {
        System.out.println(list.indeksTil(3));
 
         //oppgave 5:
-        
+
         /*Sjekkliste for ​leggInn(int indeks, T verdi)​:
             ● Stoppes null-verdier? Kastes i så fall en ​NullPointerException​?
             ● Sjekkes indeksen?

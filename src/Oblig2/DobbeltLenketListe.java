@@ -157,6 +157,34 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Den skal legge ​verdi​ inn i listen slik at den får indeks/posisjon ​indeks​.
         //Husk at negative indekser og indekser større enn antall
         // er ulovlige (indekser fra og med 0 til og med antall er lovlige).
+        Node <T> forandretNode= new Node<T>(verdi,null, null);
+        if(indeks<0 || indeks>antall){
+            throw new IndexOutOfBoundsException("indeks: "+ indeks+ " må være mer enn 0 og må være mindre enn antall" );
+        }
+        else if (hode == null && hale == null)
+        {
+            hode = forandretNode;
+            hale = forandretNode;
+        }
+        else if (indeks == 0)
+        {
+            forandretNode.neste = hode;
+            hode.forrige = forandretNode;
+            hode = forandretNode;
+        }
+        else if (indeks == antall) {
+            forandretNode.forrige = hale;
+            hale.neste = forandretNode;
+            hale = forandretNode;
+        }
+        else
+        {
+            Node<T> høyreNode = finnNode(indeks);
+            forandretNode.forrige = høyreNode.forrige;
+            forandretNode.neste = høyreNode;
+            høyreNode.forrige = forandretNode;
+            forandretNode.forrige.neste = forandretNode;
+        }
         // Her må du passe på de fire tilfellene
         // 1) listen er tom,
         // 2) verdien skal legges først,
@@ -166,8 +194,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // korrekte verdier i alle noder
         //Spesielt skal forrige-peker i den første noden være null og neste-peker i den siste noden være null.
 
-
-        throw new UnsupportedOperationException();
+        antall++;
+        endringer++;
     }
 
     //oppgave 4
