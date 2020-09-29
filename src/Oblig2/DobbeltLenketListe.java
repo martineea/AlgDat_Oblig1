@@ -77,11 +77,30 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Liste<T> subliste(int fra, int til) {
-        //Den skal returnere en liste (en instans av klassen ​DobbeltLenketListe​)
-
-        // som inneholder verdiene fra intervallet [fra:til> i «vår» liste.
 
         fraTilKontroll(antall,fra, til);
+
+
+        //lager en dobbeltlenketListe
+        DobbeltLenketListe <T> liste=new DobbeltLenketListe<>();
+        //lager en ny node som angir verdien til fra:
+        Node<T> nodeFra= finnNode(fra);
+        //finne antall elementer i listen:
+        int antall= til-fra;
+
+        for(int i=0; i<antall; i++){
+
+            liste.leggInn(nodeFra.verdi);
+            nodeFra= nodeFra.neste;
+            antall--;
+
+        }
+        //Den skal returnere en liste (en instans av klassen ​DobbeltLenketListe​)
+        // som inneholder verdiene fra intervallet [fra:til> i «vår» liste.
+        return liste;
+
+
+
         //Denne kontrollmetoden kan da kalles med​ antall​,f​ra​ og​ til​ som argumenter.
 
 
@@ -90,9 +109,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //Pass på at variablen ​antall ​ i den listen som metoden​ subliste(​)​returnerer,får korrekt verdi.
         // Variabelen ​endringer​ skal være 0. Her kan alle metoder brukes - også ​leggInn​()​.
 
-        endringer=0;
 
-        return null;
 
     }
 
