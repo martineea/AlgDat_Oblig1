@@ -114,14 +114,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //skal lages ved ved å bruke ​finnNode(​)​
 
         indeksKontroll(indeks, false);
-        finnNode(indeks);
+        return finnNode(indeks).verdi;
 
         //Pass på at ​indeks ​sjekkes.
 
         //Bruk metoden ​indeksKontroll(​)​ som arves fra​ Liste​(bruk ​false​ som parameter).
-
-
-        throw new UnsupportedOperationException();
+        
     }
 
     @Override
