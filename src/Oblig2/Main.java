@@ -52,6 +52,7 @@ public class Main {
             ● Blir ​endringer​ økt?
 
          */
+        list.leggInn(4, 30 );
 
 
     }
