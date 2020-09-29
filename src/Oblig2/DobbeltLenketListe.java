@@ -168,7 +168,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
          else{
              return false;
          }
-         
+
 
     }
 
