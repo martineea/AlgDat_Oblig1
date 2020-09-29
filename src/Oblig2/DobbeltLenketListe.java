@@ -113,10 +113,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public T hent(int indeks) {
         //skal lages ved ved å bruke ​finnNode(​)​
 
+        indeksKontroll(indeks, false);
+        finnNode(indeks);
+
         //Pass på at ​indeks ​sjekkes.
 
         //Bruk metoden ​indeksKontroll(​)​ som arves fra​ Liste​(bruk ​false​ som parameter).
-        indeksKontroll(indeks,false);
+
 
         throw new UnsupportedOperationException();
     }
@@ -129,11 +132,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     //oppgave 3a
     public T oppdater(int indeks, T nyverdi) {
-
+        indeksKontroll(indeks, false);
         //skal erstatte verdien på plass ​indeks med ​nyverdi​ og returnere det som lå der fra før.
 
+
         //Husk at indeks må sjekkes,
+
         // at null-verdier ikke skal kunne legges inn og at variabelen ​endringer​ skal økes.
+
 
         throw new UnsupportedOperationException();
     }
@@ -208,51 +214,34 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     //Oppgave 3.
-   Node<T> finnNode(int indeks){
+    Node<T> finnNode(int indeks) {
 
-        //Den skal returnere noden med den gitte indeksen/posisjonen.
+        Node forerstCurrent=hode;
+        Node bakerstCurrrent=hale;
 
-
-
-        Node current= hode;
-        Node bakerste=hale;
-
-        //for-løkke:
-        int i=0;
         //Hvis indeks er mindre enn ​antall​/2,
-        if(indeks<antall/2) {
+        if (indeks <= antall / 2) {
 
-            //for(Node i=current; i=verdi.hale; )
-            for(; i<indeks; i++){
-                current = current.neste;
+            for (int i = 0; i < indeks; i++) {
+                forerstCurrent = forerstCurrent.neste;
+            }
+            // så ​skal letingen etter noden starte fra hode og gå mot høyre ved hjelp av neste-pekere.
+            return forerstCurrent;
+            //
+        } else {
 
-                return current;
 
+            for (int i = antall - 1; i > indeks; i--) {
+                bakerstCurrrent = bakerstCurrrent.forrige;
+                // Hvis ikke, ​skal​ letingen starte fra halen og gå mot venstre ved hjelp av forrige-pekere.
             }
 
-            // så ​skal letingen etter noden starte fra hode og gå mot høyre ved hjelp av neste-pekere.
-            //}
-        }
-        else{
-
-            int større=0;
-            for(; i>indeks; i--)
-                bakerste=bakerste.forrige;
-                større++;
-                return bakerste;
-                // Hvis ikke, ​skal​ letingen starte fra halen og gå mot venstre ved hjelp av forrige-pekere.
+            return bakerstCurrrent;
+            //legger til returnstatement.
 
         }
-
-        //legger til returnstatement.
-        return null;
     }
 
-
-
-
-
-
-} // class DobbeltLenketListe
+}// class DobbeltLenketListe
 
 
