@@ -76,6 +76,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node p = new Node(null, null, null); //lager en ny
     }
 
+    //oppgave 3b
     public Liste<T> subliste(int fra, int til) {
         //Denne kontrollmetoden kan da kalles med​ antall​,f​ra​ og​ til​ som argumenter.
         fraTilKontroll(antall,fra, til);
@@ -108,7 +109,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
     }
-
+    //oppgave 3b
     private static void fraTilKontroll(int antall, int fra, int til){
 
         //Her må det først sjekkes om indeksene ​fra​ og ​til​ er lovlige.
@@ -154,8 +155,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    //oppgave 4
     @Override
     public boolean inneholder(T verdi) {
+
+        //Den skal returnere true hvis listen inneholder ​verdi​ og returnere false ellers.
+        // Her lønner det seg å bruke et kall på metoden ​indeksTil​ som en del av koden.
         throw new UnsupportedOperationException();
     }
 
@@ -172,9 +177,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //Bruk metoden ​indeksKontroll(​)​ som arves fra​ Liste​(bruk ​false​ som parameter).
 
     }
-
+    //oppgave 4
     @Override
     public int indeksTil(T verdi) {
+        //Den skal returnere indeksen/posisjonen til ​verdi​ hvis den finnes i listen
+        // og returnere -1 hvis den ikke finnes.
+        //Her skal det ikke kastes unntak hvis​ verdi​ er n​ull​. men -1
+        //Hvis ​verdi​ forekommer flere ganger, skal indeksen til den første av dem (fra venstre) returneres.
+
+
         throw new UnsupportedOperationException();
     }
 
