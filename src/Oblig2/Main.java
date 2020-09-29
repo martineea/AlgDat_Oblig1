@@ -52,7 +52,11 @@ public class Main {
             ● Blir ​endringer​ økt?
 
          */
-        list.leggInn(4, 30 );
+
+        DobbeltLenketListe siste= null;
+
+        siste.leggInn(4, 30 );
+        System.out.println(siste.hent(4));
 
 
     }
