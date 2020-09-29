@@ -159,9 +159,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean inneholder(T verdi) {
 
+        boolean boolsk=false;
         //Den skal returnere true hvis listen inneholder ​verdi​ og returnere false ellers.
         // Her lønner det seg å bruke et kall på metoden ​indeksTil​ som en del av koden.
-        throw new UnsupportedOperationException();
+         if(indeksTil(verdi) != -1){
+            boolsk=true;
+         }
+          return boolsk;
+
     }
 
     @Override
@@ -180,13 +185,35 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     //oppgave 4
     @Override
     public int indeksTil(T verdi) {
-        //Den skal returnere indeksen/posisjonen til ​verdi​ hvis den finnes i listen
+
         // og returnere -1 hvis den ikke finnes.
         //Her skal det ikke kastes unntak hvis​ verdi​ er n​ull​. men -1
-        //Hvis ​verdi​ forekommer flere ganger, skal indeksen til den første av dem (fra venstre) returneres.
+        if(verdi == null){
+            return -1;
+        }
+        Node<T> node=hode;
+        for(int indeks=0; indeks<antall; indeks++){
+            node=node.neste;
+            if(verdi.equals(node)){
+                //Den skal returnere indeksen/posisjonen til ​verdi​ hvis den finnes i listen
+
+                //Hvis ​verdi​ forekommer flere ganger, skal indeksen til den første av dem (fra venstre) returneres.
+                /*if(verdi.equals(node)){
+                    node=node.forrige;
+                    return indeks-1;
+                }*/
+                return indeks;
+            }
+
+            else{
+                return -1;
+            }
+
+        }
 
 
-        throw new UnsupportedOperationException();
+        return -1;
+
     }
 
     @Override
