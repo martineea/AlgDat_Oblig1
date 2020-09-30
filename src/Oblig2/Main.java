@@ -142,19 +142,29 @@ public class Main {
         - Bruk metodene toString() og omvendtString() til å sjekke at pekerne er satt riktig
          */
 
+        // Skriver først ut listen med toString og omvendtString
+        Integer[] f1 = {};
+        Integer[] f2 = {1};
+        Integer[] f3 = {1,2,3};
+        DobbeltLenketListe<Integer> m1 = new DobbeltLenketListe<>(f1);
+        DobbeltLenketListe<Integer> m2 = new DobbeltLenketListe<>(f2);
+        DobbeltLenketListe<Integer> m3 = new DobbeltLenketListe<>(f3);
+
+        System.out.println(m1.toString() + " " + m2.toString() +
+                " " + m3.toString() + " " + m1.omvendtString() +
+                " " + m2.omvendtString() + " " + m3.omvendtString());
+        // Utkskrift: [] [1] [1,2,3] [] [1] [3,2,1]
+
+        // Kjører fjern-metoden for å se om verdier blir fjernet:
+        DobbeltLenketListe.fjern();
+
         // Teste om listen er tom:
-        String[] f1 = {};
-        Liste<String> liste6 = new DobbeltLenketListe<>(f1);
-        DobbeltLenketListe<String> m1 = new DobbeltLenketListe<>(f1);
-        System.out.println("Innholdet i en tom liste: " + m1.toString() + " " + m1.omvendtString()); // Utksift: [] []
-        System.out.println("Antallet i en tom liste: " + liste6.antall()); // Utskrift: 0
 
         // Teste om første er fjernet:
 
         // Teste om siste er fjernet:
 
         // Teste om mellomste er fjernet:
-
 
     }
 

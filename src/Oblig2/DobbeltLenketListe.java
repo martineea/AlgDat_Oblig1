@@ -411,17 +411,72 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     // Oppgave 6
     @Override
     public T fjern(int indeks) {
-        throw new UnsupportedOperationException();
+        // Sjekke indeks
+        indeksKontroll(indeks, false);
 
         // Skal fjerne (og returnere) verdien på posisjon INDEKS
         // Indeks må først sjekkes
         // Lag metoden så effektiv som mulig
 
+        Node<T> p = hode; // lager en peker p som peker på samme node som hode-peker
+        T verdi; // verdien vi leter etter
+
+        // Fjerne første (hvis kun 1 node + hvis flere noder)
+        if (indeks == 0) { // hvis indeks er lik 0
+            verdi = p.verdi; // setter så p-pekeren sin verdi til å være lik verdien vi har funnet
+            if (p.neste != null) { // og hvis p-pekeren kan peke på en neste-node
+                hode = p.neste; // da setter vi neste noden til p som hode
+                hode.forrige = null; // og fjerner den første noden i listen
+            }
+            else { // hvis p ikke kan peke på noen neste node, så er det kun 1 node i listen
+                hode = null; // og da setter vi både hode og hale til null - dvs den ene noden fjernes
+                hale = null;
+            }
+            antall--;
+            endringer++;
+            return verdi;
+        }
+
+        // Fjerne siste
+        else if (indeks == antall-1) { // finner indeks: som er antall noder - 1 (dvs den nest bakerste noden)
+            p = hale; // og setter hale-pekeren til å være lik p-pekeren
+            verdi = hale.verdi; // og hale sin verdi til å være lik verdien
+            hale = p.forrige; // også tar man p sin forrige (altså nest siste noden) til å være nye halen
+            hale.neste = null; // også tar man hale sin neste - dvs siste noden til å være lik null - dvs den fjernes
+            antall--;
+            endringer++;
+            return verdi;
+        }
+
+        // Fjerne mellomste
+        else {
+            for (int i = 0; i < indeks; i++) { // kjører igjennom listen med en for-løkke
+                p = p.neste; // setter i hver runde p sin neste node til å være p (der pekeren peker) - p-pekeren flytter seg dermed hele tiden bortover mot høyre
+            }
+            verdi = p.verdi; // når vi har funnet verdien vi leter etter setter vi p sin verdi til denne
+            p.forrige.neste = p.neste; // så fltter vi neste-pekerene: p sin neste blir = p sin forrige sin neste
+            p.neste.forrige = p.forrige; // og p sin forrige blir = p sin neste sin forrige. Har dermed tatt bort neste- og forrige-pekerene fra noden p peker på
+            antall--;
+            endringer++;
+            return verdi;
+        }
     }
 
+    // Oppgave 7
     @Override
     public void nullstill() {
         throw new UnsupportedOperationException();
+        // Skal "tømme" listen og nulle alt slik at "søppeltømmeren" kan hente alt som ikke lenger brukes
+        // Kod den på to måter - velg den som er mest effektiv (gjør tidsmålinger):
+        /*
+        1. måte: Start i hode og gå mot hale vha pekeren neste. For hver node "nulles"
+            nodeverdien og alle nodens pekere. Til slutt settes både hode og hale til null,
+            antall til 0 og endringer økes. Hvis du er i tvil om hva som det bes om her, kan
+            du slå opp i kildekoden for metoden clear() i klassen LinkedList i Java.
+        2. måte: Lag en løkke som inneholder metodekallet fjern(0) (den første noden fjernes)
+            og som går inntil listen er tom
+
+         */
     }
 
     // Oppgave 2a
