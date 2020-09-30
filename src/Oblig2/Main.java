@@ -143,7 +143,17 @@ public class Main {
         System.out.println("");
         System.out.println("Tester oppgave 8:");
 
+        String[]navn={"Lars","Anders", "Bodil", "Kari","Per", "Berit"};
+        Liste<String> listeSiste= new DobbeltLenketListe<>(navn);
+        listeSiste.forEach(t-> System.out.print(t+" "));
 
+        
+        System.out.println();
+
+
+        for(String t: listeSiste){
+            System.out.print(t+" ");
+        }
 
 
     }
