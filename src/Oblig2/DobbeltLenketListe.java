@@ -560,9 +560,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             fjernOK = false;  // blir sann når next() kalles
             iteratorendringer = endringer;  // teller endringer
         }
-
+        //oppgave 8c
         private DobbeltLenketListeIterator(int indeks) {
-            throw new UnsupportedOperationException();
+            //en skal sette pekeren ​denne​ til den noden som hører til den oppgitte indeksen.
+            //Resten skal være som i den konstruktøren som er ferdigkodet.
+
+            //sjekker om indeks er gyldig
+            indeksKontroll(indeks, false);
+
+            //setter denne til den oppgitte indeksen
+            denne = finnNode(indeks);
+
+            //setter fjernOk til være false
+            fjernOK = false;
+
+            //setter iteratorendringer itl endringer
+            iteratorendringer = endringer;
         }
 
         @Override
