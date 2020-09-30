@@ -173,15 +173,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return false;
     }
 
-    /*
-    Sjekkliste for metoden ​leggInn(T verdi)​:
-    ●  Stoppes null-verdier? Kastes i så fall en ​NullPointerException​?
-    ● Blir det korrekt hvis listen fra før er tom?
-    ● Blir det korrekt hvis listen fra før ikke er tom?
-    ● Blir antallet økt?
-    ● Blir endringer økt?
-    ● Er det rett returverdi?
-     */
     // Oppgave 2b
     @Override
     public boolean leggInn(T verdi) {
@@ -363,36 +354,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     }
 
-    /*
-    Sjekkliste for fjern-Metodene nedenfor:
-    ● Blir det korrekt hvis listen fra før er tom?
-    ● Blir pekerne (forrige og neste) korrekte i alle noder hvis første verdi (indeks 0)
-        fjernes?
-    ● Blir pekerne (forrige og neste) korrekte i alle noder hvis siste verdi fjernes?
-    ● Blir pekerne (forrige og neste) korrekte i alle noder hvis det fjernes en verdi
-        mellom to verdier?
-    ● Blir pekerne (forrige og neste) korrekte hvis listen etter fjerningen får kun én
-        verdi? Hva med ingen verdier?
-    ● Blir ​antall​ redusert?
-    ● Blir ​endringer​ økt?
-     */
     // Oppgave 6
     @Override
     public boolean fjern(T verdi) {
         // Skal fjerne VERDI fra listen og så returnere true
         // Hvis det er flere forekomster av verdier er det den første av dem (fra venstre) som skal fjernes
         // Lag metoden så effektiv som mulig, må derfor kodes direkte og IKKE ved hjelp av indeksTil(T verdi) og fjern(int indeks)
-
-        /*
-        Pass på tilfellene:
-        1. Den første fjernes
-        2. Den siste fjernes
-        3. En verdi mellom to andre fjernes
-        - Alle neste- og forrige-pekere må være korrekte etter fjerningen
-        - Variabelen ANTALL skal også reduseres og variabelen ENDRINGER økes
-        - Sjekk om tilfellet der listen blir tom etter fjerningen blir korrekt behandlet
-        - Bruk metodene toString() og omvendtString() til å sjekke at pekerne er satt riktig
-         */
 
         // Hvis VERDI ikke er i listen, skal metoden returnere false
         // Her skal det ikke kastes unntak hvis VERDI er null, metoden skal
@@ -447,16 +414,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Skal fjerne (og returnere) verdien på posisjon INDEKS
         // Indeks må først sjekkes
         // Lag metoden så effektiv som mulig
-        /*
-        Pass på tilfellene:
-        1. Den første fjernes
-        2. Den siste fjernes
-        3. En verdi mellom to andre fjernes
-        - Alle neste- og forrige-pekere må være korrekte etter fjerningen
-        - Variabelen ANTALL skal også reduseres og variabelen ENDRINGER økes
-        - Sjekk om tilfellet der listen blir tom etter fjerningen blir korrekt behandlet
-        - Bruk metodene toString() og omvendtString() til å sjekke at pekerne er satt riktig
-         */
+
     }
 
     @Override

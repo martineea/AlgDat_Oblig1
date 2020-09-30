@@ -21,8 +21,18 @@ public class Main {
         // Utskrift: 3 false
 
         // Oppgave 2a: sjekk at følgende programbit gir rett utksirft:
+        /*
+            Sjekkliste for metoden ​leggInn(T verdi)​:
+            ●  Stoppes null-verdier? Kastes i så fall en ​NullPointerException​?
+            ● Blir det korrekt hvis listen fra før er tom?
+            ● Blir det korrekt hvis listen fra før ikke er tom?
+            ● Blir antallet økt?
+            ● Blir endringer økt?
+            ● Er det rett returverdi?
+         */
         System.out.println("");
         System.out.println("Tester oppgave 2a:");
+
         String[] s1 = {}, s2 = {"A"}, s3 = {null, "A", "B", null};
         DobbeltLenketListe<String> l1 = new DobbeltLenketListe<>(s1);
         DobbeltLenketListe<String> l2 = new DobbeltLenketListe<>(s2);
@@ -33,9 +43,11 @@ public class Main {
                 " " + l2.omvendtString() + " " + l3.omvendtString());
         // Utkskrift: [] [A] [A, B] [] [A] [B, A]
 
+
         // Oppgave 2b: sjekk at følgende programbit gir rett utksrift:
         System.out.println("");
         System.out.println("Tester oppgave 2b:");
+
         DobbeltLenketListe<Integer> liste1 = new DobbeltLenketListe<>();
         System.out.println(liste.toString() + " " + liste1.omvendtString());
 
@@ -106,7 +118,57 @@ public class Main {
         //Oppgave 6
         System.out.println("");
         System.out.println("Tester oppgave 6:");
+        /*
+         Sjekkliste for fjern-Metodene nedenfor:
+        ● Blir det korrekt hvis listen fra før er tom?
+        ● Blir pekerne (forrige og neste) korrekte i alle noder hvis første verdi (indeks 0)
+            fjernes?
+        ● Blir pekerne (forrige og neste) korrekte i alle noder hvis siste verdi fjernes?
+        ● Blir pekerne (forrige og neste) korrekte i alle noder hvis det fjernes en verdi
+            mellom to verdier?
+        ● Blir pekerne (forrige og neste) korrekte hvis listen etter fjerningen får kun én
+            verdi? Hva med ingen verdier?
+        ● Blir ​antall​ redusert?
+        ● Blir ​endringer​ økt?
+        */
+        /*
+        Pass på tilfellene:
+        1. Den første fjernes
+        2. Den siste fjernes
+        3. En verdi mellom to andre fjernes
+        - Alle neste- og forrige-pekere må være korrekte etter fjerningen
+        - Variabelen ANTALL skal også reduseres og variabelen ENDRINGER økes
+        - Sjekk om tilfellet der listen blir tom etter fjerningen blir korrekt behandlet
+        - Bruk metodene toString() og omvendtString() til å sjekke at pekerne er satt riktig
+         */
 
+        // Teste om listen er tom:
+        String[] f1 = {};
+        Liste<String> liste6 = new DobbeltLenketListe<>(f1);
+        DobbeltLenketListe<String> m1 = new DobbeltLenketListe<>(f1);
+        System.out.println("Innholdet i en tom liste: " + m1.toString() + " " + m1.omvendtString()); // Utksift: [] []
+        System.out.println("Antallet i en tom liste: " + liste6.antall()); // Utskrift: 0
+
+        // Teste om første er fjernet:
+        String[] f2 = {"A","B","C"};
+        Liste<String> liste7 = new DobbeltLenketListe<>(f2);
+        DobbeltLenketListe<String> m2 = new DobbeltLenketListe<>(f2);
+        System.out.println("Innholdet om første er fjernet: " + m2.toString() + " " + m2.omvendtString()); // Utskrift [B C] [C B]
+        System.out.println("Antallet når første er fjernet: " + liste6.antall()); // Utksift: 2
+
+        // Teste om siste er fjernet:
+        String[] f3 = {"A","B","C"};
+        Liste<String> liste8 = new DobbeltLenketListe<>(f2);
+        DobbeltLenketListe<String> m3 = new DobbeltLenketListe<>(f3);
+        System.out.println("Innholdet om siste er fjernet: " + m3.toString() + " " + m3.omvendtString()); // Utksift: [A B] [B A]
+        System.out.println(liste8.antall()); // Utskrift: 2
+
+        // Teste om mellomste er fjernet:
+        String[] f4 = {"A","B","C"};
+        Liste<String> liste9 = new DobbeltLenketListe<>(f4);
+        DobbeltLenketListe<String> m4 = new DobbeltLenketListe<>(f4);
+        System.out.println("Innholdet om mellomste er fjernet: " + m4.toString() + " " + m4.omvendtString()); // Utskrift: [A C] [C A]
+        System.out.println(liste9.antall()); // Utskrift: 2
 
     }
 
