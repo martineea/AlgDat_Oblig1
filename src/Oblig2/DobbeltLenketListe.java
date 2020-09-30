@@ -539,13 +539,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return new DobbeltLenketListeIterator();
     }
 
-    //oppgave 8c
+    //oppgave 8d
     public Iterator<T> iterator(int indeks) {
 
-        //Den skal sette pekeren ​denne​ til den noden som hører til den oppgitte indeksen.
-        indeksKontroll(indeks, false);
-        // Resten skal være som i den konstruktøren som er ferdigkodet.
-        return new DobbeltLenketListeIterator(indeks);
+        //Det må først sjekkes at indeksen er lovlig.
+        //Bruk metoden ​indeksKontroll​()​.
+        //Deretter skal den ved hjelp av konstruktøren i punkt c) returnere en instans av iteratorklassen.
+
 
 
     }
