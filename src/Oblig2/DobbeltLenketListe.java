@@ -360,7 +360,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Skal fjerne VERDI fra listen og så returnere true
         // Hvis det er flere forekomster av verdier er det den første av dem (fra venstre) som skal fjernes
         // Lag metoden så effektiv som mulig, må derfor kodes direkte og IKKE ved hjelp av indeksTil(T verdi) og fjern(int indeks)
-
         // Hvis VERDI ikke er i listen, skal metoden returnere false
         // Her skal det ikke kastes unntak hvis VERDI er null, metoden skal
         // i stedet for returnere false.
@@ -369,40 +368,43 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         // Hjelpevariabel
-        Node<T> p = hode; // peker som peker på samme som hode - dvs første i listen
+        Node<T> p = hode; // peker som peker på samme som hode-peker - dvs første node i listen
 
         // Fjerne første
-        if (p.verdi.equals(verdi) && p.neste != null) { // hvis peker sin verdi er lik verdi og det er en verdi etter neste
-            hode = p.neste; // så skal neste node være nye hode - derned den første i listen
-            hode.forrige = null; // og den forrige er null - den tas dermed bort
-            antall--;
+        if (p.verdi.equals(verdi) && p.neste != null) { // hvis peker sin verdi er lik verdien vi leter etter og det er en verdi etter neste
+            hode = p.neste; // så skal neste node være nye hode - dvs den nye første noden i listen
+            hode.forrige = null; // også setter vi den noden som tidligere var først til null - den tas dermed bort
+            antall--; // tar bort 1 i antall, siden en node nå er fjernet
             endringer++;
             return true; // return true for VERDI er nå fjernet
         }
-        else { // hvis p sin verdi ikke er lik verdi og det ikke finnes en neste
-            hode = null; // skal hode og hale settes lik null (for da er det ingenting der)
+        else if (p.verdi.equals(verdi) && p.neste == null) { // hvis det kun er én node i listen, for det finnes ingen neste noder
+            hode = null; // skal hode og hale settes lik null, tar dermed bort den eneste noden som er der
             hale = null;
         }
 
         // Fjerne mellomste
-        p = hode.neste; // peker p på nest første node
-        for (; p != null; p = p.neste) { // kjører igjennom: så lenge p ikke er null (dvs neste node eksisterer) så hopper vi til neste node
-            if(p.verdi.equals(verdi)) { // og hvis p sin verdi er lik verdi
-                // så må vi sette ..??
+        p = hode.neste; // setter pekeren til å peke på noden etter den første noden (dvs node på indeks 1)
+        for (; p != null; p = p.neste) { // kjører igjennom med forløkke: så lenge p ikke er null (dvs neste node eksisterer) så hopper vi til neste node
+            if(p.verdi.equals(verdi)) { // og p-pekeren hopper bortover til den finner verdien vi leter etter (når p sin verdi er lik verdien vi leter etter)
+                p.forrige.neste = p.neste; // da setter vi ny neste ved å ta p sin forrige sin neste til å være p sin neste (hopper over p)
+                p.neste.forrige = p.forrige; // samme med forrige: tar p sin neste sin forrige til å være lik p sin forrige (hopper igjen over p)
+                // nå har ikke p noen neste- eller forrige pekere på seg - den er fjernet
+                antall--; //
+                endringer++;
+                return true;
             }
         }
 
         // Fjerne siste
         p = hale; // setter pekeren på siste node
-        if (p.verdi.equals(verdi)) { // hvis verdien der p peker er lik verdi
-            hale = p.forrige; // så skal vi sette hale lik p sin forrige
+        if (p.verdi.equals(verdi)) { // hvis verdien der p peker er lik verdien vi leter etter
+            hale = p.forrige; // så skal vi sette hale lik p sin forrige (som blir den nye siste noden)
             hale.neste = null; // og hale sin neste til lik null - vi tar da bort siste noden
             antall--;
             endringer++;
             return true;
         }
-
-
         return false;
     }
 

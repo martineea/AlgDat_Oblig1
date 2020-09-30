@@ -33,7 +33,7 @@ public class Main {
         System.out.println("");
         System.out.println("Tester oppgave 2a:");
 
-        String[] s1 = {}, s2 = {"A"}, s3 = {null, "A", "B", null};
+        String[] s1 = {}, s2 = {"A"}, s3 = {null, "A", null, "B", null};
         DobbeltLenketListe<String> l1 = new DobbeltLenketListe<>(s1);
         DobbeltLenketListe<String> l2 = new DobbeltLenketListe<>(s2);
         DobbeltLenketListe<String> l3 = new DobbeltLenketListe<>(s3);
@@ -57,7 +57,7 @@ public class Main {
         }
 
         // Utskrift:
-        // []
+        // [] []
         // [1] [1]
         // [1, 2] [2,1]
         // [1,2,3] [3,2,1]
@@ -150,25 +150,11 @@ public class Main {
         System.out.println("Antallet i en tom liste: " + liste6.antall()); // Utskrift: 0
 
         // Teste om første er fjernet:
-        String[] f2 = {"A","B","C"};
-        Liste<String> liste7 = new DobbeltLenketListe<>(f2);
-        DobbeltLenketListe<String> m2 = new DobbeltLenketListe<>(f2);
-        System.out.println("Innholdet om første er fjernet: " + m2.toString() + " " + m2.omvendtString()); // Utskrift [B C] [C B]
-        System.out.println("Antallet når første er fjernet: " + liste6.antall()); // Utksift: 2
 
         // Teste om siste er fjernet:
-        String[] f3 = {"A","B","C"};
-        Liste<String> liste8 = new DobbeltLenketListe<>(f2);
-        DobbeltLenketListe<String> m3 = new DobbeltLenketListe<>(f3);
-        System.out.println("Innholdet om siste er fjernet: " + m3.toString() + " " + m3.omvendtString()); // Utksift: [A B] [B A]
-        System.out.println(liste8.antall()); // Utskrift: 2
 
         // Teste om mellomste er fjernet:
-        String[] f4 = {"A","B","C"};
-        Liste<String> liste9 = new DobbeltLenketListe<>(f4);
-        DobbeltLenketListe<String> m4 = new DobbeltLenketListe<>(f4);
-        System.out.println("Innholdet om mellomste er fjernet: " + m4.toString() + " " + m4.omvendtString()); // Utskrift: [A C] [C A]
-        System.out.println(liste9.antall()); // Utskrift: 2
+
 
     }
 
