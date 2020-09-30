@@ -21,9 +21,19 @@ public class Main {
         // Utskrift: 3 false
 
         // Oppgave 2a: sjekk at følgende programbit gir rett utksirft:
+        /*
+            Sjekkliste for metoden ​leggInn(T verdi)​:
+            ●  Stoppes null-verdier? Kastes i så fall en ​NullPointerException​?
+            ● Blir det korrekt hvis listen fra før er tom?
+            ● Blir det korrekt hvis listen fra før ikke er tom?
+            ● Blir antallet økt?
+            ● Blir endringer økt?
+            ● Er det rett returverdi?
+         */
         System.out.println("");
         System.out.println("Tester oppgave 2a:");
-        String[] s1 = {}, s2 = {"A"}, s3 = {null, "A", "B", null};
+
+        String[] s1 = {}, s2 = {"A"}, s3 = {null, "A", null, "B", null};
         DobbeltLenketListe<String> l1 = new DobbeltLenketListe<>(s1);
         DobbeltLenketListe<String> l2 = new DobbeltLenketListe<>(s2);
         DobbeltLenketListe<String> l3 = new DobbeltLenketListe<>(s3);
@@ -33,9 +43,11 @@ public class Main {
                 " " + l2.omvendtString() + " " + l3.omvendtString());
         // Utkskrift: [] [A] [A, B] [] [A] [B, A]
 
+
         // Oppgave 2b: sjekk at følgende programbit gir rett utksrift:
         System.out.println("");
         System.out.println("Tester oppgave 2b:");
+
         DobbeltLenketListe<Integer> liste1 = new DobbeltLenketListe<>();
         System.out.println(liste.toString() + " " + liste1.omvendtString());
 
@@ -45,7 +57,7 @@ public class Main {
         }
 
         // Utskrift:
-        // []
+        // [] []
         // [1] [1]
         // [1, 2] [2,1]
         // [1,2,3] [3,2,1]
@@ -133,7 +145,53 @@ public class Main {
         //Oppgave 6
         System.out.println("");
         System.out.println("Tester oppgave 6:");
+        /*
+         Sjekkliste for fjern-Metodene nedenfor:
+        ● Blir det korrekt hvis listen fra før er tom?
+        ● Blir pekerne (forrige og neste) korrekte i alle noder hvis første verdi (indeks 0)
+            fjernes?
+        ● Blir pekerne (forrige og neste) korrekte i alle noder hvis siste verdi fjernes?
+        ● Blir pekerne (forrige og neste) korrekte i alle noder hvis det fjernes en verdi
+            mellom to verdier?
+        ● Blir pekerne (forrige og neste) korrekte hvis listen etter fjerningen får kun én
+            verdi? Hva med ingen verdier?
+        ● Blir ​antall​ redusert?
+        ● Blir ​endringer​ økt?
+        */
+        /*
+        Pass på tilfellene:
+        1. Den første fjernes
+        2. Den siste fjernes
+        3. En verdi mellom to andre fjernes
+        - Alle neste- og forrige-pekere må være korrekte etter fjerningen
+        - Variabelen ANTALL skal også reduseres og variabelen ENDRINGER økes
+        - Sjekk om tilfellet der listen blir tom etter fjerningen blir korrekt behandlet
+        - Bruk metodene toString() og omvendtString() til å sjekke at pekerne er satt riktig
+         */
 
+        // Skriver først ut listen med toString og omvendtString
+        Integer[] f1 = {};
+        Integer[] f2 = {1};
+        Integer[] f3 = {1,2,3};
+        DobbeltLenketListe<Integer> m1 = new DobbeltLenketListe<>(f1);
+        DobbeltLenketListe<Integer> m2 = new DobbeltLenketListe<>(f2);
+        DobbeltLenketListe<Integer> m3 = new DobbeltLenketListe<>(f3);
+
+        System.out.println(m1.toString() + " " + m2.toString() +
+                " " + m3.toString() + " " + m1.omvendtString() +
+                " " + m2.omvendtString() + " " + m3.omvendtString());
+        // Utkskrift: [] [1] [1,2,3] [] [1] [3,2,1]
+
+        // Kjører fjern-metoden for å se om verdier blir fjernet:
+        DobbeltLenketListe.fjern();
+
+        // Teste om listen er tom:
+
+        // Teste om første er fjernet:
+
+        // Teste om siste er fjernet:
+
+        // Teste om mellomste er fjernet:
 
         //Oppgave 7
         System.out.println("");

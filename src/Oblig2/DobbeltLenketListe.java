@@ -177,15 +177,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return false;
     }
 
-    /*
-    Sjekkliste for metoden ​leggInn(T verdi)​:
-    ●  Stoppes null-verdier? Kastes i så fall en ​NullPointerException​?
-    ● Blir det korrekt hvis listen fra før er tom?
-    ● Blir det korrekt hvis listen fra før ikke er tom?
-    ● Blir antallet økt?
-    ● Blir endringer økt?
-    ● Er det rett returverdi?
-     */
     // Oppgave 2b
     @Override
     public boolean leggInn(T verdi) {
@@ -363,37 +354,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     }
 
-    /*
-    Sjekkliste for fjern-Metodene nedenfor:
-    ● Blir det korrekt hvis listen fra før er tom?
-    ● Blir pekerne (forrige og neste) korrekte i alle noder hvis første verdi (indeks 0)
-        fjernes?
-    ● Blir pekerne (forrige og neste) korrekte i alle noder hvis siste verdi fjernes?
-    ● Blir pekerne (forrige og neste) korrekte i alle noder hvis det fjernes en verdi
-        mellom to verdier?
-    ● Blir pekerne (forrige og neste) korrekte hvis listen etter fjerningen får kun én
-        verdi? Hva med ingen verdier?
-    ● Blir ​antall​ redusert?
-    ● Blir ​endringer​ økt?
-     */
     // Oppgave 6
     @Override
     public boolean fjern(T verdi) {
         // Skal fjerne VERDI fra listen og så returnere true
         // Hvis det er flere forekomster av verdier er det den første av dem (fra venstre) som skal fjernes
         // Lag metoden så effektiv som mulig, må derfor kodes direkte og IKKE ved hjelp av indeksTil(T verdi) og fjern(int indeks)
-
-        /*
-        Pass på tilfellene:
-        1. Den første fjernes
-        2. Den siste fjernes
-        3. En verdi mellom to andre fjernes
-        - Alle neste- og forrige-pekere må være korrekte etter fjerningen
-        - Variabelen ANTALL skal også reduseres og variabelen ENDRINGER økes
-        - Sjekk om tilfellet der listen blir tom etter fjerningen blir korrekt behandlet
-        - Bruk metodene toString() og omvendtString() til å sjekke at pekerne er satt riktig
-         */
-
         // Hvis VERDI ikke er i listen, skal metoden returnere false
         // Her skal det ikke kastes unntak hvis VERDI er null, metoden skal
         // i stedet for returnere false.
@@ -402,66 +368,115 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         // Hjelpevariabel
-        Node<T> p = hode; // peker som peker på samme som hode - dvs første i listen
+        Node<T> p = hode; // peker som peker på samme som hode-peker - dvs første node i listen
 
         // Fjerne første
-        if (p.verdi.equals(verdi) && p.neste != null) { // hvis peker sin verdi er lik verdi og det er en verdi etter neste
-            hode = p.neste; // så skal neste node være nye hode - derned den første i listen
-            hode.forrige = null; // og den forrige er null - den tas dermed bort
-            antall--;
+        if (p.verdi.equals(verdi) && p.neste != null) { // hvis peker sin verdi er lik verdien vi leter etter og det er en verdi etter neste
+            hode = p.neste; // så skal neste node være nye hode - dvs den nye første noden i listen
+            hode.forrige = null; // også setter vi den noden som tidligere var først til null - den tas dermed bort
+            antall--; // tar bort 1 i antall, siden en node nå er fjernet
             endringer++;
             return true; // return true for VERDI er nå fjernet
         }
-        else { // hvis p sin verdi ikke er lik verdi og det ikke finnes en neste
-            hode = null; // skal hode og hale settes lik null (for da er det ingenting der)
+        else if (p.verdi.equals(verdi) && p.neste == null) { // hvis det kun er én node i listen, for det finnes ingen neste noder
+            hode = null; // skal hode og hale settes lik null, tar dermed bort den eneste noden som er der
             hale = null;
         }
 
         // Fjerne mellomste
-        p = hode.neste; // peker p på nest første node
-        for (; p != null; p = p.neste) { // kjører igjennom: så lenge p ikke er null (dvs neste node eksisterer) så hopper vi til neste node
-            if(p.verdi.equals(verdi)) { // og hvis p sin verdi er lik verdi
-                // så må vi sette ..??
+        p = hode.neste; // setter pekeren til å peke på noden etter den første noden (dvs node på indeks 1)
+        for (; p != null; p = p.neste) { // kjører igjennom med forløkke: så lenge p ikke er null (dvs neste node eksisterer) så hopper vi til neste node
+            if(p.verdi.equals(verdi)) { // og p-pekeren hopper bortover til den finner verdien vi leter etter (når p sin verdi er lik verdien vi leter etter)
+                p.forrige.neste = p.neste; // da setter vi ny neste ved å ta p sin forrige sin neste til å være p sin neste (hopper over p)
+                p.neste.forrige = p.forrige; // samme med forrige: tar p sin neste sin forrige til å være lik p sin forrige (hopper igjen over p)
+                // nå har ikke p noen neste- eller forrige pekere på seg - den er fjernet
+                antall--; //
+                endringer++;
+                return true;
             }
         }
 
         // Fjerne siste
         p = hale; // setter pekeren på siste node
-        if (p.verdi.equals(verdi)) { // hvis verdien der p peker er lik verdi
-            hale = p.forrige; // så skal vi sette hale lik p sin forrige
+        if (p.verdi.equals(verdi)) { // hvis verdien der p peker er lik verdien vi leter etter
+            hale = p.forrige; // så skal vi sette hale lik p sin forrige (som blir den nye siste noden)
             hale.neste = null; // og hale sin neste til lik null - vi tar da bort siste noden
             antall--;
             endringer++;
             return true;
         }
-
-
         return false;
     }
 
     // Oppgave 6
     @Override
     public T fjern(int indeks) {
-        throw new UnsupportedOperationException();
+        // Sjekke indeks
+        indeksKontroll(indeks, false);
 
         // Skal fjerne (og returnere) verdien på posisjon INDEKS
         // Indeks må først sjekkes
         // Lag metoden så effektiv som mulig
-        /*
-        Pass på tilfellene:
-        1. Den første fjernes
-        2. Den siste fjernes
-        3. En verdi mellom to andre fjernes
-        - Alle neste- og forrige-pekere må være korrekte etter fjerningen
-        - Variabelen ANTALL skal også reduseres og variabelen ENDRINGER økes
-        - Sjekk om tilfellet der listen blir tom etter fjerningen blir korrekt behandlet
-        - Bruk metodene toString() og omvendtString() til å sjekke at pekerne er satt riktig
-         */
+
+        Node<T> p = hode; // lager en peker p som peker på samme node som hode-peker
+        T verdi; // verdien vi leter etter
+
+        // Fjerne første (hvis kun 1 node + hvis flere noder)
+        if (indeks == 0) { // hvis indeks er lik 0
+            verdi = p.verdi; // setter så p-pekeren sin verdi til å være lik verdien vi har funnet
+            if (p.neste != null) { // og hvis p-pekeren kan peke på en neste-node
+                hode = p.neste; // da setter vi neste noden til p som hode
+                hode.forrige = null; // og fjerner den første noden i listen
+            }
+            else { // hvis p ikke kan peke på noen neste node, så er det kun 1 node i listen
+                hode = null; // og da setter vi både hode og hale til null - dvs den ene noden fjernes
+                hale = null;
+            }
+            antall--;
+            endringer++;
+            return verdi;
+        }
+
+        // Fjerne siste
+        else if (indeks == antall-1) { // finner indeks: som er antall noder - 1 (dvs den nest bakerste noden)
+            p = hale; // og setter hale-pekeren til å være lik p-pekeren
+            verdi = hale.verdi; // og hale sin verdi til å være lik verdien
+            hale = p.forrige; // også tar man p sin forrige (altså nest siste noden) til å være nye halen
+            hale.neste = null; // også tar man hale sin neste - dvs siste noden til å være lik null - dvs den fjernes
+            antall--;
+            endringer++;
+            return verdi;
+        }
+
+        // Fjerne mellomste
+        else {
+            for (int i = 0; i < indeks; i++) { // kjører igjennom listen med en for-løkke
+                p = p.neste; // setter i hver runde p sin neste node til å være p (der pekeren peker) - p-pekeren flytter seg dermed hele tiden bortover mot høyre
+            }
+            verdi = p.verdi; // når vi har funnet verdien vi leter etter setter vi p sin verdi til denne
+            p.forrige.neste = p.neste; // så fltter vi neste-pekerene: p sin neste blir = p sin forrige sin neste
+            p.neste.forrige = p.forrige; // og p sin forrige blir = p sin neste sin forrige. Har dermed tatt bort neste- og forrige-pekerene fra noden p peker på
+            antall--;
+            endringer++;
+            return verdi;
+        }
     }
 
+    // Oppgave 7
     @Override
     public void nullstill() {
         throw new UnsupportedOperationException();
+        // Skal "tømme" listen og nulle alt slik at "søppeltømmeren" kan hente alt som ikke lenger brukes
+        // Kod den på to måter - velg den som er mest effektiv (gjør tidsmålinger):
+        /*
+        1. måte: Start i hode og gå mot hale vha pekeren neste. For hver node "nulles"
+            nodeverdien og alle nodens pekere. Til slutt settes både hode og hale til null,
+            antall til 0 og endringer økes. Hvis du er i tvil om hva som det bes om her, kan
+            du slå opp i kildekoden for metoden clear() i klassen LinkedList i Java.
+        2. måte: Lag en løkke som inneholder metodekallet fjern(0) (den første noden fjernes)
+            og som går inntil listen er tom
+
+         */
     }
 
     // Oppgave 2a
