@@ -544,7 +544,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         //Det må først sjekkes at indeksen er lovlig.
         //Bruk metoden ​indeksKontroll​()​.
+        indeksKontroll(indeks, false);
+
+
         //Deretter skal den ved hjelp av konstruktøren i punkt c) returnere en instans av iteratorklassen.
+
+        return new DobbeltLenketListeIterator(indeks);
 
 
 
