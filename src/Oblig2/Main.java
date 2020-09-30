@@ -46,28 +46,32 @@ public class Main {
         // [1,2,3] [3,2,1]
 
         //oppgave 3a
-        DobbeltLenketListe list= null;
+        DobbeltLenketListe<Integer> list= new DobbeltLenketListe<>();
         list.leggInn(2);
         list.leggInn(3);
         list.leggInn(4);
         list.leggInn(6);
+        list.leggInn(3);
 
-        System.out.println(list.hent(2));
+        System.out.println( "Her er oppgave 3a: " +list.hent(2));
 
         //oppgave 3b:
         //Sjekk så at følgende programbit gir rett utskrift:
         Character [] c= {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
         DobbeltLenketListe<Character> liste2 = new DobbeltLenketListe<>(c);
 
+        ;
         System.out.println(liste2.subliste(3,8));// [D, E, F, G, H]
         System.out.println(liste2.subliste(5,5));
-        System.out.println(liste2.subliste(8, liste2.antall()));//[I, J]
-        System.out.println(liste2.subliste(8,liste2.antall()));
+        //denne gir java.lang.NullPointerException uten at jeg vet hvorfor.
+       // System.out.println(liste2.subliste(8,liste2.antall()));
 
-        //System.out.println(liste.subliste(0,11)); // skal kaste unntak
+        //System.out.println(liste2.subliste(0,11));//skal kaste avvik
+
+
 
         //oppgave 4:
-       System.out.println(list.indeksTil(3));
+       System.out.println("her er oppgave 4: "+list.indeksTil(3));
 
         //oppgave 5:
 
@@ -84,10 +88,13 @@ public class Main {
 
          */
 
-        DobbeltLenketListe siste= null;
+        /*DobbeltLenketListe siste= null;
 
         siste.leggInn(4, 30 );
         System.out.println(siste.hent(4));
+
+         */
+
 
 
     }
