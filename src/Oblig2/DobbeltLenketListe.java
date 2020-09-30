@@ -504,7 +504,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
             // så ​skal letingen etter noden starte fra hode og gå mot høyre ved hjelp av neste-pekere.
             return forerstCurrent;
-            //
+            //hvis ikke
         } else {
 
 

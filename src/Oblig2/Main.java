@@ -51,7 +51,7 @@ public class Main {
         list.leggInn(3);
         list.leggInn(4);
         list.leggInn(6);
-        //System.out.println(list.finnNode(2));
+
         System.out.println(list.hent(2));
 
         //oppgave 3b:
