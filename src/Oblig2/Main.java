@@ -10,6 +10,7 @@ public class Main {
         Liste<String> liste = new DobbeltLenketListe<>();
 
         // Oppgave 1: Sjekker om antall og tom gir rett utskrift
+        System.out.println("Tester oppgave 1:");
         System.out.println(liste.antall() + " " + liste.tom());
         // Utskrift: 0 true
 
@@ -20,6 +21,8 @@ public class Main {
         // Utskrift: 3 false
 
         // Oppgave 2a: sjekk at følgende programbit gir rett utksirft:
+        System.out.println("");
+        System.out.println("Tester oppgave 2a:");
         String[] s1 = {}, s2 = {"A"}, s3 = {null, "A", "B", null};
         DobbeltLenketListe<String> l1 = new DobbeltLenketListe<>(s1);
         DobbeltLenketListe<String> l2 = new DobbeltLenketListe<>(s2);
@@ -31,6 +34,8 @@ public class Main {
         // Utkskrift: [] [A] [A, B] [] [A] [B, A]
 
         // Oppgave 2b: sjekk at følgende programbit gir rett utksrift:
+        System.out.println("");
+        System.out.println("Tester oppgave 2b:");
         DobbeltLenketListe<Integer> liste1 = new DobbeltLenketListe<>();
         System.out.println(liste.toString() + " " + liste1.omvendtString());
 
@@ -45,7 +50,10 @@ public class Main {
         // [1, 2] [2,1]
         // [1,2,3] [3,2,1]
 
+        /*
         //oppgave 3a
+        System.out.println("");
+        System.out.println("Tester oppgave 3a:");
         DobbeltLenketListe list= null;
         list.leggInn(2);
         list.leggInn(3);
@@ -55,6 +63,8 @@ public class Main {
         System.out.println(list.hent(2));
 
         //oppgave 3b:
+        System.out.println("");
+        System.out.println("Tester oppgave 3b:");
         //Sjekk så at følgende programbit gir rett utskrift:
         Character [] c= {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
         DobbeltLenketListe<Character> liste2 = new DobbeltLenketListe<>(c);
@@ -67,10 +77,13 @@ public class Main {
         //System.out.println(liste.subliste(0,11)); // skal kaste unntak
 
         //oppgave 4:
-       System.out.println(list.indeksTil(3));
+        System.out.println("");
+        System.out.println("Tester oppgave 4:");
+        System.out.println(list.indeksTil(3));
 
         //oppgave 5:
-
+        System.out.println("");
+        System.out.println("Tester oppgave 5:");
         /*Sjekkliste for ​leggInn(int indeks, T verdi)​:
             ● Stoppes null-verdier? Kastes i så fall en ​NullPointerException​?
             ● Sjekkes indeksen?
@@ -83,11 +96,16 @@ public class Main {
             ● Blir ​endringer​ økt?
 
          */
-
+        /*
         DobbeltLenketListe siste= null;
 
         siste.leggInn(4, 30 );
         System.out.println(siste.hent(4));
+        */
+
+        //Oppgave 6
+        System.out.println("");
+        System.out.println("Tester oppgave 6:");
 
 
     }

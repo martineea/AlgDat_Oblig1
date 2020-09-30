@@ -363,14 +363,100 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     }
 
+    /*
+    Sjekkliste for fjern-Metodene nedenfor:
+    ● Blir det korrekt hvis listen fra før er tom?
+    ● Blir pekerne (forrige og neste) korrekte i alle noder hvis første verdi (indeks 0)
+        fjernes?
+    ● Blir pekerne (forrige og neste) korrekte i alle noder hvis siste verdi fjernes?
+    ● Blir pekerne (forrige og neste) korrekte i alle noder hvis det fjernes en verdi
+        mellom to verdier?
+    ● Blir pekerne (forrige og neste) korrekte hvis listen etter fjerningen får kun én
+        verdi? Hva med ingen verdier?
+    ● Blir ​antall​ redusert?
+    ● Blir ​endringer​ økt?
+     */
+    // Oppgave 6
     @Override
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException();
+        // Skal fjerne VERDI fra listen og så returnere true
+        // Hvis det er flere forekomster av verdier er det den første av dem (fra venstre) som skal fjernes
+        // Lag metoden så effektiv som mulig, må derfor kodes direkte og IKKE ved hjelp av indeksTil(T verdi) og fjern(int indeks)
+
+        /*
+        Pass på tilfellene:
+        1. Den første fjernes
+        2. Den siste fjernes
+        3. En verdi mellom to andre fjernes
+        - Alle neste- og forrige-pekere må være korrekte etter fjerningen
+        - Variabelen ANTALL skal også reduseres og variabelen ENDRINGER økes
+        - Sjekk om tilfellet der listen blir tom etter fjerningen blir korrekt behandlet
+        - Bruk metodene toString() og omvendtString() til å sjekke at pekerne er satt riktig
+         */
+
+        // Hvis VERDI ikke er i listen, skal metoden returnere false
+        // Her skal det ikke kastes unntak hvis VERDI er null, metoden skal
+        // i stedet for returnere false.
+        if (verdi == null) {
+            return false;
+        }
+
+        // Hjelpevariabel
+        Node<T> p = hode; // peker som peker på samme som hode - dvs første i listen
+
+        // Fjerne første
+        if (p.verdi.equals(verdi) && p.neste != null) { // hvis peker sin verdi er lik verdi og det er en verdi etter neste
+            hode = p.neste; // så skal neste node være nye hode - derned den første i listen
+            hode.forrige = null; // og den forrige er null - den tas dermed bort
+            antall--;
+            endringer++;
+            return true; // return true for VERDI er nå fjernet
+        }
+        else { // hvis p sin verdi ikke er lik verdi og det ikke finnes en neste
+            hode = null; // skal hode og hale settes lik null (for da er det ingenting der)
+            hale = null;
+        }
+
+        // Fjerne mellomste
+        p = hode.neste; // peker p på nest første node
+        for (; p != null; p = p.neste) { // kjører igjennom: så lenge p ikke er null (dvs neste node eksisterer) så hopper vi til neste node
+            if(p.verdi.equals(verdi)) { // og hvis p sin verdi er lik verdi
+                // så må vi sette ..??
+            }
+        }
+
+        // Fjerne siste
+        p = hale; // setter pekeren på siste node
+        if (p.verdi.equals(verdi)) { // hvis verdien der p peker er lik verdi
+            hale = p.forrige; // så skal vi sette hale lik p sin forrige
+            hale.neste = null; // og hale sin neste til lik null - vi tar da bort siste noden
+            antall--;
+            endringer++;
+            return true;
+        }
+
+
+        return false;
     }
 
+    // Oppgave 6
     @Override
     public T fjern(int indeks) {
         throw new UnsupportedOperationException();
+
+        // Skal fjerne (og returnere) verdien på posisjon INDEKS
+        // Indeks må først sjekkes
+        // Lag metoden så effektiv som mulig
+        /*
+        Pass på tilfellene:
+        1. Den første fjernes
+        2. Den siste fjernes
+        3. En verdi mellom to andre fjernes
+        - Alle neste- og forrige-pekere må være korrekte etter fjerningen
+        - Variabelen ANTALL skal også reduseres og variabelen ENDRINGER økes
+        - Sjekk om tilfellet der listen blir tom etter fjerningen blir korrekt behandlet
+        - Bruk metodene toString() og omvendtString() til å sjekke at pekerne er satt riktig
+         */
     }
 
     @Override
