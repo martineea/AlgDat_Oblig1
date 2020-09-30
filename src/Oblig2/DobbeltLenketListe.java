@@ -465,7 +465,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     // Oppgave 7
     @Override
     public void nullstill() {
-        throw new UnsupportedOperationException();
         // Skal "tømme" listen og nulle alt slik at "søppeltømmeren" kan hente alt som ikke lenger brukes
         // Kod den på to måter - velg den som er mest effektiv (gjør tidsmålinger):
         /*
@@ -475,8 +474,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             du slå opp i kildekoden for metoden clear() i klassen LinkedList i Java.
         2. måte: Lag en løkke som inneholder metodekallet fjern(0) (den første noden fjernes)
             og som går inntil listen er tom
-
          */
+        Node<T> p = hode; // lager en ny peker p som peker på hode-peker (første node)
+        Node<T> temp; // LAger en hjelpe-peker temp
+
+        // Måte 1:
+        for (; p != null; p = p.neste) { // kjører gjennom listen, så lenge p (hode) ikke er null, hopper den til neste
+            p = hode.neste; // setter hode sin neste til å være p
+            p.neste = null; // og neste blir satt til null
+            p.forrige = null; // og forrige blir satt til null
+            antall = 0;
+            endringer++;
+        }
+        hode = hale = null; // og setter både hode og hale til null når det kun er hode- og hale-pekere igjen
+
+        // Måte 2:
+        Node<T> q = hode;
+        for (; q != null; q = q.neste) { // kjører igjennom listen, og så lenge q (lik hode) ikke er null så hopper den til neste
+            fjern(0); // og bruker fjern-metoden til å fjerne den første noden inntill hele listen er tom
+            endringer++;
+        }
     }
 
     // Oppgave 2a
