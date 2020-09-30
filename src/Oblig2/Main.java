@@ -191,8 +191,13 @@ public class Main {
         listeIgjen.fjern(1);
 
         System.out.println(listeIgjen.toString());
+
+        // Teste om listen er tom: Gir feilmelding IndexOutOfBoundsException
+       /* DobbeltLenketListe<Integer> listeTom= new DobbeltLenketListe<>();
+        listeTom.fjern(0);
         
-        // Teste om listen er tom:
+        */
+
 
         // Teste om første er fjernet:
 
