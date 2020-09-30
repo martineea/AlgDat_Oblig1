@@ -63,6 +63,7 @@ public class Main {
         ;
         System.out.println(liste2.subliste(3,8));// [D, E, F, G, H]
         System.out.println(liste2.subliste(5,5));
+
         //denne gir java.lang.NullPointerException uten at jeg vet hvorfor.
        // System.out.println(liste2.subliste(8,liste2.antall()));
 
@@ -76,24 +77,54 @@ public class Main {
         //oppgave 5:
 
         /*Sjekkliste for ​leggInn(int indeks, T verdi)​:
-            ● Stoppes null-verdier? Kastes i så fall en ​NullPointerException​?
+            ● Stoppes null-verdier? Kastes i så fall en ​NullPointerException​? ja
             ● Sjekkes indeksen?
-            ● Blir det korrekt hvis listen fra før er tom?
+            ● Blir det korrekt hvis listen fra før er tom? nei, det går ikke å legge inn med tom tabell:(
             ● Blir pekerne (forrige og neste) korrekte i alle noder hvis ny verdi legges først?
             ● Blir pekerne (forrige og neste) korrekte i alle noder hvis ny verdi legges bakerst?
             ● Blir pekerne (forrige og neste) korrekte i alle noder hvis ny verdi legges mellom to
                     verdier?
             ● Blir ​antall​ økt?
-            ● Blir ​endringer​ økt?
+            ● Blir ​endringer​ økt? vet ikke hvordan jeg sjekker dette
 
          */
 
-        /*DobbeltLenketListe siste= null;
+
+        DobbeltLenketListe<Integer> siste= new DobbeltLenketListe<>();
+        siste.leggInn(1);
+        siste.leggInn(2);
+        siste.leggInn(3);
+        siste.leggInn(4);
+        siste.leggInn(6);
+        siste.leggInn(3);
+
 
         siste.leggInn(4, 30 );
-        System.out.println(siste.hent(4));
+        System.out.println("Tester oppgave 5: "+ siste.hent(4));
 
-         */
+        //tester nullverdi fungerer
+        //siste.leggInn(0, null );
+        //System.out.println("Tester oppgave 5: "+ siste.hent(0));
+
+        //sjekker om det går hvis listen er tom: Fungerer ikke
+        DobbeltLenketListe<Integer> siste2= new DobbeltLenketListe<>();
+        /*siste.leggInn(0, 10 );
+        System.out.println("Tester oppgave 5: "+ siste2.hent(0));*/
+
+
+        //sjekker at det går å legge inn noe bakerst
+        siste.leggInn(7, 10 );
+        System.out.println("Tester oppgave 5: "+ siste.hent(7));
+
+        //sjekker at antall er riktig:
+        System.out.println("antall for oppgave 5: "+ siste.antall());
+        System.out.println(siste.toString());
+
+
+
+
+
+
 
 
 

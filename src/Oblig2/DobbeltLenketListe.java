@@ -236,7 +236,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Den skal legge ​verdi​ inn i listen slik at den får indeks/posisjon ​indeks​.
         //Husk at negative indekser og indekser større enn antall
         // er ulovlige (indekser fra og med 0 til og med antall er lovlige).
+
+        //kaster et avvik hvis verdi er null
+        Objects.requireNonNull(verdi, "Det er ikke tillatt med null.");
         Node <T> forandretNode= new Node<T>(verdi,null, null);
+
         if(indeks<0 || indeks>antall){
             throw new IndexOutOfBoundsException("indeks: "+ indeks+ " må være mer enn 0 og må være mindre enn antall" );
         }
@@ -275,6 +279,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         antall++;
         endringer++;
+
+
+
+
     }
 
     //oppgave 4
