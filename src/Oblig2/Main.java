@@ -183,8 +183,15 @@ public class Main {
         // Utkskrift: [] [1] [1,2,3] [] [1] [3,2,1]
 
         // Kjører fjern-metoden for å se om verdier blir fjernet:
-        DobbeltLenketListe.fjern();
+        DobbeltLenketListe<Integer> listeIgjen= new DobbeltLenketListe<>();
+        listeIgjen.leggInn(10);
+        listeIgjen.leggInn(129);
+        listeIgjen.leggInn(3);
+        listeIgjen.leggInn(15);
+        listeIgjen.fjern(1);
 
+        System.out.println(listeIgjen.toString());
+        
         // Teste om listen er tom:
 
         // Teste om første er fjernet:
