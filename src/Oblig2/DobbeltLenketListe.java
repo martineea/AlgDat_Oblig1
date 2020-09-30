@@ -531,12 +531,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return tegnStreng.toString();
     }
 
+    //oppgave 8b
     @Override
     public Iterator<T> iterator() {
-        throw new UnsupportedOperationException();
+
+        //Den skal returnere en instans av iteratorklassen.
+        return new DobbeltLenketListeIterator();
     }
 
+    //oppgave 8c
     public Iterator<T> iterator(int indeks) {
+
+        //Den skal sette pekeren ​denne​ til den noden som hører til den oppgitte indeksen.
         throw new UnsupportedOperationException();
     }
 
