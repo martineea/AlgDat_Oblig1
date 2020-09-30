@@ -188,14 +188,15 @@ public class Main {
         listeIgjen.leggInn(129);
         listeIgjen.leggInn(3);
         listeIgjen.leggInn(15);
+        System.out.println(listeIgjen.toString());
         listeIgjen.fjern(1);
 
+        System.out.println(listeIgjen.toString()+" fjerner indeks 2: " +listeIgjen.fjern(2));
         System.out.println(listeIgjen.toString());
-
         // Teste om listen er tom: Gir feilmelding IndexOutOfBoundsException
        /* DobbeltLenketListe<Integer> listeTom= new DobbeltLenketListe<>();
         listeTom.fjern(0);
-        
+
         */
 
 
