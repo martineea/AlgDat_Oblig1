@@ -38,9 +38,8 @@ public class Main {
         DobbeltLenketListe<String> l2 = new DobbeltLenketListe<>(s2);
         DobbeltLenketListe<String> l3 = new DobbeltLenketListe<>(s3);
 
-        System.out.println(l1.toString() + " " + l2.toString() +
-                " " + l3.toString() + " " + l1.omvendtString() +
-                " " + l2.omvendtString() + " " + l3.omvendtString());
+        System.out.println(l1.toString() + " " + l2.toString() + " " + l3.toString() + " "
+                + l1.omvendtString() + " " + l2.omvendtString() + " " + l3.omvendtString());
         // Utkskrift: [] [A] [A, B] [] [A] [B, A]
 
 
@@ -71,6 +70,7 @@ public class Main {
         list.leggInn(6);
         list.leggInn(3);
 
+        System.out.println("");
         System.out.println( "Her er oppgave 3a: " +list.hent(2));
 
         //oppgave 3b:
@@ -288,6 +288,30 @@ public class Main {
         //Oppgave 7
         System.out.println("");
         System.out.println("Tester oppgave 7:");
+
+        /*
+        DobbeltLenketListe<Integer> oppg7 = new DobbeltLenketListe<>();
+        for (int i = 0; i < 10000000; i++) { // 10mill tall
+            oppg7.leggInn(i);
+        }
+
+        long start = System.currentTimeMillis();
+        oppg7.nullstill();
+        long slutt = System.currentTimeMillis();
+        System.out.print(slutt - start);
+
+
+        for (int i = 0; i < 10000000; i++) {
+            oppg7.leggInn(i);
+        }
+
+        start = System.currentTimeMillis();
+        while (oppg7.antall() > 0) {
+            liste.fjern(0);
+        }
+        slutt = System.currentTimeMillis();
+        System.out.print(slutt - start);
+         */
 
         //Oppgave 8
         System.out.println("");

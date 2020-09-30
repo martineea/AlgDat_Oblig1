@@ -580,7 +580,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         //Deretter skal den ved hjelp av konstruktøren i punkt c) returnere en instans av iteratorklassen.
         return new DobbeltLenketListeIterator(indeks);
-        
+
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T> {

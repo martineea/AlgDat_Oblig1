@@ -26,6 +26,7 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 
 # Beskrivelse av oppgaveløsning (maks 5 linjer per oppgave)
 
-* Oppgave 1: Løste ved å implementere..
+* Oppgave 1: Løste ved å implementere en ny node (p), og sette inn a sine verdier inn i p
 * Oppgave 2: ...
+* Oppgave 6: Lagde en p-peker som pekte på samme pek
 
