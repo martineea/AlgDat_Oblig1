@@ -543,6 +543,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public Iterator<T> iterator(int indeks) {
 
         //Den skal sette pekeren ​denne​ til den noden som hører til den oppgitte indeksen.
+       // Resten skal være som i den konstruktøren som er ferdigkodet.
         throw new UnsupportedOperationException();
     }
 
