@@ -231,6 +231,60 @@ public class Main {
         System.out.println("Fjerner indeks 1 "+ listeIgjen3.fjern(1));
         System.out.println("Skriver ut listen etter fjerning midterst "+listeIgjen3.toString());
 
+
+        //tester på fjern(verdi);
+        // Kjører fjern-metoden for å se om verdier blir fjernet:
+        DobbeltLenketListe<Integer> listeVerdi= new DobbeltLenketListe<>();
+        listeVerdi.leggInn(10);
+        listeVerdi.leggInn(129);
+        listeVerdi.leggInn(3);
+        listeVerdi.leggInn(15);
+        System.out.println("listen før fjerning med fjern(verdi):"+listeVerdi.toString());
+
+        //gir feilmelding 
+        //listeVerdi.fjern(129);
+
+        //System.out.println(listeVerdi.toString()+" fjerner verdi 129: " +listeVerdi.fjern(15));
+        //System.out.println(listeVerdi.toString());
+
+        // Teste om listen er tom: Gir feilmelding IndexOutOfBoundsException
+       /* DobbeltLenketListe<Integer> listeTom= new DobbeltLenketListe<>();
+        listeTom.fjern(0);
+        */
+
+       /* // Teste om første er fjernet:
+        DobbeltLenketListe<Integer> listeIgjen1= new DobbeltLenketListe<>();
+        listeIgjen1.leggInn(10);
+        listeIgjen1.leggInn(129);
+        listeIgjen1.leggInn(3);
+        listeIgjen1.leggInn(15);
+        System.out.println("Liste før noe er fjernet forerst"+listeIgjen1.toString());
+        System.out.println("Fjerner indeks 0 "+ listeIgjen1.fjern(0));
+        System.out.println("Skriver ut listen etter fjerning forerst "+listeIgjen1.toString());
+
+
+        // Teste om siste er fjernet:
+        DobbeltLenketListe<Integer> listeIgjen2= new DobbeltLenketListe<>();
+        listeIgjen2.leggInn(10);
+        listeIgjen2.leggInn(129);
+        listeIgjen2.leggInn(3);
+        listeIgjen2.leggInn(15);
+        System.out.println("Liste før noe er fjernet siste"+listeIgjen2.toString());
+        System.out.println("Fjerner indeks 3 "+ listeIgjen2.fjern(3));
+        System.out.println("Skriver ut listen etter fjerning forerst "+listeIgjen2.toString());
+
+        // Teste om mellomste er fjernet:
+        DobbeltLenketListe<Integer> listeIgjen3= new DobbeltLenketListe<>();
+        listeIgjen3.leggInn(10);
+        listeIgjen3.leggInn(129);
+        listeIgjen3.leggInn(3);
+        listeIgjen3.leggInn(15);
+        System.out.println("Liste før noe er fjernet midterste "+listeIgjen3.toString());
+        System.out.println("Fjerner indeks 1 "+ listeIgjen3.fjern(1));
+        System.out.println("Skriver ut listen etter fjerning midterst "+listeIgjen3.toString());
+
+        */
+
         //Oppgave 7
         System.out.println("");
         System.out.println("Tester oppgave 7:");
