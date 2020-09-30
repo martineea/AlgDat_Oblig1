@@ -50,7 +50,7 @@ public class Main {
         // [1, 2] [2,1]
         // [1,2,3] [3,2,1]
 
-        /*
+
         //oppgave 3a
         DobbeltLenketListe<Integer> list= new DobbeltLenketListe<>();
         list.leggInn(2);
@@ -130,11 +130,17 @@ public class Main {
         System.out.println(siste.toString());
 
 
+        //Oppgave 6
+        System.out.println("");
+        System.out.println("Tester oppgave 6:");
 
+        //Oppgave 7
+        System.out.println("");
+        System.out.println("Tester oppgave 7:");
 
-
-
-
+        //Oppgave 8
+        System.out.println("");
+        System.out.println("Tester oppgave 8:");
 
 
     }
