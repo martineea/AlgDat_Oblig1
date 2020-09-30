@@ -560,14 +560,29 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return denne != null;
         }
 
+        //oppgava 8a
         @Override
         public T next() {
 
             //Den skal først sjekke om ​iteratorendringer​ er lik ​endringer.​
-            //Hvis ikke, kastes en ​ConcurrentModificationException​.
-            //Så en ​NoSuchElementException hvis det ikke er flere igjen i listen (dvs. hvis ​hasNext​()​ ikke er sann/true).
+            if(iteratorendringer==endringer){
+                fjernOK=true;
+                T boolsk = denne.verdi;
+                denne = denne.neste;
+                return boolsk;
+            }
+            else if(!hasNext()){
+                ////Så en ​NoSuchElementException hvis det ikke er flere igjen i listen (dvs. hvis ​hasNext​()​ ikke er sann/true).
+                throw new NoSuchElementException("Det er ikke flere elementer i listen.");
+            }
+            else{
+                //Hvis ikke, kastes en ​ConcurrentModificationException​.
+                throw new ConcurrentModificationException("Det er ikke lovlig at endringer og iteratorendringer ikke er like");
+            }
+
             //Deretter settes ​fjernOK​ til sann/true, verdien til ​denne​ returneres og ​denne​ flyttes til den neste node.
-            return null;
+
+
         }
 
         @Override

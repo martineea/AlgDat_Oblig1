@@ -134,6 +134,7 @@ public class Main {
         System.out.println("");
         System.out.println("Tester oppgave 6:");
 
+
         //Oppgave 7
         System.out.println("");
         System.out.println("Tester oppgave 7:");
@@ -141,6 +142,7 @@ public class Main {
         //Oppgave 8
         System.out.println("");
         System.out.println("Tester oppgave 8:");
+
 
 
     }
