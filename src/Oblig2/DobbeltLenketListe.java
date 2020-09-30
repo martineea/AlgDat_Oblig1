@@ -106,12 +106,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public Liste<T> subliste(int fra, int til) {
         //Denne kontrollmetoden kan da kalles med​ antall​,f​ra​ og​ til​ som argumenter.
         fraTilKontroll(antall,fra, til);
-
-
         //lager en dobbeltlenketListe
         DobbeltLenketListe <T> liste=new DobbeltLenketListe<>();
+
         //lager en ny node som angir verdien til fra:
         Node<T> nodeFra= finnNode(fra);
+
         //finne antall elementer i listen:
         int antall= til-fra;
         //husk at et tomt intervall er lovlig. Det betyr at vi får en tom liste.
@@ -119,7 +119,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return new DobbeltLenketListe<>();
         }
 
-        for(int i=0; i<antall; i++){
+        while(antall>0){
             // Variabelen ​endringer​ skal være 0. Her kan alle metoder brukes - også ​leggInn​()​.
 
             liste.leggInn(nodeFra.verdi);
@@ -134,8 +134,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
 
+
+
+
+
     }
-    //oppgave 3b
+    //oppgave 3b hentet fra kompendiet
     private static void fraTilKontroll(int antall, int fra, int til){
 
         //Her må det først sjekkes om indeksene ​fra​ og ​til​ er lovlige.
@@ -150,7 +154,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         if (til > antall)                          // til er utenfor tabellen
             throw new IndexOutOfBoundsException
-                    ("til(" + til + ") > tablengde(" + antall + ")");
+                    ("til(" + til + ") > antall(" + antall + ")");
 
         if (fra > til)                                // fra er større enn til
             throw new IllegalArgumentException
@@ -232,7 +236,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Den skal legge ​verdi​ inn i listen slik at den får indeks/posisjon ​indeks​.
         //Husk at negative indekser og indekser større enn antall
         // er ulovlige (indekser fra og med 0 til og med antall er lovlige).
+
+        //kaster et avvik hvis verdi er null
+        Objects.requireNonNull(verdi, "Det er ikke tillatt med null.");
         Node <T> forandretNode= new Node<T>(verdi,null, null);
+
         if(indeks<0 || indeks>antall){
             throw new IndexOutOfBoundsException("indeks: "+ indeks+ " må være mer enn 0 og må være mindre enn antall" );
         }
@@ -271,6 +279,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         antall++;
         endringer++;
+
+
+
+
     }
 
     //oppgave 4
@@ -309,30 +321,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         // og returnere -1 hvis den ikke finnes.
         //Her skal det ikke kastes unntak hvis​ verdi​ er n​ull​. men -1
-        if(verdi == null){
-            return -1;
-        }
+
         Node<T> node=hode;
-        if(inneholder(verdi)){
-            for(int indeks=0; indeks<antall; indeks++){
-                node=node.neste;
-                if(verdi.equals(node)){
+
+            for(int indeks=0; indeks<antall; indeks++, node=node.neste ){
+
+                if(node.verdi.equals(verdi)){
                     //Den skal returnere indeksen/posisjonen til ​verdi​ hvis den finnes i listen
 
                     //Hvis ​verdi​ forekommer flere ganger, skal indeksen til den første av dem (fra venstre) returneres.
-                /*if(verdi.equals(node)){
-                    node=node.forrige;
-                    return indeks-1;
-                }*/
                     return indeks;
                 }
-
-                else{
-                    return -1;
-                }
-
             }
-        }
 
         return -1;
 

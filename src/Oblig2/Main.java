@@ -52,15 +52,14 @@ public class Main {
 
         /*
         //oppgave 3a
-        System.out.println("");
-        System.out.println("Tester oppgave 3a:");
-        DobbeltLenketListe list= null;
+        DobbeltLenketListe<Integer> list= new DobbeltLenketListe<>();
         list.leggInn(2);
         list.leggInn(3);
         list.leggInn(4);
         list.leggInn(6);
+        list.leggInn(3);
 
-        System.out.println(list.hent(2));
+        System.out.println( "Her er oppgave 3a: " +list.hent(2));
 
         //oppgave 3b:
         System.out.println("");
@@ -69,43 +68,73 @@ public class Main {
         Character [] c= {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
         DobbeltLenketListe<Character> liste2 = new DobbeltLenketListe<>(c);
 
+        ;
         System.out.println(liste2.subliste(3,8));// [D, E, F, G, H]
         System.out.println(liste2.subliste(5,5));
-        System.out.println(liste2.subliste(8, liste2.antall()));//[I, J]
-        System.out.println(liste2.subliste(8,liste2.antall()));
 
-        //System.out.println(liste.subliste(0,11)); // skal kaste unntak
+        //denne gir java.lang.NullPointerException uten at jeg vet hvorfor.
+       // System.out.println(liste2.subliste(8,liste2.antall()));
+
+        //System.out.println(liste2.subliste(0,11));//skal kaste avvik
+
+
 
         //oppgave 4:
-        System.out.println("");
-        System.out.println("Tester oppgave 4:");
-        System.out.println(list.indeksTil(3));
+       System.out.println("her er oppgave 4: "+list.indeksTil(3));
 
         //oppgave 5:
         System.out.println("");
         System.out.println("Tester oppgave 5:");
         /*Sjekkliste for ​leggInn(int indeks, T verdi)​:
-            ● Stoppes null-verdier? Kastes i så fall en ​NullPointerException​?
+            ● Stoppes null-verdier? Kastes i så fall en ​NullPointerException​? ja
             ● Sjekkes indeksen?
-            ● Blir det korrekt hvis listen fra før er tom?
+            ● Blir det korrekt hvis listen fra før er tom? nei, det går ikke å legge inn med tom tabell:(
             ● Blir pekerne (forrige og neste) korrekte i alle noder hvis ny verdi legges først?
             ● Blir pekerne (forrige og neste) korrekte i alle noder hvis ny verdi legges bakerst?
             ● Blir pekerne (forrige og neste) korrekte i alle noder hvis ny verdi legges mellom to
                     verdier?
             ● Blir ​antall​ økt?
-            ● Blir ​endringer​ økt?
+            ● Blir ​endringer​ økt? vet ikke hvordan jeg sjekker dette
 
          */
-        /*
-        DobbeltLenketListe siste= null;
+
+
+        DobbeltLenketListe<Integer> siste= new DobbeltLenketListe<>();
+        siste.leggInn(1);
+        siste.leggInn(2);
+        siste.leggInn(3);
+        siste.leggInn(4);
+        siste.leggInn(6);
+        siste.leggInn(3);
+
 
         siste.leggInn(4, 30 );
-        System.out.println(siste.hent(4));
-        */
+        System.out.println("Tester oppgave 5: "+ siste.hent(4));
 
-        //Oppgave 6
-        System.out.println("");
-        System.out.println("Tester oppgave 6:");
+        //tester nullverdi fungerer
+        //siste.leggInn(0, null );
+        //System.out.println("Tester oppgave 5: "+ siste.hent(0));
+
+        //sjekker om det går hvis listen er tom: Fungerer ikke
+        DobbeltLenketListe<Integer> siste2= new DobbeltLenketListe<>();
+        /*siste.leggInn(0, 10 );
+        System.out.println("Tester oppgave 5: "+ siste2.hent(0));*/
+
+
+        //sjekker at det går å legge inn noe bakerst
+        siste.leggInn(7, 10 );
+        System.out.println("Tester oppgave 5: "+ siste.hent(7));
+
+        //sjekker at antall er riktig:
+        System.out.println("antall for oppgave 5: "+ siste.antall());
+        System.out.println(siste.toString());
+
+
+
+
+
+
+
 
 
     }
