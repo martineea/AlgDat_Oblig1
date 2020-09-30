@@ -562,7 +562,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public T next() {
-            throw new UnsupportedOperationException();
+
+            //Den skal først sjekke om ​iteratorendringer​ er lik ​endringer.​
+            //Hvis ikke, kastes en ​ConcurrentModificationException​.
+            //Så en ​NoSuchElementException hvis det ikke er flere igjen i listen (dvs. hvis ​hasNext​()​ ikke er sann/true).
+            //Deretter settes ​fjernOK​ til sann/true, verdien til ​denne​ returneres og ​denne​ flyttes til den neste node.
+            return null;
         }
 
         @Override
