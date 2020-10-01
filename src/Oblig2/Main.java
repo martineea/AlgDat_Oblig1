@@ -241,7 +241,7 @@ public class Main {
         listeVerdi.leggInn(15);
         System.out.println("listen før fjerning med fjern(verdi):"+listeVerdi.toString());
 
-        //gir feilmelding 
+        //gir feilmelding
         //listeVerdi.fjern(129);
 
         //System.out.println(listeVerdi.toString()+" fjerner verdi 129: " +listeVerdi.fjern(15));
