@@ -72,29 +72,29 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Hvis tabellen a kun har en verdi skal både hode og hale peke på samme node
         // Hvis a er tom skal det ikke opprettes noen noder og hode og hale er fortsatt null
 
-        Node p = new Node(null, null, null); // oppretter en ny node
+        Node<T> p = new Node(null, null, null); // oppretter en ny liste som ikke har noen verdier eller noder
 
-        if (a.length > 0) {
-            int i = 0;
-            for (; i < a.length; i++) {
-                if (a[i] != null) { // hvis a sin verdi ikke er null/ hvis a ikke er tom
-                    p.verdi = a[i]; // så setter den noden p sin verdi til å være lik a sin verdi
-                    hode = p; // og peker hode på noden
+        if (a.length > 0) { // kjører igjennom listen a
+            int i = 0; // setter i = 0
+            for (; i < a.length; i++) { // og så lenge i er mindre enn a sin lengde
+                if (a[i] != null) { // og hvis a sin i ikke er null (hvis der er flere verdier)
+                    p.verdi = a[i]; // så setter vi den verdien lik p sin verdi
+                    hode = p; // og peker p på hode-noden
                     antall++; // og legger på 1 i antall noder
                     break;
                 }
             }
 
-            //Så skal man sette hode, kjører igjennom tabellen a
+            //Så skal man sette hode og hale på listen
             // og lage resten av listen
-            hale = hode;
-            if (hode != null) { // hvis det er flere noder etter hode i listen (ikke består kun av 1 eller tom)
+            hale = hode; // peker hode og hale på samme node
+            if (hode != null) { // så lenge hode ikke er lik null - dvs hvis det er flere noder etter hode i listen (ikke består kun av 1 eller tom)
                 i++; // plusser den på i
-                for (; i < a.length; i++) { // og kjører igjennom a
-                    if (a[i] != null) { // og hvis a sin ikke er null (ikke flere noder)
-                        Node q = new Node(a[i]); // lages ny node q
-                        hale.neste = q; // og setter q til hale.neste
-                        hale = hale.neste;
+                for (; i < a.length; i++) { // og kjører igjennom a sin lengde
+                    if (a[i] != null) { // og hvis a sin verdi ikke er null (ikke flere noder)
+                        Node q = new Node(a[i]); // lages ny node q med samme verdi som a sin i(verdi)
+                        hale.neste = q; // og setter at hale sin neste er q
+                        hale = hale.neste; // og at hale er hale sin neste (altså siste i listen)
                         antall++; // og plusser på antall i listen
                     }
                 }
@@ -200,6 +200,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if (antall == 0 && hode == null && hale == null) { // ssjekke om antall er lik 0 og hode og hale er null
             hode = p; // både hode og hale skal peke på den nye noden p
             hale = p;
+            p.neste = p.forrige = null;
             antall++;
             endringer++;
         }
@@ -362,7 +363,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         // Hjelpevariabel
-        Node<T> p = hode; // peker som peker på samme som hode-peker - dvs første node i listen
+        Node<T> p = hode; // Lager en ny node som er første node (hode)
 
         // Fjerne første
         if (p.verdi.equals(verdi) && p.neste != null) { // hvis peker sin verdi er lik verdien vi leter etter og det er en verdi etter neste
@@ -412,13 +413,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Indeks må først sjekkes
         // Lag metoden så effektiv som mulig
 
-        Node<T> p = hode; // lager en peker p som peker på samme node som hode-peker
+        Node<T> p = hode; // lager en node p som er hode (første node)
         T verdi; // verdien vi leter etter
 
         // Fjerne første (hvis kun 1 node + hvis flere noder)
         if (indeks == 0) { // hvis indeks er lik 0
-            verdi = p.verdi; // setter så p-pekeren sin verdi til å være lik verdien vi har funnet
-            if (p.neste != null) { // og hvis p-pekeren kan peke på en neste-node
+            verdi = p.verdi; // setter så p noden sin verdi til å være lik verdien vi har funnet
+            if (p.neste != null) { // og hvis p noden kan peke på en neste-node
                 hode = p.neste; // da setter vi neste noden til p som hode
                 hode.forrige = null; // og fjerner den første noden i listen
             }
@@ -469,10 +470,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         2. måte: Lag en løkke som inneholder metodekallet fjern(0) (den første noden fjernes)
             og som går inntil listen er tom
          */
-        Node<T> p = hode; // lager en ny peker p som peker på hode-peker (første node)
-        Node<T> temp; // LAger en hjelpe-peker temp
 
         // Måte 1:
+        Node<T> p = hode; // lager en ny node p som peker på hode-peker (første node)
         for (; p != null; p = p.neste) { // kjører gjennom listen, så lenge p (hode) ikke er null, hopper den til neste
             p = hode.neste; // setter hode sin neste til å være p
             p.neste = null; // og neste blir satt til null
@@ -502,8 +502,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             [1,2,3] og kun [] hvis liten er tom
         */
 
-        // Lager en peker, som først peker på første:
-        Node<T> peker = hode;
+        // Lager en node som er hode (første node):
+        Node<T> p = hode;
 
         StringBuilder tegnStreng = new StringBuilder(); // Begynner å bygge tegnstrengen
         tegnStreng.append("["); // lager første del av strengen med [
@@ -513,12 +513,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return tegnStreng.toString(); // og returnerer toString som er []
         }
         else { // hvis den ikke er 0
-            tegnStreng.append(peker.verdi); // legger den til peker sin verdi
-            peker = hode.neste; // og peker på neste node
-            while (peker != null) { // og hvis peker ikke er null - altså hvis det er flere noder
+            tegnStreng.append(p.verdi); // legger den til p sin verdi
+            p = hode.neste; // og p på neste node
+            while (p != null) { // og hvis p ikke er null - altså hvis det er flere noder
                 tegnStreng.append(", "); // setter den inn et komma for å skille flere verdier
-                tegnStreng.append(peker.verdi); // og setter inn neste node sin verdi, der pekeren peker nå
-                peker = peker.neste; // også peker den på neste og sjekker om denne er null eller om der er flere noder i listen
+                tegnStreng.append(p.verdi); // og setter inn neste node sin verdi, der pekeren p nå
+                p = p.neste; // også p den på neste og sjekker om denne er null eller om der er flere noder i listen
             }
         }
         tegnStreng.append("]"); // avslutter tegnstrengen med ]
@@ -535,7 +535,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         - hensikten ved omvendtString er å sjekke at forrige-pekerne er satt riktig
          */
 
-        Node<T> peker = hale;
+        Node<T> p = hale;
 
         StringBuilder tegnStreng = new StringBuilder();
         tegnStreng.append("[");
@@ -545,12 +545,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return tegnStreng.toString();
         }
         else {
-            tegnStreng.append(peker.verdi);
-            peker = peker.forrige;
-            while (peker != null) {
+            tegnStreng.append(p.verdi);
+            p = p.forrige;
+            while (p != null) {
                 tegnStreng.append(", ");
-                tegnStreng.append(peker.verdi);
-                peker = peker.forrige;
+                tegnStreng.append(p.verdi);
+                p = p.forrige;
             }
         }
         tegnStreng.append("]");
