@@ -13,23 +13,17 @@ public class Main {
         System.out.println("Tester oppgave 1:");
         System.out.println(liste.antall() + " " + liste.tom());
         // Utskrift: 0 true
+        // Listen er tom og returnerer true
 
         // Tester dette i oppg 1, etter oppgave 2 er ferdig:
         String[] s = {"Ole", null, "Per", "Kari", null};
         Liste<String> liste4 = new DobbeltLenketListe<>(s);
         System.out.println(liste4.antall() + " " + liste4.tom());
         // Utskrift: 3 false
+        // Listen inneholder 3 verdier og returnerer false fordi den ikke er tom
 
         // Oppgave 2a: sjekk at følgende programbit gir rett utksirft:
-        /*
-            Sjekkliste for metoden ​leggInn(T verdi)​:
-            ●  Stoppes null-verdier? Kastes i så fall en ​NullPointerException​?
-            ● Blir det korrekt hvis listen fra før er tom?
-            ● Blir det korrekt hvis listen fra før ikke er tom?
-            ● Blir antallet økt?
-            ● Blir endringer økt?
-            ● Er det rett returverdi?
-         */
+
         System.out.println("");
         System.out.println("Tester oppgave 2a:");
 
@@ -40,15 +34,15 @@ public class Main {
 
         System.out.println(l1.toString() + " " + l2.toString() + " " + l3.toString() + " "
                 + l1.omvendtString() + " " + l2.omvendtString() + " " + l3.omvendtString());
+        System.out.println("TEST: "+l3.toString() + " " + l3.omvendtString());
         // Utkskrift: [] [A] [A, B] [] [A] [B, A]
 
 
-        // Oppgave 2b: sjekk at følgende programbit gir rett utksrift:
         System.out.println("");
         System.out.println("Tester oppgave 2b:");
 
         DobbeltLenketListe<Integer> liste1 = new DobbeltLenketListe<>();
-        System.out.println(liste.toString() + " " + liste1.omvendtString());
+        System.out.println(liste1.toString() + " " + liste1.omvendtString());
 
         for (int i=1; i <= 3; i++) {
             liste1.leggInn(i);
@@ -85,14 +79,14 @@ public class Main {
         System.out.println(liste2.subliste(5,5));
 
         //denne gir java.lang.NullPointerException uten at jeg vet hvorfor.
-       // System.out.println(liste2.subliste(8,liste2.antall()));
+        // System.out.println(liste2.subliste(8,liste2.antall()));
 
         //System.out.println(liste2.subliste(0,11));//skal kaste avvik
 
 
 
         //oppgave 4:
-       System.out.println("her er oppgave 4: "+list.indeksTil(3));
+        System.out.println("her er oppgave 4: "+list.indeksTil(3));
 
         //oppgave 5:
         System.out.println("");
@@ -170,124 +164,112 @@ public class Main {
          */
 
         // Skriver først ut listen med toString og omvendtString
-        Integer[] f1 = {};
-        Integer[] f2 = {1};
-        Integer[] f3 = {1,2,3};
-        DobbeltLenketListe<Integer> m1 = new DobbeltLenketListe<>(f1);
-        DobbeltLenketListe<Integer> m2 = new DobbeltLenketListe<>(f2);
-        DobbeltLenketListe<Integer> m3 = new DobbeltLenketListe<>(f3);
 
-        System.out.println(m1.toString() + " " + m2.toString() +
-                " " + m3.toString() + " " + m1.omvendtString() +
-                " " + m2.omvendtString() + " " + m3.omvendtString());
-        // Utkskrift: [] [1] [1,2,3] [] [1] [3,2,1]
+        // Teste på tom liste
+        DobbeltLenketListe<Integer> testeTom = new DobbeltLenketListe<>();
+        // testeTom.leggInn(1);
+        //testeTom.fjern(1);
+        System.out.println("Skal returnere false om listen er tom: " + testeTom.fjern(null));
+        // Utskrift: false
 
-        //tester op fjern(indeks)
-        // Kjører fjern-metoden for å se om verdier blir fjernet:
-        DobbeltLenketListe<Integer> listeIgjen= new DobbeltLenketListe<>();
-        listeIgjen.leggInn(10);
-        listeIgjen.leggInn(129);
-        listeIgjen.leggInn(3);
-        listeIgjen.leggInn(15);
-        System.out.println("listen før fjerning:"+listeIgjen.toString());
-        listeIgjen.fjern(1);
-
-        System.out.println(listeIgjen.toString()+" fjerner indeks 2: " +listeIgjen.fjern(2));
-        System.out.println(listeIgjen.toString());
-
-        // Teste om listen er tom: Gir feilmelding IndexOutOfBoundsException
-       /* DobbeltLenketListe<Integer> listeTom= new DobbeltLenketListe<>();
-        listeTom.fjern(0);
-        */
-
-        // Teste om første er fjernet:
-        DobbeltLenketListe<Integer> listeIgjen1= new DobbeltLenketListe<>();
-        listeIgjen1.leggInn(10);
-        listeIgjen1.leggInn(129);
-        listeIgjen1.leggInn(3);
-        listeIgjen1.leggInn(15);
-        System.out.println("Liste før noe er fjernet forerst"+listeIgjen1.toString());
-        System.out.println("Fjerner indeks 0 "+ listeIgjen1.fjern(0));
-        System.out.println("Skriver ut listen etter fjerning forerst "+listeIgjen1.toString());
-
+        // Teste når første er fjernet:
+        System.out.println("");
+        DobbeltLenketListe<Integer> testeFjern= new DobbeltLenketListe<>();
+        testeFjern.leggInn(1);
+        testeFjern.leggInn(2);
+        testeFjern.leggInn(3);
+        testeFjern.leggInn(4);
+        System.out.println("Teste om første er fjernet:");
+        System.out.println("Listen før fjerning av verdi: " + testeFjern.toString() + " " + testeFjern.omvendtString()); // [1, 2, 3, 4] [4, 3, 2, 1]
+        System.out.println("Antall noder: " + testeFjern.antall());
+        System.out.println("Fjerner første indeks, verdi "+ testeFjern.fjern(0)); // fjerner verdien 1 fra listen
+        System.out.println("Listen etter at første er fjernet: " + testeFjern.toString() + " "  + testeFjern.omvendtString()); // [2, 3, 4] [4, 3, 2]
+        System.out.println("Antall noder: " + testeFjern.antall());
 
         // Teste om siste er fjernet:
-        DobbeltLenketListe<Integer> listeIgjen2= new DobbeltLenketListe<>();
-        listeIgjen2.leggInn(10);
-        listeIgjen2.leggInn(129);
-        listeIgjen2.leggInn(3);
-        listeIgjen2.leggInn(15);
-        System.out.println("Liste før noe er fjernet siste"+listeIgjen2.toString());
-        System.out.println("Fjerner indeks 3 "+ listeIgjen2.fjern(3));
-        System.out.println("Skriver ut listen etter fjerning forerst "+listeIgjen2.toString());
+        System.out.println("");
+        DobbeltLenketListe<Integer> testeFjern2 = new DobbeltLenketListe<>();
+        testeFjern2.leggInn(1);
+        testeFjern2.leggInn(2);
+        testeFjern2.leggInn(3);
+        testeFjern2.leggInn(4);
+        System.out.println("Fjerne siste: ");
+        System.out.println("Liste før noe er fjernet: " + testeFjern2.toString() + " " + testeFjern2.omvendtString()); // [1, 2, 3, 4] [4, 3, 2, 1]
+        System.out.println("Antall noder: " + testeFjern2.antall());
+        System.out.println("Fjerner siste indeks, verdi " + testeFjern2.fjern(3));
+        System.out.println("Skriver ut listen etter at siste verdi er fjernet " + testeFjern2.toString() + " " + testeFjern2.omvendtString());  // [1, 2, 3] [3, 2, 1]
+        System.out.println("Antall noder: " + testeFjern2.antall());
 
         // Teste om mellomste er fjernet:
-        DobbeltLenketListe<Integer> listeIgjen3= new DobbeltLenketListe<>();
-        listeIgjen3.leggInn(10);
-        listeIgjen3.leggInn(129);
-        listeIgjen3.leggInn(3);
-        listeIgjen3.leggInn(15);
-        System.out.println("Liste før noe er fjernet midterste "+listeIgjen3.toString());
-        System.out.println("Fjerner indeks 1 "+ listeIgjen3.fjern(1));
-        System.out.println("Skriver ut listen etter fjerning midterst "+listeIgjen3.toString());
+        System.out.println("");
+        DobbeltLenketListe<Integer> testeFjern3 = new DobbeltLenketListe<>();
+        testeFjern3.leggInn(1);
+        testeFjern3.leggInn(2);
+        testeFjern3.leggInn(3);
+        System.out.println("Fjerne mellomste: ");
+        System.out.println("Liste før noe er fjernet: "+testeFjern3.toString() + " " + testeFjern3.omvendtString()); // [1, 2, 3] [3, 2, 1]
+        System.out.println("Antall noder: " + testeFjern3.antall());
+        System.out.println("Fjerner indeks 1, verdi "+ testeFjern3.fjern(1));
+        System.out.println("Skriver ut listen etter at mellomste er fjernet: "+testeFjern3.toString() + " " + testeFjern3.omvendtString()); // [1, 3] [3, 1]
+        System.out.println("Antall noder: " + testeFjern3.antall());
 
+        // Teste om kun 1 node igjen
+        System.out.println("");
+        DobbeltLenketListe<Integer> testeFjern4 = new DobbeltLenketListe<>();
+        testeFjern4.leggInn(1);
+        testeFjern4.leggInn(2);
+        testeFjern4.leggInn(3);
+        System.out.println("Fjerne alle utenom 1 node: ");
+        System.out.println("Liste før noe er fjernet "+testeFjern4.toString() + " " + testeFjern4.omvendtString()); // [1, 2, 3] [3, 2, 1]
+        System.out.println("Antall noder: " + testeFjern4.antall());
+        System.out.println("Fjerner to av tre verdier, verdi "+ testeFjern4.fjern(2) + " og " + testeFjern4.fjern(1));
+        System.out.println("Skriver ut listen etter at 2 av 3 noder er fjernet "+testeFjern4.toString() + " " + testeFjern4.omvendtString()); // [1] [1]
+        System.out.println("Antall noder: " + testeFjern4.antall());
 
-        //tester på fjern(verdi);
-        // Kjører fjern-metoden for å se om verdier blir fjernet:
-        DobbeltLenketListe<Integer> listeVerdi= new DobbeltLenketListe<>();
-        listeVerdi.leggInn(10);
-        listeVerdi.leggInn(129);
-        listeVerdi.leggInn(3);
-        listeVerdi.leggInn(15);
-        System.out.println("listen før fjerning med fjern(verdi):"+listeVerdi.toString());
-
-        //gir feilmelding
-        //listeVerdi.fjern(129);
-
-        //System.out.println(listeVerdi.toString()+" fjerner verdi 129: " +listeVerdi.fjern(15));
-        //System.out.println(listeVerdi.toString());
-
-        // Teste om listen er tom: Gir feilmelding IndexOutOfBoundsException
-       /* DobbeltLenketListe<Integer> listeTom= new DobbeltLenketListe<>();
-        listeTom.fjern(0);
-        */
-
-       /* // Teste om første er fjernet:
-        DobbeltLenketListe<Integer> listeIgjen1= new DobbeltLenketListe<>();
-        listeIgjen1.leggInn(10);
-        listeIgjen1.leggInn(129);
-        listeIgjen1.leggInn(3);
-        listeIgjen1.leggInn(15);
-        System.out.println("Liste før noe er fjernet forerst"+listeIgjen1.toString());
-        System.out.println("Fjerner indeks 0 "+ listeIgjen1.fjern(0));
-        System.out.println("Skriver ut listen etter fjerning forerst "+listeIgjen1.toString());
-
-
-        // Teste om siste er fjernet:
-        DobbeltLenketListe<Integer> listeIgjen2= new DobbeltLenketListe<>();
-        listeIgjen2.leggInn(10);
-        listeIgjen2.leggInn(129);
-        listeIgjen2.leggInn(3);
-        listeIgjen2.leggInn(15);
-        System.out.println("Liste før noe er fjernet siste"+listeIgjen2.toString());
-        System.out.println("Fjerner indeks 3 "+ listeIgjen2.fjern(3));
-        System.out.println("Skriver ut listen etter fjerning forerst "+listeIgjen2.toString());
-
-        // Teste om mellomste er fjernet:
-        DobbeltLenketListe<Integer> listeIgjen3= new DobbeltLenketListe<>();
-        listeIgjen3.leggInn(10);
-        listeIgjen3.leggInn(129);
-        listeIgjen3.leggInn(3);
-        listeIgjen3.leggInn(15);
-        System.out.println("Liste før noe er fjernet midterste "+listeIgjen3.toString());
-        System.out.println("Fjerner indeks 1 "+ listeIgjen3.fjern(1));
-        System.out.println("Skriver ut listen etter fjerning midterst "+listeIgjen3.toString());
-
-        */
+        // TEste om alle noder fjernes
+        System.out.println("");
+        DobbeltLenketListe<Integer> testeFjern5 = new DobbeltLenketListe<>();
+        testeFjern5.leggInn(1);
+        testeFjern5.leggInn(2);
+        testeFjern5.leggInn(3);
+        System.out.println("Fjerne alle noder: ");
+        System.out.println("Liste før noe er fjernet "+testeFjern5.toString() + " " + testeFjern5.omvendtString()); // [1, 2, 3] [3, 2, 1]
+        System.out.println("Antall noder: " + testeFjern5.antall());
+        System.out.println("Fjerner alle noder, verdi "+ testeFjern5.fjern(2) + ", " + testeFjern5.fjern(1) + ", " + testeFjern5.fjern(0));
+        System.out.println("Skriver ut listen etter at 2 av 3 noder er fjernet "+testeFjern5.toString() + " " + testeFjern5.omvendtString()); // [] []
+        System.out.println("Antall noder: " + testeFjern5.antall());
 
         //Oppgave 7
         System.out.println("");
         System.out.println("Tester oppgave 7:");
+
+        int antall = 10_000_000;
+        long start = 0;
+        long slutt = 0;
+
+        DobbeltLenketListe<Integer> testTid = new DobbeltLenketListe<>();
+        for (int i = 0; i < antall; i++) {
+            testTid.leggInn(i);
+        }
+        start = System.currentTimeMillis(); // starter å telle
+        testTid.nullstill();
+        slutt = System.currentTimeMillis(); // stopper å telle
+        System.out.println(slutt - start + " millisek");
+
+        for (int i = 0; i < antall; i++) {
+            testTid.leggInn(i);
+        }
+
+        start = System.currentTimeMillis(); // starter å telle
+        while (testTid.antall() > 0) {
+            testTid.fjern(0);
+        }
+        slutt = System.currentTimeMillis(); // slutter å telle
+        System.out.println(slutt - start + "millisek");
+
+        // Måte 1: 243 millisek
+        // Måte 2: 77 millisek
+        //
 
         /*
         DobbeltLenketListe<Integer> oppg7 = new DobbeltLenketListe<>();
@@ -307,10 +289,24 @@ public class Main {
 
         start = System.currentTimeMillis();
         while (oppg7.antall() > 0) {
-            liste.fjern(0);
+            oppg7.fjern(0);
         }
         slutt = System.currentTimeMillis();
         System.out.print(slutt - start);
+
+
+        /*
+
+
+        Liste<Integer> liste = new DobbeltLenketListe<>();
+        for(int i = 0; i < 1000000; i++){
+            liste.leggInn(i);
+        }
+        long tic = System.currentTimeMillis();
+        liste.nullstill();
+        long toc = System.currentTimeMillis();
+        long timetaken = toc - tic;
+        System.out.println("Dette tok " + timetaken + "ms");
          */
 
         //Oppgave 8
@@ -321,7 +317,7 @@ public class Main {
         Liste<String> listeSiste= new DobbeltLenketListe<>(navn);
         listeSiste.forEach(t-> System.out.print(t+" "));
 
-        
+
         System.out.println();
 
 
@@ -331,8 +327,4 @@ public class Main {
 
 
     }
-
-
-
-
 }

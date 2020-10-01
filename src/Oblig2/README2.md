@@ -17,7 +17,7 @@ Oppgaven er levert av følgende studenter:
 * Martine Holmberg, s236808, s236808@oslomet.no
 * Camilla Harirchi Carlsen, s197235, s197235@oslomet.no
 
-Vi har brukt git til å dokumentere arbeidet vårt. Vi har xxxx commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
+Vi har brukt git til å dokumentere arbeidet vårt. Vi har <INSERT> commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
 * Martine har gjort oppgave: 1, 2, 6, 7
@@ -27,10 +27,12 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 # Beskrivelse av oppgaveløsning (maks 5 linjer per oppgave)
 
 * Oppgave 1: (Lage en dobbelt lenket liste)
-    - Løste ved å implementere en ny tom liste p - som har verdier, neste og forrige lik null. 
-    - Kjører så igjennom a hvis den ikke er tom og setter de samme verdiene på p-listen. 
-    - Så settes hode/ hale ved å først peke de på samme node. Og hvis der er flere enn 1 node i listen så kjører vi igjennom a sin 
-        lengde og setter de neste verdiene til å være halen. Og legger til en node etter hver runde. 
+    - Oppretter først en ny node, p - som ikke har verdi eller forrige-/neste-pekere
+    - Så kjører vi gjennom tabellen a - og hvis tabellen inneholder noen verdier så setter vi det inn i p-noden og peker hode-pekeren på p
+        og plusser på 1.
+    - Hvis det kun er 1 node i listen så peker vi både hale- og hode-pekeren på denne noden.
+    - Men hvis det finnes flere enn 1 node i tabellen a (det er 2 nå) så må vi kjøre igjennom for å sette halen: vi oppretter en ny node q og setter
+        denne til å være halen, og setter neste-peker fra p til å peke på q og forrige-peker fra q til å peke på p.
 
 * Oppgave 2 a); (Skrive ut strenger med verdier)
     - Bruker StringBuilder til å bygge opp en tegnstreng.
@@ -50,8 +52,7 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 * Oppgave 5:
  
 * Oppgave 6: (Fjerne verdi (og returnere true/ false) + returnere verdien på posisjon indeks)
-    - Lager en hjelpenode kalt p igjen, som er den første i listen (hode).
-    - Så skal vi fjerne første, siste eller mellomste node:
+    - Lager en hjelpenode kalt p igjen, som er den første i listen (hode). Så skal vi fjerne første, siste eller mellomste node:
         - Første: Da tar vi bort første node ved å sette p sin neste (nest første node) til å være nye hode og hode sin forrige lik null.
         - Siste: Da gjør vi noe ala det samme, bare at vi starter på halen (siste noden) og setter p sin forrige til å være den nye halen, 
             og hale.neste lik null.
@@ -68,3 +69,10 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
         på indeks 0 (første noden) helt til listen er tom.
 
 * Oppgave 8:
+
+
+
+
+* Spørsmål til øvingen:
+- Får feil på oppg 6 sin test, whyyy?
+- Hvordan teste millisek på nullstill() (oppgave 7)?

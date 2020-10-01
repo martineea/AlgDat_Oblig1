@@ -38,6 +38,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int antall;            // antall noder i listen
     private int endringer;         // antall endringer i listen
 
+
     public DobbeltLenketListe() { // konstruktør for tom liste
         hode = null;
         hale = null;
@@ -72,31 +73,36 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Hvis tabellen a kun har en verdi skal både hode og hale peke på samme node
         // Hvis a er tom skal det ikke opprettes noen noder og hode og hale er fortsatt null
 
-        Node<T> p = new Node(null, null, null); // oppretter en ny liste som ikke har noen verdier eller noder
+        Node<T> p = new Node(null, null, null); // oppretter en ny node med ingen verdier eller forrige-/neste-pekere
 
-        if (a.length > 0) { // kjører igjennom listen a
-            int i = 0; // setter i = 0
-            for (; i < a.length; i++) { // og så lenge i er mindre enn a sin lengde
-                if (a[i] != null) { // og hvis a sin i ikke er null (hvis der er flere verdier)
-                    p.verdi = a[i]; // så setter vi den verdien lik p sin verdi
-                    hode = p; // og peker p på hode-noden
-                    antall++; // og legger på 1 i antall noder
-                    break;
-                }
+        // Først settes hode - gir noden i p en verdi og peker hode på denne:
+        int teller = 0; // hjelppevariabel
+
+        for (int i = 0; i < a.length; i++) { // kjører igjennom tabellen a
+            if (a[i] != null) { // og så lenge det finnes en verdi i a
+                p.verdi = a[i]; // så setter vi den verdien lik p sin verdi
+                hode = p; // og peker hode-pekeren på p for å si at det er første node i listen
+                teller++; // og plusser på en
+                antall++; // og legger på 1 i antall noder i antall-tellingen
+                break;
             }
-
-            //Så skal man sette hode og hale på listen
-            // og lage resten av listen
-            hale = hode; // peker hode og hale på samme node
-            if (hode != null) { // så lenge hode ikke er lik null - dvs hvis det er flere noder etter hode i listen (ikke består kun av 1 eller tom)
-                i++; // plusser den på i
-                for (; i < a.length; i++) { // og kjører igjennom a sin lengde
-                    if (a[i] != null) { // og hvis a sin verdi ikke er null (ikke flere noder)
-                        Node q = new Node(a[i]); // lages ny node q med samme verdi som a sin i(verdi)
-                        hale.neste = q; // og setter at hale sin neste er q
-                        hale = hale.neste; // og at hale er hale sin neste (altså siste i listen)
-                        antall++; // og plusser på antall i listen
-                    }
+            else {
+                teller++; // hvis det ikke finnes verdi i listen a, så legges det til en
+            }
+        }
+        // Hvis det bare er 1 node i listen a, så settes både hale- og hode-pekerene på denne noden
+        if (a.length == 1) {
+            hale = hode;
+        }
+        else { // Hvis det er flere enn 1 node i listen, så må vi sette hale-pekeren:
+            for (int i = teller; i < a.length; i++) { // kjører igjennom listen a med hjelpevariabelen (som er 1)
+                if (a[i] != null) { // og sjekker at hvis det finnes verdi(er) i listen a
+                    Node q = new Node(a[i]); // så oppretter vi en ny node q og setter verdien på denne
+                    q.forrige = p; // setter forrige-pekeren til q til å peke på p
+                    p.neste = q; // og neste-pekeren til p til å peke på q, slik at det blir en dobbelt lenket liste
+                    p = q; // p peker på q
+                    hale = q; //og setter noden q til å være hale - dvs den siste i listen
+                    antall++;
                 }
             }
         }
