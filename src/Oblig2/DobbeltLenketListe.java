@@ -105,7 +105,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     //oppgave 3b
     public Liste<T> subliste(int fra, int til) {
         //Denne kontrollmetoden kan da kalles med​ antall​,f​ra​ og​ til​ som argumenter.
-        fraTilKontroll(antall,fra, til);
+       fraTilKontroll(antall,fra, til);
         //lager en dobbeltlenketListe
         DobbeltLenketListe <T> liste=new DobbeltLenketListe<>();
 
@@ -131,12 +131,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //Den skal returnere en liste (en instans av klassen ​DobbeltLenketListe​)
         // som inneholder verdiene fra intervallet [fra:til> i «vår» liste.
         return liste;
-
-
-
-
-
-
 
     }
     //oppgave 3b hentet fra kompendiet
@@ -569,6 +563,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         //Den skal returnere en instans av iteratorklassen.
         return new DobbeltLenketListeIterator();
+
     }
 
     //oppgave 8d
@@ -598,11 +593,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             //en skal sette pekeren ​denne​ til den noden som hører til den oppgitte indeksen.
             //Resten skal være som i den konstruktøren som er ferdigkodet.
 
-            //sjekker om indeks er gyldig
-            indeksKontroll(indeks, false);
-
             //setter denne til den oppgitte indeksen
-            denne = finnNode(indeks);
+           denne = finnNode(indeks);
 
             //setter fjernOk til være false
             fjernOK = false;
@@ -620,25 +612,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         @Override
         public T next() {
 
-            //Den skal først sjekke om ​iteratorendringer​ er lik ​endringer.​
-            if(iteratorendringer==endringer){
-                fjernOK=true;
-                T boolsk = denne.verdi;
-                denne = denne.neste;
-                return boolsk;
-            }
-            else if(!hasNext()){
-                ////Så en ​NoSuchElementException hvis det ikke er flere igjen i listen (dvs. hvis ​hasNext​()​ ikke er sann/true).
-                throw new NoSuchElementException("Det er ikke flere elementer i listen.");
-            }
-            else{
+            if (iteratorendringer != endringer) {
                 //Hvis ikke, kastes en ​ConcurrentModificationException​.
                 throw new ConcurrentModificationException("Det er ikke lovlig at endringer og iteratorendringer ikke er like");
             }
-
+            if (!hasNext()) {
+                ////Så en ​NoSuchElementException hvis det ikke er flere igjen i listen (dvs. hvis ​hasNext​()​ ikke er sann/true).
+                throw new NoSuchElementException(" Det er ikke flere elementer i listen");
+            }
             //Deretter settes ​fjernOK​ til sann/true, verdien til ​denne​ returneres og ​denne​ flyttes til den neste node.
-
-
+            fjernOK = true;
+            T verdi = denne.verdi;
+            denne = denne.neste;
+            return verdi;
+            
         }
 
         @Override
