@@ -115,7 +115,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //lager en dobbeltlenketListe
         DobbeltLenketListe <T> liste=new DobbeltLenketListe<>();
 
-        //lager en ny node som angir verdien til fra:
+        //lager en ny node som angir verdien fra:
         Node<T> nodeFra= finnNode(fra);
 
         //finne antall elementer i listen:
@@ -126,8 +126,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         while(antall>0){
-            // Variabelen ​endringer​ skal være 0. Her kan alle metoder brukes - også ​leggInn​()​.
-
             liste.leggInn(nodeFra.verdi);
             nodeFra= nodeFra.neste;
             //Pass på at variablen ​antall ​ i den listen som metoden​ subliste(​)​returnerer,får korrekt verdi.
@@ -231,6 +229,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         //kaster et avvik hvis verdi er null
         Objects.requireNonNull(verdi, "Det er ikke tillatt med null.");
+        //lager ny node
         Node <T> forandretNode= new Node<T>(verdi,null, null);
 
         if(indeks<0 || indeks>antall){
@@ -260,20 +259,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             høyreNode.forrige = forandretNode;
             forandretNode.forrige.neste = forandretNode;
         }
-        // Her må du passe på de fire tilfellene
-        // 1) listen er tom,
-        // 2) verdien skal legges først,
-        // 3) verdien skal legges bakerst og
-        // 4) verdien skal legges mellom to andre verdier.
         //Sørg for at neste- og forrige-pekere får
         // korrekte verdier i alle noder
         //Spesielt skal forrige-peker i den første noden være null og neste-peker i den siste noden være null.
 
         antall++;
         endringer++;
-
-
-
 
     }
 
@@ -298,34 +289,30 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     //oppgave 3a
     public T hent(int indeks) {
         //skal lages ved ved å bruke ​finnNode(​)​
-
+        //Pass på at ​indeks ​sjekkes.
+        //Bruk metoden ​indeksKontroll(​)​ som arves fra​ Liste​(bruk ​false​ som parameter).
         indeksKontroll(indeks, false);
         return finnNode(indeks).verdi;
-
-        //Pass på at ​indeks ​sjekkes.
-
-        //Bruk metoden ​indeksKontroll(​)​ som arves fra​ Liste​(bruk ​false​ som parameter).
-
     }
+
     //oppgave 4
     @Override
     public int indeksTil(T verdi) {
 
-        // og returnere -1 hvis den ikke finnes.
+
         //Her skal det ikke kastes unntak hvis​ verdi​ er n​ull​. men -1
 
         Node<T> node=hode;
 
             for(int indeks=0; indeks<antall; indeks++, node=node.neste ){
-
+                //Den skal returnere indeksen/posisjonen til ​verdi​ hvis den finnes i listen
                 if(node.verdi.equals(verdi)){
-                    //Den skal returnere indeksen/posisjonen til ​verdi​ hvis den finnes i listen
 
-                    //Hvis ​verdi​ forekommer flere ganger, skal indeksen til den første av dem (fra venstre) returneres.
                     return indeks;
                 }
             }
 
+        // og returnere -1 hvis den ikke finnes.
         return -1;
 
     }
@@ -336,8 +323,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //Husk at indeks må sjekkes,
         indeksKontroll(indeks, false);
 
-        // at null-verdier ikke skal kunne legges inn og at variabelen ​endringer​ skal økes.
-
+        // at null-verdier ikke skal kunne legges inn.
         if(nyverdi==null){
             throw new NullPointerException("Null-verdier er ikke lov.");
         }
@@ -349,7 +335,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         T gammelVerdi = nodeEksempel.verdi;
         //lager ny verdi
         nodeEksempel.verdi=nyverdi;
-
         //skal returnere verdien til verdien som var der før.
         return gammelVerdi;
 
@@ -607,12 +592,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
         //oppgave 8c
         private DobbeltLenketListeIterator(int indeks) {
-            //en skal sette pekeren ​denne​ til den noden som hører til den oppgitte indeksen.
-            //Resten skal være som i den konstruktøren som er ferdigkodet.
+
+
 
             //setter denne til den oppgitte indeksen
            denne = finnNode(indeks);
 
+            //Resten skal være som i den konstruktøren som er ferdigkodet.
             //setter fjernOk til være false
             fjernOK = false;
 
@@ -663,24 +649,24 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node bakerstCurrrent=hale;
 
         //Hvis indeks er mindre enn ​antall​/2,
+        // så ​skal letingen etter noden starte fra hode og gå mot høyre ved hjelp av neste-pekere.
         if (indeks <= antall / 2) {
 
             for (int i = 0; i < indeks; i++) {
                 forerstCurrent = forerstCurrent.neste;
             }
-            // så ​skal letingen etter noden starte fra hode og gå mot høyre ved hjelp av neste-pekere.
-            return forerstCurrent;
-            //hvis ikke
-        } else {
 
+            return forerstCurrent;
+            //Hvis ikke, ​skal​ letingen starte fra halen og gå mot venstre ved hjelp av forrige-pekere.
+        } else {
 
             for (int i = antall - 1; i > indeks; i--) {
                 bakerstCurrrent = bakerstCurrrent.forrige;
-                // Hvis ikke, ​skal​ letingen starte fra halen og gå mot venstre ved hjelp av forrige-pekere.
+
             }
 
             return bakerstCurrrent;
-            //legger til returnstatement.
+           
 
         }
     }
