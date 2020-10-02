@@ -248,24 +248,26 @@ public class Main {
         long slutt = 0;
 
         DobbeltLenketListe<Integer> testTid = new DobbeltLenketListe<>();
+
+        // Tester metode 1 der man bruker nullstill til å nulle ut alt
         for (int i = 0; i < antall; i++) {
             testTid.leggInn(i);
         }
         start = System.currentTimeMillis(); // starter å telle
         testTid.nullstill();
         slutt = System.currentTimeMillis(); // stopper å telle
-        System.out.println(slutt - start + " millisek");
+        System.out.println(slutt - start + " millisek - når man bruker nullstill-metoden til å nulle ut");
 
+        // TEster metode 2 der man fjerner en etter en indeks til det er tomt
         for (int i = 0; i < antall; i++) {
             testTid.leggInn(i);
         }
-
         start = System.currentTimeMillis(); // starter å telle
         while (testTid.antall() > 0) {
             testTid.fjern(0);
         }
         slutt = System.currentTimeMillis(); // slutter å telle
-        System.out.println(slutt - start + "millisek");
+        System.out.println(slutt - start + "millisek - når man fjerner en og en indeks");
 
         // Måte 1: 243 millisek
         // Måte 2: 77 millisek
