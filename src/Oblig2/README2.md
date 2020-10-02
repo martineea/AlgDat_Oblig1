@@ -47,9 +47,28 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
     - Hvis listen er tom så satte jeg både hode- og hale-pekeren til å peke på den ny noden p, og neste- og forrige-pekerne er satt lik null.
     - Hvis listen ikke er tom så settes p noden inn bakerst (etter hale med hale.neste = p), og setter denne noden som ny hale.
  
-* Oppgave 3:
+* Oppgave 3a:
+    - Begynte med å lage funksjonen finnNode(). Setter verdiene til bakerste og forerste node sånn at man kan begynne fra den siden man vil. 
+    - Sjekket så: om indeks <= antall / 2. Hvis den var det så skulle letingen begynne fra hodet. 
+    - Lagde så en else som skulle gå fra halen.
+    - Deretter lagde jeg hent() metoden. som først sjekker at indeksen er av gyldig verdi. Også returnere finnNode() sin verdi. 
+    - Jeg lagde så oppdater(indeks, nyverdi) Lager en ny node og oppdaterer den med den nye verdien. Tar vare på den opprinnelige verdien og returnerer denne. 
+* Oppgave 3b: 
+    - Lagde subliste(fra, til). Sjekket om fra til fra gyldige verdier. Lagde en ny DobbeltLenketListe og en ny Node, regner ut antallet. 
+    - Sjekker om antall<1 og returnerer en ny tom liste. Kjører igjennom antallet som er mellom fra til og legger inn nodene i listen. Minker antall med 1 for hver gang for å legge til de neste nodene.
+    - returnerer så listen og tester at utskriften stemmer.
 * Oppgave 4:
+    - Lagde først metoden indeksTil(verdi). Lager en ny node og setter denn lik hode. Kjører igjennom listen og sjekker om den nye noden sin verdi er lik innverdi. returnerer så indeksen. 
+    - Lagde inneholder(verdi)  sjekker om indeksTil(verdi) ikke er lik -1 og returnerer true.
+    - Testet så koden i main.
+    
 * Oppgave 5:
+    - Lagde metoden leggInn(indeks, verdi). Sjekker først om verdi er null. og kaster et avvik. 
+    - Lager så en ny Node. Sjekker om indeks og verdi er av gyldige verdier. Sjekker om hode og hale er 0 og setter så verdiene lik den nye noden. 
+    - Sjekker så om indeks er lik 0. Setter så hode til å være den nye indeksen. Sjekker så om indeks er lik antall og setter den nye sisteverdien i halen. 
+    - Lager så en else metode som skal fange opp de andre alternativene. Den skal legge ​verdi​ inn i listen slik at den får indeks/posisjon ​indeks​.
+    - Øker så antall og endringer. 
+    
  
 * Oppgave 6: (Fjerne verdi (og returnere true/ false) + returnere verdien på posisjon indeks)
     - Lager en hjelpenode kalt p igjen, som er den første i listen (hode). Så skal vi fjerne første, siste eller mellomste node:
@@ -68,11 +87,22 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
     - Måte 2: Kjører igjennom listen q ved å hoppe til neste og bruker fjern-metoden til å fjerne noden 
         på indeks 0 (første noden) helt til listen er tom.
 
-* Oppgave 8:
+* Oppgave 8a:
+    - Lager funksjonen T next(). sjekker om iteratorendringer og endringer ikke er like og kaster et avvik. 
+    - Sjekker så om hasNext er usann og kaster et avvik her. 
+    - Setter så fjernOk til å være sann. Verdien til ​denne​ returneres og ​denne​ flyttes til den neste node.
 
+* Oppgave 8b: 
+    - Lager  ​Iterator<T> iterator()​. og returnerer en DobbeltLenketListeIterator();
+    
+*Oppgave 8c: 
+    - Lager DobbeltLenketListeIterator(int indeks). 
+    - Setter denne til den oppgitte indeksen. Setter så de andre attributtene til det samme i konstuktøren: Setter fjernOk til være false og setter iteratorendringer til endringer. 
 
-
-
+*Oppgave 8d: 
+    - lager Iterator<T> iterator(int indeks)​. sjekker at indeksen er lovlig verdi. 
+    - Deretter returnerers det, ved hjelp av konstruktøren i punkt c) en instans av iteratorklassen.
+    
 * Spørsmål til øvingen:
 - Får feil på oppg 6 sin test, whyyy?
 - Hvordan teste millisek på nullstill() (oppgave 7)?
