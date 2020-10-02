@@ -78,8 +78,8 @@ public class Main {
         System.out.println(liste2.subliste(3,8));// [D, E, F, G, H]
         System.out.println(liste2.subliste(5,5));
 
-        //denne gir java.lang.NullPointerException uten at jeg vet hvorfor.
-        // System.out.println(liste2.subliste(8,liste2.antall()));
+       
+        System.out.println(liste2.subliste(8,liste2.antall()));
 
         //System.out.println(liste2.subliste(0,11));//skal kaste avvik
 
