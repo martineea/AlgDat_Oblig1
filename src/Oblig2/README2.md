@@ -53,9 +53,9 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
  
 * Oppgave 6: (Fjerne verdi (og returnere true/ false) + returnere verdien på posisjon indeks)
     - Lager en hjelpenode kalt p igjen, som er den første i listen (hode). Så skal vi fjerne første, siste eller mellomste node:
-        - Første: Da tar vi bort første node ved å sette p sin neste (nest første node) til å være nye hode og hode sin forrige lik null.
+        - Første: Vi finner verdien vi vil fjerne og sjekker om det er flere enn 1 node i listen --> da settes p sin neste (nest første node) til å være nye hode og hode sin forrige nulles ut.
         - Siste: Da gjør vi noe ala det samme, bare at vi starter på halen (siste noden) og setter p sin forrige til å være den nye halen, 
-            og hale.neste lik null.
+            og hale.neste nulles ut.
         - Mellomste: For å få bort den mellomste så må vi sette neste- og forrige-pekerne slik at den hopper over denne noden. 
             Dette gjør vi ved å si at p sin forrige sin neste er den nye neste, og at p sin neste sin forrige er den nye forrige. 
             Da står noden i mellom der utenfor og Java fjerner den automatisk.
@@ -63,8 +63,8 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
         i stedet for true eller false.
         
 * Oppgave 7: (Tømme/ NULLe listen)
-    - Måte 1: Kjører igjennom listen p ved å hoppe til p.neste og nuller ut neste node helt til vi har nullet ut alle noder.
-        Til slutt settes hade og holde til null også, og Java fjerner alt.
+    - Måte 1: Så lenge p ikke er null så kjøres det igjennom listen ved å hoppe til neste node og nuller helt til vi har nullet ut alle nodene.
+        Til slutt settes hale og hode til null også, og Java fjerner alt automatisk.
     - Måte 2: Kjører igjennom listen q ved å hoppe til neste og bruker fjern-metoden til å fjerne noden 
         på indeks 0 (første noden) helt til listen er tom.
 

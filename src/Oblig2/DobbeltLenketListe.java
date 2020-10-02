@@ -371,17 +371,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Hjelpevariabel
         Node<T> p = hode; // Lager en ny node som er første node (hode)
 
-        // Fjerne første
-        if (p.verdi.equals(verdi) && p.neste != null) { // hvis peker sin verdi er lik verdien vi leter etter og det er en verdi etter neste
-            hode = p.neste; // så skal neste node være nye hode - dvs den nye første noden i listen
-            hode.forrige = null; // også setter vi den noden som tidligere var først til null - den tas dermed bort
+        if (p.verdi.equals(verdi)) { // hvis peker sin verdi er lik verdien vi leter etter
+            if (p.neste != null) { // og hvis neste-pekeren peker på en verdi/ node
+                hode = p.neste; // så skal denne noden settes som nye hode - dvs den nye første noden i listen
+                hode.forrige = null; // også setter vi den noden som tidligere var først til null - den tas dermed bort
+            }
+            else {
+                hode = null; // skal hode og hale settes lik null, tar dermed bort den eneste noden som er der
+                hale = null;
+            }
             antall--; // tar bort 1 i antall, siden en node nå er fjernet
             endringer++;
             return true; // return true for VERDI er nå fjernet
-        }
-        else if (p.verdi.equals(verdi) && p.neste == null) { // hvis det kun er én node i listen, for det finnes ingen neste noder
-            hode = null; // skal hode og hale settes lik null, tar dermed bort den eneste noden som er der
-            hale = null;
         }
 
         // Fjerne mellomste
@@ -395,6 +396,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 endringer++;
                 return true;
             }
+            return false;
         }
 
         // Fjerne siste
@@ -477,23 +479,32 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             og som går inntil listen er tom
          */
 
-        // Måte 1:
+        // Måte 1: nuller alt
         Node<T> p = hode; // lager en ny node p som peker på hode-peker (første node)
-        for (; p != null; p = p.neste) { // kjører gjennom listen, så lenge p (hode) ikke er null, hopper den til neste
-            p = hode.neste; // setter hode sin neste til å være p
-            p.neste = null; // og neste blir satt til null
-            p.forrige = null; // og forrige blir satt til null
-            antall = 0;
+        Node<T> temp = new Node(null); // hjelpe-node
+
+        while (p != null) {
+            temp = p.neste; // setter node sin neste-peker til å peke på temp
+            p.neste = null; // nuller så ut den
+            p. forrige = null; // og nuller p sin forrige node
+            p.verdi = null; // og nuller ut p sin verdi
+            p = temp; // og setter temp lik som den ut-nullede
             endringer++;
         }
+        for(; p != null; p = p.neste) { // kjører gjennom listen, så lenge p (hode) ikke er null, hopper den til neste
+
+        }
+        antall = 0;
         hode = hale = null; // og setter både hode og hale til null når det kun er hode- og hale-pekere igjen
 
-        // Måte 2:
+        /*
+        // Måte 2: fjerner en etter en indeks
         Node<T> q = hode;
         for (; q != null; q = q.neste) { // kjører igjennom listen, og så lenge q (lik hode) ikke er null så hopper den til neste
             fjern(0); // og bruker fjern-metoden til å fjerne den første noden inntill hele listen er tom
             endringer++;
         }
+        */
     }
 
     // Oppgave 2a
