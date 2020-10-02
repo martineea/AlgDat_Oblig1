@@ -74,11 +74,11 @@ public class Main {
         Character [] c= {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
         DobbeltLenketListe<Character> liste2 = new DobbeltLenketListe<>(c);
 
-        ;
+
         System.out.println(liste2.subliste(3,8));// [D, E, F, G, H]
         System.out.println(liste2.subliste(5,5));
 
-       
+
         System.out.println(liste2.subliste(8,liste2.antall()));
 
         //System.out.println(liste2.subliste(0,11));//skal kaste avvik
