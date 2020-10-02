@@ -17,7 +17,7 @@ Oppgaven er levert av følgende studenter:
 * Martine Holmberg, s236808, s236808@oslomet.no
 * Camilla Harirchi Carlsen, s197235, s197235@oslomet.no
 
-Vi har brukt git til å dokumentere arbeidet vårt. Vi har <INSERT> commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
+Vi har brukt git til å dokumentere arbeidet vårt. Vi har 101 commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
 * Martine har gjort oppgave: 1, 2, 6, 7
@@ -41,7 +41,6 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
         så lenge det er en neste node i listen så legges det til ny verdi i den. 
     - Helt til neste-pekeren ikke lenger finner noen ny node.
     - Det samme gjøres på omvendtString - bare at da starter vi på halen og hopper bakover (forrige) og skriver ut listen baklengs.
-    
 * Oppgave 2 b): (Legge inn ny node)
     - Løste oppgaven ved å først lage en ny node p.
     - Hvis listen er tom så satte jeg både hode- og hale-pekeren til å peke på den ny noden p, og neste- og forrige-pekerne er satt lik null.
@@ -57,6 +56,7 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
     - Lagde subliste(fra, til). Sjekket om fra til fra gyldige verdier. Lagde en ny DobbeltLenketListe og en ny Node, regner ut antallet. 
     - Sjekker om antall<1 og returnerer en ny tom liste. Kjører igjennom antallet som er mellom fra til og legger inn nodene i listen. Minker antall med 1 for hver gang for å legge til de neste nodene.
     - returnerer så listen og tester at utskriften stemmer.
+
 * Oppgave 4:
     - Lagde først metoden indeksTil(verdi). Lager en ny node og setter denn lik hode. Kjører igjennom listen og sjekker om den nye noden sin verdi er lik innverdi. returnerer så indeksen. 
     - Lagde inneholder(verdi)  sjekker om indeksTil(verdi) ikke er lik -1 og returnerer true.
@@ -69,7 +69,6 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
     - Lager så en else metode som skal fange opp de andre alternativene. Den skal legge ​verdi​ inn i listen slik at den får indeks/posisjon ​indeks​.
     - Øker så antall og endringer. 
     
- 
 * Oppgave 6: (Fjerne verdi (og returnere true/ false) + returnere verdien på posisjon indeks)
     - Lager en hjelpenode kalt p igjen, som er den første i listen (hode). Så skal vi fjerne første, siste eller mellomste node:
         - Første: Vi finner verdien vi vil fjerne og sjekker om det er flere enn 1 node i listen --> da settes p sin neste (nest første node) til å være nye hode og hode sin forrige nulles ut.
@@ -102,7 +101,3 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 * Oppgave 8d: 
     - lager Iterator<T> iterator(int indeks)​. sjekker at indeksen er lovlig verdi. 
     - Deretter returnerers det, ved hjelp av konstruktøren i punkt c) en instans av iteratorklassen.
-    
-* Spørsmål til øvingen:
-- Får feil på oppg 6 sin test, whyyy?
-- Hvordan teste millisek på nullstill() (oppgave 7)?
