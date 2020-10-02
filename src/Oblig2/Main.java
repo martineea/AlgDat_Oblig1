@@ -269,47 +269,9 @@ public class Main {
         slutt = System.currentTimeMillis(); // slutter å telle
         System.out.println(slutt - start + "millisek - når man fjerner en og en indeks");
 
-        // Måte 1: 243 millisek
-        // Måte 2: 77 millisek
-        //
+        // Måte 1: 91 millisek
+        // Måte 2: 196 millisek
 
-        /*
-        DobbeltLenketListe<Integer> oppg7 = new DobbeltLenketListe<>();
-        for (int i = 0; i < 10000000; i++) { // 10mill tall
-            oppg7.leggInn(i);
-        }
-
-        long start = System.currentTimeMillis();
-        oppg7.nullstill();
-        long slutt = System.currentTimeMillis();
-        System.out.print(slutt - start);
-
-
-        for (int i = 0; i < 10000000; i++) {
-            oppg7.leggInn(i);
-        }
-
-        start = System.currentTimeMillis();
-        while (oppg7.antall() > 0) {
-            oppg7.fjern(0);
-        }
-        slutt = System.currentTimeMillis();
-        System.out.print(slutt - start);
-
-
-        /*
-
-
-        Liste<Integer> liste = new DobbeltLenketListe<>();
-        for(int i = 0; i < 1000000; i++){
-            liste.leggInn(i);
-        }
-        long tic = System.currentTimeMillis();
-        liste.nullstill();
-        long toc = System.currentTimeMillis();
-        long timetaken = toc - tic;
-        System.out.println("Dette tok " + timetaken + "ms");
-         */
 
         //Oppgave 8
         System.out.println("");
