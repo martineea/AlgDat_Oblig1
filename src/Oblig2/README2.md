@@ -95,11 +95,11 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 * Oppgave 8b: 
     - Lager  ​Iterator<T> iterator()​. og returnerer en DobbeltLenketListeIterator();
     
-*Oppgave 8c: 
+* Oppgave 8c: 
     - Lager DobbeltLenketListeIterator(int indeks). 
     - Setter denne til den oppgitte indeksen. Setter så de andre attributtene til det samme i konstuktøren: Setter fjernOk til være false og setter iteratorendringer til endringer. 
 
-*Oppgave 8d: 
+* Oppgave 8d: 
     - lager Iterator<T> iterator(int indeks)​. sjekker at indeksen er lovlig verdi. 
     - Deretter returnerers det, ved hjelp av konstruktøren i punkt c) en instans av iteratorklassen.
     
