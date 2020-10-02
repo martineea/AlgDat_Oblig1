@@ -370,24 +370,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public void nullstill() {
 
-        // Når jeg kjører tidstester i main så får jeg ulike resultater for hver gang jeg kjører de. Litt usikker på hvorfor?
-        // Feks:
-        // Måte 1: 91 millisek
-        // Måte 2: 196 millisek
-        // Men overordnet (hvis man ser på flertallene av resultater) så ser det ut som måte 1 er ca dobbelt så effektiv som måte 2
-
+        /*
+        Når jeg kjører tidstester i main så får jeg ulike resultater for hver gang jeg kjører de. Litt usikker på hvorfor?
+        Feks:
+        - Måte 1: 91 millisek (denne kan også finne på å være 185)
+        - Måte 2: 196 millisek (mens denne da er 178 på samme kjøring)
+        Men overordnet (hvis man ser på flertallene av resultater) så ser det ut som måte 1 er ca dobbelt så effektiv som måte 2
+        
+        */
         // Måte 1: nuller alt
         Node<T> p = hode;
-        Node<T> temp = new Node(null); // hjelpe-noder
+        Node<T> temp; // hjelpe-noder
 
         while (p != null) {
             temp = p.neste;
             p.neste = null;
             p. forrige = null;
             p = temp;
-            endringer++;
         }
         antall = 0;
+        endringer++;
         hode = hale = null;
 
         /*
