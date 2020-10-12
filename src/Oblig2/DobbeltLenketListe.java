@@ -277,7 +277,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> p = hode;
 
         // Fjerne første
-        if (p.verdi.equals(verdi)) {
+        if (verdi.equals(p.verdi)) {
             if (p.neste != null) {
                 hode = p.neste;
                 hode.forrige = null;
@@ -291,27 +291,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return true;
         }
 
-        // Fjerne mellomste
-        p = hode.neste;
-        for (; p != null; p = p.neste) {
-            if(p.verdi.equals(verdi)) {
-                p.forrige.neste = p.neste;
-                p.neste.forrige = p.forrige;
-                antall--; //
-                endringer++;
-                return true;
-            }
-            return false;
-        }
-
         // Fjerne siste
         p = hale;
-        if (p.verdi.equals(verdi)) {
+        if (verdi.equals(p.verdi)) {
             hale = p.forrige;
             hale.neste = null;
             antall--;
             endringer++;
             return true;
+        }
+
+        // Fjerne mellomste
+        p = hode.neste;
+        for (; p != null; p = p.neste) {
+            if(verdi.equals(p.verdi)) {
+                p.forrige.neste = p.neste;
+                p.neste.forrige = p.forrige;
+                antall--;
+                endringer++;
+                return true;
+            }
         }
         return false;
     }
@@ -376,7 +375,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         - Måte 1: 91 millisek (denne kan også finne på å være 185)
         - Måte 2: 196 millisek (mens denne da er 178 på samme kjøring)
         Men overordnet (hvis man ser på flertallene av resultater) så ser det ut som måte 1 er ca dobbelt så effektiv som måte 2
-        
+
         */
         // Måte 1: nuller alt
         Node<T> p = hode;
