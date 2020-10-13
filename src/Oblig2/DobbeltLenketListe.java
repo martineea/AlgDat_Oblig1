@@ -261,6 +261,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         T gammelVerdi = nodeEksempel.verdi;
         //lager ny verdi
         nodeEksempel.verdi=nyverdi;
+        endringer++;
         //skal returnere verdien til verdien som var der før.
         return gammelVerdi;
     }
