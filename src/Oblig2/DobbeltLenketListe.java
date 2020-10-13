@@ -276,43 +276,44 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Hjelpevariabel
         Node<T> p = hode;
 
-        // Fjerne første
-        if (verdi.equals(p.verdi)) {
-            if (p.neste != null) {
-                hode = p.neste;
-                hode.forrige = null;
+        while (p != null) {
+            if (verdi.equals(p.verdi)) {
+                break;
             }
-            else {
-                hode = null;
-                hale = null;
-            }
-            antall--;
-            endringer++;
-            return true;
+            p = p.neste;
         }
 
-        // Fjerne siste
-        p = hale;
-        if (verdi.equals(p.verdi)) {
-            hale = p.forrige;
+        // Hvis verdi er null returnere false
+        if (p == null) {
+            return false;
+        }
+        // Hvis det kun er én node i listen, skal denne nulles ut
+        else if (antall == 1) {
+            hode = hale = null;
+        }
+
+        // Fjerner første node
+        else if (p == hode) {
+            hode = hode.neste;
+            hode.forrige = null;
+        }
+
+        // Fjerner siste node
+        else if (p == hale) {
+            hale = hale.forrige;
             hale.neste = null;
-            antall--;
-            endringer++;
-            return true;
         }
 
-        // Fjerne mellomste
-        p = hode.neste;
-        for (; p != null; p = p.neste) {
-            if(verdi.equals(p.verdi)) {
-                p.forrige.neste = p.neste;
-                p.neste.forrige = p.forrige;
-                antall--;
-                endringer++;
-                return true;
-            }
+        // Fjerner mellomste
+        else {
+            p.forrige.neste = p.neste;
+            p.neste.forrige = p.forrige;
         }
-        return false;
+        p.verdi = null;
+        p.forrige = p.neste = null;
+        antall--;
+        endringer++;
+        return true;
     }
 
     // Oppgave 6

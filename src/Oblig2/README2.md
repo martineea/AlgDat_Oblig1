@@ -79,6 +79,8 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
             Da står noden i mellom der utenfor og Java fjerner den automatisk.
     - Når vi skal fjerne og returnere verdien gjør vi likt som på forrige, bare at vi returnerer verdien (på den indeksen) 
         i stedet for true eller false.
+* Etter justering: 
+    - Gjort om slik det er en while-løkke og else if for å gjøre koden mer effektiv
         
 * Oppgave 7: (Tømme/ NULLe listen)
     - Måte 1: Så lenge p ikke er null så kjøres det igjennom listen ved å hoppe til neste node og nuller helt til vi har nullet ut alle nodene.
